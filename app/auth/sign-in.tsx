@@ -50,7 +50,7 @@ const SignInScreen = () => {
       }));
       
       // Navigate to main app after successful sign in
-      router.replace('./main');
+      router.replace('/main');
     } catch (error) {
       console.error('Sign in error:', error);
       setError('Invalid phone number. Please try again.');
@@ -166,15 +166,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   header: {
-    paddingTop: 60,
-    paddingBottom: 30,
+    paddingTop: 40,
+    paddingBottom: 50,
     alignItems: 'center',
   },
   mascot: {
     width: 80,
     height: 80,
     resizeMode: 'contain',
-    marginBottom: 16,
+    marginBottom: 0,
   },
   welcomeText: {
     fontSize: 24,

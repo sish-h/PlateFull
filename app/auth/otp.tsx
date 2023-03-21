@@ -1,4 +1,3 @@
-import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router, useLocalSearchParams } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
@@ -20,6 +19,7 @@ import {
 import Button from '../../components/common/Button';
 import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
+import { formatPhoneNumber } from '../../utils/phoneFormatter';
 
 const { width } = Dimensions.get('window');
 
@@ -102,7 +102,7 @@ const OtpScreen: React.FC = () => {
       
       // Navigate to verification success with consistent absolute path
       router.push({
-        pathname: './auth/verification-success',
+        pathname: '/auth/verification-success',
         params: { isSignUp: isSignUp === 'true' ? 'true' : 'false' }
       });
     } catch (error) {
@@ -136,7 +136,7 @@ const OtpScreen: React.FC = () => {
         colors={[colors.primary, colors.primaryDark]}
         style={styles.header}
       >
-        <TouchableOpacity 
+        {/* <TouchableOpacity 
           style={styles.backButton}
           onPress={() => {
             try {
@@ -144,12 +144,12 @@ const OtpScreen: React.FC = () => {
             } catch (error) {
               console.error('Back navigation error:', error);
               // Fallback to sign-up if back fails
-              router.push('./auth/sign-up');
+              router.push('/auth/sign-up');
             }
           }}
         >
           <Ionicons name="arrow-back" size={24} color={colors.text.inverse} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         
         <Image 
           source={require('../../assets/images/logo/platefull-mascot.png')}
@@ -157,7 +157,9 @@ const OtpScreen: React.FC = () => {
         />
         <Text style={styles.welcomeText}>Verify Your Account</Text>
         <Text style={styles.subtitleText}>Enter the codes sent to</Text>
-        <Text style={styles.phoneNumber}>{phoneNumber}</Text>
+        <Text style={styles.phoneNumber}>
+          {phoneNumber ? formatPhoneNumber(phoneNumber) : 'your phone number'}
+        </Text>
         {/* <Text style={styles.emailText}>{email}</Text> */}
       </LinearGradient>
       
@@ -245,7 +247,7 @@ const OtpScreen: React.FC = () => {
                 } catch (error) {
                   console.error('Back navigation error:', error);
                   // Fallback to sign-up if back fails
-                  router.push('./auth/sign-up');
+                  router.push('/auth/sign-up');
                 }
               }}>
                 <Text style={styles.linkText}>Change it</Text>
@@ -264,7 +266,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   header: {
-    paddingTop: 60,
+    paddingTop: 30,
     paddingBottom: 30,
     alignItems: 'center',
   },
@@ -272,7 +274,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     resizeMode: 'contain',
-    marginBottom: 16,
+    // marginBottom: 16,
   },
   welcomeText: {
     fontSize: 24,
@@ -286,10 +288,12 @@ const styles = StyleSheet.create({
     opacity: 0.9,
   },
   phoneNumber: {
-    fontSize: 14,
-    color: colors.text.secondary,
+    // fontSize: 14,
+    color: colors.text.inverse,
     textAlign: 'center',
     marginBottom: 32,
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   emailText: {
     fontSize: 14,
