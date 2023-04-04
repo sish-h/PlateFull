@@ -1,3 +1,4 @@
+import { apiService } from '@/utils/apiService';
 import { create } from 'zustand';
 
 export interface FoodItem {
@@ -41,6 +42,7 @@ export interface MealState {
 }
 
 export interface MealActions {
+  getMeal: () => Promise<void>;
   addMeal: (mealData: Omit<MealEntry, 'id' | 'createdAt' | 'updatedAt'>) => Promise<void>;
   updateMeal: (mealId: string, mealData: Partial<MealEntry>) => Promise<void>;
   removeMeal: (mealId: string) => Promise<void>;
@@ -65,16 +67,17 @@ export const useMealStore = create<MealStore>((set, get) => ({
   isLoading: false,
   error: null,
 
+  getMeal: async () => {
+    const result = await apiService.getMeals();
+    set({ meals: result.data, isLoading: false });
+  },
+
   addMeal: async (mealData) => {
     set({ isLoading: true, error: null });
     try {
-      const newMeal: MealEntry = {
-        ...mealData,
-        id: Date.now().toString(),
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-      };
-      set({ meals: [...get().meals, newMeal], isLoading: false });
+      const result = await apiService.addMeal(mealData);
+      set({ meals: [...get().meals, result.data], isLoading: false });
+      return result.data;
     } catch (error) {
       set({
         error: error instanceof Error ? error.message : 'Failed to add meal',

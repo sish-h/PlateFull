@@ -40,44 +40,55 @@ interface UserData {
 
 const HeaderProfile: React.FC = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const { profile } = useUserStore();
-  console.log('profile: >>--->', profile);
+  const { profile, selectedChildId, selectChild } = useUserStore();
   const childProfile = (profile as any)?.data?.user?.children || profile?.children;
-  console.log('childProfile: >>--->', childProfile);
-  const  [selectedChildId, SetselectedChildId] = useState('1');
+  
+  // Default fallback data when no backend data is available
+  const defaultChildren = [
+    {
+      id: '1',
+      name: 'Add child',
+      avatar: require('../../assets/images/avatars/boy.png'),
+      ageRange: '',
+      streak: 0,
+      level: 1,
+      vegetables: [],
+      proteins: [],
+      preferences: {},
+      isActive: true,
+      gender: 'Unknown',
+      gamification: { streak: 0, level: 1 },
+      fruits: [],
+      allergies: []
+    },
+  ];
   
   const [userData, setUserData] = useState({
-    // name: 'Laurentia Claris',
-    // selectedChildId: '1',
-    children: [
-      {
-        id: '1',
-        name: 'Emma',
-        avatar: require('../../assets/images/avatars/boy.png'),
-        ageRange: '2',
-      },
-      {
-        id: '2',
-        name: 'Lucas',
-        avatar: require('../../assets/images/avatars/girl.png'),
-        ageRange: '4',
-      },
-      {
-        id: '3',
-        name: 'Sophia',
-        avatar: require('../../assets/images/avatars/boy1.png'),
-        ageRange: '6',
-      }
-    ]
+    children: defaultChildren
   });
 
+  // Helper function to get avatar source safely
+  const getAvatarSource = (child: any): ImageSourcePropType => {
+    if (child.avatar && typeof child.avatar === 'string') {
+      // If avatar is a URL string, you might want to handle it differently
+      // For now, return default avatar
+      return require('../../assets/images/avatars/boy.png');
+    } else if (child.avatar && typeof child.avatar === 'number') {
+      // If avatar is a require() result
+      return child.avatar;
+    } else {
+      // Default fallback avatar
+      return require('../../assets/images/avatars/boy.png');
+    }
+  };
+
   useEffect(()=>{
-    if (childProfile && Array.isArray(childProfile)) {
+    if (childProfile && Array.isArray(childProfile) && childProfile.length > 0) {
       // Transform API data to match UserData structure
       const transformedChildren = childProfile.map(child => ({
-        id: child._id || child.id, // Use _id from API or fallback to id
-        name: child.name,
-        avatar: child.avatar || require('../../assets/images/avatars/boy.png'), // Default avatar
+        id: child._id || child.id || 'unknown', // Use _id from API or fallback to id
+        name: child.name || 'Unknown Child',
+        avatar: getAvatarSource(child), // Use helper function
         ageRange: child.ageRange || 'Unknown',
         streak: child.gamification?.streak || 0,
         level: child.gamification?.level || 1,
@@ -85,9 +96,9 @@ const HeaderProfile: React.FC = () => {
         proteins: child.proteins || [],
         preferences: child.preferences || {},
         parent: child.parent,
-        isActive: child.isActive || true,
+        isActive: child.isActive !== undefined ? child.isActive : true,
         gender: child.gender || 'Unknown',
-        gamification: child.gamification || {},
+        gamification: child.gamification || { streak: 0, level: 1 },
         fruits: child.fruits || [],
         createdAt: child.createdAt,
         allergies: child.allergies || []
@@ -97,13 +108,59 @@ const HeaderProfile: React.FC = () => {
         ...prev,
         children: transformedChildren
       }));
+      
+      // Set selected child to first available child if none is selected
+      if (transformedChildren.length > 0 && !selectedChildId) {
+        console.log('Setting initial selected child:', transformedChildren[0].id);
+        selectChild(transformedChildren[0].id);
+      }
+    } else {
+      // If no backend data, use default data
+      setUserData(prev => ({
+        ...prev,
+        children: defaultChildren
+      }));
+      if (!selectedChildId) {
+        console.log('Setting default selected child: 1');
+        selectChild('1');
+      }
     }
-  },[childProfile])
+  },[childProfile, selectedChildId, selectChild])
 
+  // Debug logging
+  useEffect(() => {
+    console.log('HeaderProfile - selectedChildId from store:', selectedChildId);
+    console.log('HeaderProfile - current selectedChildId:', selectedChild);
+  }, [selectedChildId, userData.children]);
+
+  // Ensure we always have a valid selected child
   const selectedChild = userData.children.find(child => child.id === selectedChildId) || userData.children[0];
 
+  // Safety check - if no children exist, show loading or error state
+  if (!selectedChild || userData.children.length === 0) {
+    return (
+      <View style={styles.headerProfile}>
+        <View style={styles.profileInfo}>
+          <View style={styles.profileAvatar}>
+            <Image source={require('../../assets/images/avatars/boy.png')} style={styles.avatarImage} />
+          </View>
+          <View>
+            <Text style={styles.profileName}>Loading...</Text>
+            <Text style={styles.profileStatus}>
+              <Image source={require('../../assets/images/icons/premium.svg')} style={styles.premiumIcon} />
+              Premium
+            </Text>
+          </View>
+        </View>
+        <View style={styles.chargeIconContainer}>
+          <Image source={require('../../assets/images/icons/charge.svg')} style={styles.chargeIcon} />
+        </View>
+      </View>
+    );
+  }
+
   const handleChildSelect = (childId: string) => {
-    SetselectedChildId(childId)
+    selectChild(childId); // Use the store's selectChild function
     setIsDropdownVisible(false);
   };
 
