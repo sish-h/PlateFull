@@ -57,8 +57,8 @@ const GameScreen = ({ navigation, route }: GameScreenProps) => {
   // TTS Configuration for children
   const ttsOptions = {
     language: 'en-US',
-    pitch: 1.1, // Slightly higher pitch for children
-    rate: 0.75, // Slower rate for better comprehension
+    pitch: 1.2, // Higher pitch for children
+    rate: 0.7, // Slower rate for better comprehension
     voice: 'com.apple.ttsbundle.Samantha-compact', // Child-friendly voice on iOS
   };
 
@@ -137,7 +137,7 @@ const GameScreen = ({ navigation, route }: GameScreenProps) => {
       console.error('TTS Error:', error);
       // Fallback: try without voice specification
       try {
-        await Speech.speak(text, { language: 'en-US', pitch: 1.1, rate: 0.75 });
+        await Speech.speak(text, { language: 'en-US', pitch: 1.2, rate: 0.7 });
       } catch (fallbackError) {
         console.error('TTS Fallback Error:', fallbackError);
       }
@@ -491,11 +491,11 @@ const GameScreen = ({ navigation, route }: GameScreenProps) => {
             />
           </View>
           
-          <View style={styles.instructionContainer}>
+          {/* <View style={styles.instructionContainer}>
             <Text style={styles.instructionText}>
               👂 Tap the question to hear it again
             </Text>
-          </View>
+          </View> */}
           
           <TouchableOpacity 
             style={styles.questionTouchable}
@@ -536,12 +536,12 @@ const GameScreen = ({ navigation, route }: GameScreenProps) => {
             )}
           </TouchableOpacity>
           
-          <View style={styles.readButtonsInstruction}>
+          {/* <View style={styles.readButtonsInstruction}>
             <Text style={styles.readButtonsInstructionText}>
               🔊 Use the buttons to hear questions and answers
             </Text>
           </View>
-          
+           */}
           {hintText ? (
             <View style={styles.hintContainer}>
               <Ionicons name="bulb" size={18} color="#FFD93D" />
@@ -551,15 +551,6 @@ const GameScreen = ({ navigation, route }: GameScreenProps) => {
         </View>
 
         <View style={styles.optionsContainer}>
-          <View style={styles.optionsInstruction}>
-            <Text style={styles.optionsInstructionText}>
-              🎯 Touch an answer to hear it, then tap to select
-            </Text>
-            <Text style={styles.optionsSubInstructionText}>
-              🔊 Use the read buttons to hear answers clearly
-            </Text>
-          </View>
-          
           {currentQ.options.map((option: string, index: number) => {
             const isSelected = selectedAnswer === index;
             const isCorrectOption = index === currentQ.correct_index;
@@ -796,6 +787,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     padding: 16,
   },
+  instructionContainer: {
+    backgroundColor: '#E0F2F7',
+    padding: 12,
+    borderRadius: 10,
+    marginBottom: 16,
+    alignItems: 'center',
+  },
+  instructionText: {
+    fontSize: 16,
+    color: '#333333',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   questionTouchable: {
     alignItems: 'center',
     position: 'relative',
@@ -826,6 +830,52 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     backgroundColor: '#4CAF50',
     opacity: 0.7,
+  },
+  readQuestionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#E8F5E9',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 25,
+    marginTop: 16,
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderColor: '#4CAF50',
+    shadowColor: '#4CAF50',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  readButtonText: {
+    marginLeft: 8,
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#2E7D32',
+  },
+  questionButtonPulse: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: '#E8F5E9',
+    borderRadius: 25,
+    opacity: 0.5,
+  },
+  readButtonsInstruction: {
+    backgroundColor: '#E0F2F7',
+    padding: 12,
+    borderRadius: 10,
+    marginTop: 16,
+    alignItems: 'center',
+  },
+  readButtonsInstructionText: {
+    fontSize: 16,
+    color: '#333333',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   hintContainer: {
     flexDirection: 'row',
@@ -885,11 +935,6 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginLeft: 12,
   },
-  optionLetter: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#666666',
-  },
   optionIndicator: {
     width: 24,
     height: 24,
@@ -897,6 +942,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F5F5',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  optionLetter: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#666666',
   },
   optionAnswered: {
     opacity: 0.8,
@@ -921,66 +971,6 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     opacity: 0.6,
   },
-  footer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    padding: 16,
-    borderTopWidth: 1,
-    borderTopColor: '#EEEEEE',
-    backgroundColor: '#FFFFFF',
-  },
-  actionButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 25,
-    backgroundColor: '#F5F5F5',
-  },
-  disabledButton: {
-    opacity: 0.5,
-  },
-  actionButtonText: {
-    marginLeft: 8,
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  instructionContainer: {
-    backgroundColor: '#E0F2F7',
-    padding: 12,
-    borderRadius: 10,
-    marginBottom: 16,
-    alignItems: 'center',
-  },
-  instructionText: {
-    fontSize: 16,
-    color: '#333333',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  readQuestionButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#E8F5E9',
-    paddingVertical: 12,
-    paddingHorizontal: 20,
-    borderRadius: 25,
-    marginTop: 16,
-    alignSelf: 'center',
-    borderWidth: 2,
-    borderColor: '#4CAF50',
-    shadowColor: '#4CAF50',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  readButtonText: {
-    marginLeft: 8,
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#2E7D32',
-  },
   readAnswerButton: {
     marginLeft: 12,
     padding: 8,
@@ -1004,28 +994,29 @@ const styles = StyleSheet.create({
     backgroundColor: '#2E7D32',
     opacity: 0.7,
   },
-  questionButtonPulse: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: '#E8F5E9',
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#EEEEEE',
+    backgroundColor: '#FFFFFF',
+  },
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
     borderRadius: 25,
+    backgroundColor: '#F5F5F5',
+  },
+  disabledButton: {
     opacity: 0.5,
   },
-  readButtonsInstruction: {
-    backgroundColor: '#E0F2F7',
-    padding: 12,
-    borderRadius: 10,
-    marginTop: 16,
-    alignItems: 'center',
-  },
-  readButtonsInstructionText: {
-    fontSize: 16,
-    color: '#333333',
+  actionButtonText: {
+    marginLeft: 8,
+    fontSize: 14,
     fontWeight: 'bold',
-    textAlign: 'center',
   },
 });
 
