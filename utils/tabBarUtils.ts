@@ -20,7 +20,7 @@ export const HIDDEN_TAB_PAGES = [
   'leaderboard',
   'tracking',
   'history',
-  'learnTomato',
+  'foodLearn',
 ];
 
 // Hook to determine if tab bar should be hidden based on current route

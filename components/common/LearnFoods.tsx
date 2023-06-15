@@ -1,29 +1,45 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import {
-  Dimensions,
   Image,
+  ImageSourcePropType,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
-import { colors } from '../../../constants/colors';
-const { width } = Dimensions.get('window');
+import { colors } from '../../constants/colors';
 
-interface NavigationProps {
-  navigate: (screen: string, params?: any) => void;
-  goBack: () => void;
+export interface FoodData {
+  description: string;
+  nutrition_per_medium: {
+    carbohydrates: string;
+    protein: string;
+    fat: string;
+  };
+  nutrient_sources: {
+    carbohydrates: string;
+    protein: string;
+    fat: string;
+  };
+  how_grown: string[];
+  how_to_eat: string[];
 }
 
-const LearnScreen = ({ navigation }: { navigation: NavigationProps }) => {
+interface LearnFoodsProps {
+  imageSource: ImageSourcePropType;
+  data: FoodData;
+  onBack?: () => void;
+}
+
+const LearnFoods: React.FC<LearnFoodsProps> = ({ imageSource, data, onBack }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity 
           style={styles.backButton}
-          onPress={() => router.back()}
+          onPress={() => (onBack ? onBack() : router.back())}
         >
           <Ionicons name="arrow-back" size={24} color={colors.primary} />
         </TouchableOpacity>
@@ -31,10 +47,7 @@ const LearnScreen = ({ navigation }: { navigation: NavigationProps }) => {
         <Text style={styles.headerTitle}>Learn</Text>
         
         <View style={styles.tomatoCharacter}>
-          <Image 
-            source={require('../../../assets/images/foods/tomato (2).png')} 
-            style={styles.tomatoImage}
-          />
+          <Image source={imageSource} style={styles.tomatoImage} />
         </View>
       </View>
 
@@ -43,44 +56,33 @@ const LearnScreen = ({ navigation }: { navigation: NavigationProps }) => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
-          {/* What Is A Tomato? */}
+          {/* What Is It? */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Image source={require('../../../assets/images/foods/tomato (2).png')} style={{width: 30, height: 30, marginRight: 10}}/>
-              <Text style={styles.sectionTitle}>What Is A Tomato?</Text>
+              <Image source={imageSource} style={{ width: 30, height: 30, marginRight: 10 }} />
+              <Text style={styles.sectionTitle}>What Is It?</Text>
             </View>
-            <Text style={styles.sectionText}>
-              A tomato is actually a fruit, not a vegetable! It has seeds inside, which makes it a fruit. 
-              Tomatoes come in many colors like red, yellow, orange, and even purple!
-            </Text>
+            <Text style={styles.sectionText}>{data.description}</Text>
           </View>
 
-          {/* What's Inside A Tomato? */}
+          {/* What's Inside? */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
-              <Image source={require('../../../assets/images/foods/tomato.png')} style={{width: 40, height: 40, marginRight: 10}}/>
-              <Text style={styles.sectionTitle}>What's Inside A Tomato?</Text>
+              <Image source={imageSource} style={{ width: 40, height: 40, marginRight: 10 }} />
+              <Text style={styles.sectionTitle}>What's Inside?</Text>
             </View>
-            <Text style={styles.sectionText}>
-              A medium tomato (about the size of your fist) contains:
-            </Text>
+            <Text style={styles.sectionText}>Per medium serving, it contains:</Text>
             <View style={styles.nutritionList}>
               <View style={styles.nutritionItem}>
-                <Text style={styles.nutritionLabel}>🥖 Carbohydrates: 5 grams</Text>
-                <Text style={styles.nutritionDescription}>Provides energy</Text>
+                <Text style={styles.nutritionLabel}>🥖 Carbohydrates: {data.nutrition_per_medium.carbohydrates}</Text>
               </View>
               <View style={styles.nutritionItem}>
-                <Text style={styles.nutritionLabel}>💪 Protein: 1 gram</Text>
-                <Text style={styles.nutritionDescription}>Builds muscles</Text>
+                <Text style={styles.nutritionLabel}>💪 Protein: {data.nutrition_per_medium.protein}</Text>
               </View>
               <View style={styles.nutritionItem}>
-                <Text style={styles.nutritionLabel}>🧈 Fat: 0.2 grams</Text>
-                <Text style={styles.nutritionDescription}>Very low fat, making them light and healthy</Text>
+                <Text style={styles.nutritionLabel}>🧈 Fat: {data.nutrition_per_medium.fat}</Text>
               </View>
             </View>
-            <Text style={styles.sectionText}>
-              Tomatoes are also full of water for cooling and refreshment!
-            </Text>
           </View>
 
           {/* Where Do These Nutrients Come From? */}
@@ -92,67 +94,46 @@ const LearnScreen = ({ navigation }: { navigation: NavigationProps }) => {
             <View style={styles.nutritionList}>
               <View style={styles.nutritionItem}>
                 <Text style={styles.nutritionLabel}>🥖 Carbohydrates</Text>
-                <Text style={styles.nutritionDescription}>From sugar and fiber inside the tomato; plants make sugar via photosynthesis 😊</Text>
+                <Text style={styles.nutritionDescription}>{data.nutrient_sources.carbohydrates}</Text>
               </View>
               <View style={styles.nutritionItem}>
                 <Text style={styles.nutritionLabel}>💪 Protein</Text>
-                <Text style={styles.nutritionDescription}>From amino acids made by the tomato plant</Text>
+                <Text style={styles.nutritionDescription}>{data.nutrient_sources.protein}</Text>
               </View>
               <View style={styles.nutritionItem}>
                 <Text style={styles.nutritionLabel}>🧈 Fat</Text>
-                <Text style={styles.nutritionDescription}>From natural oils in the seeds</Text>
+                <Text style={styles.nutritionDescription}>{data.nutrient_sources.fat}</Text>
               </View>
             </View>
           </View>
 
-          {/* How Are Tomatoes Grown? */}
+          {/* How Is It Grown? */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Text style={styles.sectionIcon}>🌱</Text>
-              <Text style={styles.sectionTitle}>How Are Tomatoes Grown?</Text>
+              <Text style={styles.sectionTitle}>How Is It Grown?</Text>
             </View>
-            <Text style={styles.sectionText}>
-              Tomatoes grow from tiny seeds in five steps:
-            </Text>
+            <Text style={styles.sectionText}>Typical growth steps:</Text>
             <View style={styles.stepsList}>
-              <View style={styles.stepItem}>
-                <Text style={styles.stepNumber}>1.</Text>
-                <Text style={styles.stepText}>Plant the Seed: Put a small seed into the soil</Text>
-              </View>
-              <View style={styles.stepItem}>
-                <Text style={styles.stepNumber}>2.</Text>
-                <Text style={styles.stepText}>Water It: Give it a little drink daily</Text>
-              </View>
-              <View style={styles.stepItem}>
-                <Text style={styles.stepNumber}>3.</Text>
-                <Text style={styles.stepText}>Sunlight Time: Tomatoes need lots of sun</Text>
-              </View>
-              <View style={styles.stepItem}>
-                <Text style={styles.stepNumber}>4.</Text>
-                <Text style={styles.stepText}>Grow the Plant: Sprout, then leaves, then flowers</Text>
-              </View>
-              <View style={styles.stepItem}>
-                <Text style={styles.stepNumber}>5.</Text>
-                <Text style={styles.stepText}>Watch the Fruit Grow: After the flower, a green tomato grows and slowly turns red (or yellow or orange) when ripe</Text>
-              </View>
+              {data.how_grown.map((step, index) => (
+                <View key={`grow-step-${index}`} style={styles.stepItem}>
+                  <Text style={styles.stepNumber}>{index + 1}.</Text>
+                  <Text style={styles.stepText}>{step}</Text>
+                </View>
+              ))}
             </View>
-            <Text style={styles.sectionText}>
-              Farmers and gardeners care for tomato plants to help them grow big and healthy!
-            </Text>
           </View>
 
-          {/* How Can You Eat Tomatoes? */}
+          {/* How Can You Eat It? */}
           <View style={styles.section}>
             <View style={styles.sectionHeader}>
               <Text style={styles.sectionIcon}>🍴</Text>
-              <Text style={styles.sectionTitle}>How Can You Eat Tomatoes?</Text>
+              <Text style={styles.sectionTitle}>How Can You Eat It?</Text>
             </View>
             <View style={styles.eatingList}>
-              <Text style={styles.eatingItem}>• In a salad</Text>
-              <Text style={styles.eatingItem}>• On a sandwich</Text>
-              <Text style={styles.eatingItem}>• As ketchup</Text>
-              <Text style={styles.eatingItem}>• In soup</Text>
-              <Text style={styles.eatingItem}>• From just like an apple!</Text>
+              {data.how_to_eat.map((way, index) => (
+                <Text key={`eat-${index}`} style={styles.eatingItem}>• {way}</Text>
+              ))}
             </View>
           </View>
         </ScrollView>
@@ -282,4 +263,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LearnScreen;
+export default LearnFoods;
