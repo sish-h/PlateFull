@@ -1,5 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
-import { ResizeMode, Video } from "expo-av";
+import { useVideoPlayer, VideoView } from "expo-video";
 import React, { useState } from "react";
 import {
   Alert,
@@ -83,6 +83,12 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showFoodDetails, setShowFoodDetails] = useState(false);
   const [selectedFood, setSelectedFood] = useState<FoodItem | null>(null);
+  const [videoSource, setVideoSource] = useState<string | null>(null);
+
+  const player = useVideoPlayer(videoSource, player => {
+    player.loop = true;
+    player.play();
+  });
 
   const modules: Module[] = [
     {
@@ -286,6 +292,7 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
 
   const handleVideoPress = (video: VideoData): void => {
     setSelectedVideo(video);
+    setVideoSource(video.videoSource as any);
     setShowVideoModal(true);
   };
 
@@ -347,12 +354,14 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
           <Text style={styles.videoModalTitle}>{selectedVideo?.title}</Text>
         </View>
         {selectedVideo && (
-          <Video
-            source={selectedVideo.videoSource as any}
-            style={styles.videoPlayer}
-            useNativeControls
-            resizeMode={ResizeMode.CONTAIN}
-          />
+          <View style={styles.videoContainer}>
+            <VideoView 
+              style={styles.video} 
+              player={player} 
+              allowsFullscreen 
+              allowsPictureInPicture 
+            />
+          </View>
         )}
         {selectedVideo && (
           <View style={styles.videoModalInfo}>
@@ -616,10 +625,21 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.background },
-  sectionTitle: { fontSize: 24, fontWeight: "bold", color: colors.text.primary, marginTop: 20 },
+  sectionTitle: { fontSize: 24, fontWeight: "bold", color: colors.text.primary},
   sectionSubtitle: { fontSize: 16, color: colors.text.secondary, marginTop: 5, marginBottom: 15 },
-  modulesGrid: { flexDirection: "row", flexWrap: "wrap", gap: 12, marginTop: 20 },
-  moduleCardContainer: { width: (width - 56) / 2 },
+  modulesGrid: { 
+    flexDirection: "row", 
+    flexWrap: "wrap", 
+    gap: 12, 
+    marginTop: 20,
+    justifyContent: "center",
+    alignItems: "flex-start",
+  },
+  moduleCardContainer: { 
+    width: width > 400 ? (width - 56) / 2 : width - 32,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   moduleCard: {
     backgroundColor: colors.background2,
     padding: 16,
@@ -758,7 +778,11 @@ const styles = StyleSheet.create({
   successTitle: { fontSize: 20, fontWeight: "bold", textAlign: "center", marginBottom: 8 },
   successDescription: { textAlign: "center", marginBottom: 16, lineHeight: 22 },
   closeButton: { position: "absolute", right: 8, top: 8, zIndex: 1 },
-  videoModalContainer: { flex: 1, backgroundColor: "black" },
+  videoModalContainer: { 
+    flex: 1, 
+    backgroundColor: "black",
+    justifyContent: 'space-between',
+  },
   videoModalHeader: {
     flexDirection: "row",
     alignItems: "center",
@@ -772,7 +796,27 @@ const styles = StyleSheet.create({
     borderRadius: 20 
   },
   videoModalTitle: { color: "white", fontSize: 18, flex: 1, textAlign: "center" },
-  videoPlayer: { flex: 1, width: "100%" },
+  videoContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 20,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+  },
+  video: {
+    width: "100%",
+    height: "100%",
+    alignSelf: 'center',
+    borderRadius: 8,
+  },
+  videoPlayer: {
+    paddingLeft: 10,
+    flex: 1,
+    width: "100%",
+    height: 100,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   videoModalInfo: {
     padding: 16,
     backgroundColor: "rgba(255,255,255,0.1)",
@@ -793,11 +837,11 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.1)",
     padding: 8,
     borderRadius: 8,
-    minWidth: 80,
+    minWidth: 30,
   },
   featuredFoodImage: {
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
     borderRadius: 8,
     marginBottom: 4,
   },

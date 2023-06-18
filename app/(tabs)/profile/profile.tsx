@@ -1,4 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import {
   Alert,
@@ -128,6 +130,12 @@ const ProfileScreen = () => {
     setEditingChild({ ...childProfile as ChildProfile });
     setEditingUser({ ...userProfile as UserProfile });
     setIsEditing(false);
+  };
+
+  const handleLogout = async () => {
+    console.log('handleLogout: >>---->');
+    await AsyncStorage.removeItem('auth-token');
+    router.replace('/auth/sign-in'); 
   };
 
   const renderChildProfileTab = () => (
@@ -329,6 +337,14 @@ const ProfileScreen = () => {
               <Ionicons name="help-circle" size={20} color={colors.text.secondary} />
               <Text style={styles.settingText}>Help & Support</Text>
               <Ionicons name="chevron-forward" size={20} color={colors.text.secondary} />
+            </TouchableOpacity>
+          </View>
+          
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Account Actions</Text>
+            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+              <Ionicons name="log-out-outline" size={20} color={colors.error} />
+              <Text style={styles.logoutButtonText}>Logout</Text>
             </TouchableOpacity>
           </View>
           {isEditing && (
@@ -640,6 +656,22 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.text.secondary,
     fontStyle: 'italic',
+    marginLeft: 16,
+  },
+  logoutButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 16,
+    paddingHorizontal: 16,
+    backgroundColor: colors.error + '10',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: colors.error + '30',
+  },
+  logoutButtonText: {
+    fontSize: 16,
+    color: colors.error,
+    fontWeight: '600',
     marginLeft: 16,
   },
 });

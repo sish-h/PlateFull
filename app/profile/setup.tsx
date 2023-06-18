@@ -334,9 +334,9 @@ const ProfileSetupScreen = () => {
       const result = await addChild(childData);
       
       // Navigate to success page after successful creation
-      MessageHandler.showSuccess('Child profile created successfully!', 'Success', () => {
-        router.push('/(tabs)' as any);
-      });
+      router.replace('/(tabs)' as any);
+      // MessageHandler.showSuccess('Child profile created successfully!', 'Success', () => {
+      // });
       
     } catch (error) {
       console.error('Error creating child profile:', error);
