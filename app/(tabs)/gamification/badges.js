@@ -1,5 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Dimensions,
   Image,
@@ -12,9 +12,12 @@ import {
 import Animated, {
   FadeInUp
 } from 'react-native-reanimated';
+import BadgePlatinum from '../../../assets/images/icons/badge_platinum.svg';
+import BadgeSilver from '../../../assets/images/icons/badge_silver.svg';
 import HeaderProfile from '../../../components/common/HeaderProfile';
 import StatusBar from '../../../components/common/StatusBar';
 import { colors } from '../../../constants/colors';
+
 
 const { width } = Dimensions.get('window');
 
@@ -34,42 +37,20 @@ const BadgesScreen = ({ navigation }) => {
   const badges = [
     {
       id: 1,
-      name: 'Bronze',
-      icon: require('../../../assets/images/icons/badge_bronze.svg'),
-      deadline: '25, October 2025',
+      name: 'Silver',
+      icon: BadgeSilver,
+      deadline: '05, April 2030',
       points: 200,
-      remaining: 850,
-      color: '#CD7F32',
       locked: false
     },
     {
       id: 2,
       name: 'Platinum',
-      icon: '💎',
+      icon: BadgePlatinum,
       deadline: '25, October 2035',
-      points: 200,
-      color: '#E5E4E2',
+      points: 400,
       locked: true
     },
-    {
-      id: 3,
-      name: 'Silver',
-      icon: '🥈',
-      deadline: '25, October 2035',
-      points: 200,
-      color: '#C0C0C0',
-      locked: true
-    },
-    {
-      id: 4,
-      name: 'Silver',
-      icon: '🥈',
-      deadline: '25, October 23',
-      points: 200,
-      color: '#C0C0C0',
-      locked: true,
-      hasImage: true
-    }
   ];
 
   const stats = {
@@ -101,158 +82,163 @@ const BadgesScreen = ({ navigation }) => {
   };
 
   const renderBadgeTab = () => (
-    <ScrollView showsVerticalScrollIndicator={false}>
-        <Animated.View
-          // key={myBadge.id}
-          // entering={FadeInUp.delay(index * 100).springify()}
-        >
-          <TouchableOpacity
-            style={[
-              styles.badgeCard,
-              myBadge.locked && styles.badgeCardLocked
-            ]}
-            activeOpacity={0.8}
-          >
-            {/* {myBadge.hasImage && (
-              <Image 
-                source={require('../../../assets/images/foods/meal.png')}
-                style={styles.badgeImage}
-              />
-            )} */}
-            
-            <View style={styles.badgeContent}>
-              <View style={styles.badgeInfo}>  
-                <View style={styles.badgeDetails}>
-                  <Text style={styles.badgeDeadline}>
-                    Deadline: {myBadge.deadline}
-                  </Text>
-                  <Text style={styles.badgePoints}>
-                    Points: {myBadge.points}
-                  </Text>
-                  {myBadge.remaining && (
-                    <Text style={styles.badgeRemaining}>
-                      Earn: {myBadge.remaining} Remaining to earn this Badge
-                    </Text>
-                  )}
-                </View>
-
-                <View style={styles.badgeIcon}>
-                  <Image source={myBadge.icon} />
-                  <Text style={[styles.badgeName, { color: myBadge.color }]}>
-                    {myBadge.name}
-                  </Text>
-                </View>
+    <Animated.View
+      // key={myBadge.id}
+      // entering={FadeInUp.delay(index * 100).springify()}
+    >
+      <TouchableOpacity
+        style={[
+          styles.badgeCard,
+          myBadge.locked && styles.badgeCardLocked
+        ]}
+        activeOpacity={0.8}
+      >
+        <View style={styles.badgeContent}>
+          <View style={styles.badgeInfo}>  
+            <View style={styles.badgeDetails}>
+              <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
+                <Text style={styles.badgeRemaining}>
+                  Deadline:
+                </Text>
+                <Text style={styles.badgeRemainingtxt}>
+                  {myBadge.deadline}
+                </Text>
               </View>
-              
-              {myBadge.locked && (
+              <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
+                <Text style={styles.badgeRemaining}>
+                  Points:
+                </Text>
+                <Text style={styles.badgeRemainingtxt}>
+                  {myBadge.points}
+                </Text>
+              </View>
+              {myBadge.remaining && (
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
+                  <Text style={styles.badgeRemaining}>
+                  Earn:
+                  </Text>
+                  <Text style={styles.badgeRemainingtxt}>
+                    {myBadge.remaining} Remaining to earn this Badge
+                  </Text>
+                </View>
+              )}
+            </View>
+
+            <View style={styles.badgeIcon}>
+              <Image source={myBadge.icon} style={{width: 60, height: 60}} />
+              <Text style={[styles.badgeName, { color: myBadge.color }]}>
+                {myBadge.name}
+              </Text>
+            </View>
+          </View>
+          
+          {myBadge.locked && (
+            <TouchableOpacity style={styles.lockButton}>
+              <Ionicons name="lock-closed" size={24} color={colors.text.secondary} />
+            </TouchableOpacity>
+          )}
+        </View>
+        {badges.map((badge) => (
+          <View style={styles.badgeContent}>
+          <View style={styles.badgeInfo1}>
+            <View style={styles.badgeIcon1}>
+              <Image source={badge.icon} style={{width: 40, height: 40}} />
+              <Text style={[styles.badgeName1, { color: colors.primary }]}>
+                {badge.name}
+              </Text>
+            </View>  
+            <View style={styles.badgeDetails}>
+              <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
+                <Text style={styles.badgeRemaining}>
+                  Deadline:
+                </Text>
+                <Text style={styles.badgeRemainingtxt}>
+                  {badge.deadline}
+                </Text>
+              </View>
+              <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
+                <Text style={styles.badgeRemaining}>
+                  Points:
+                </Text>
+                <Text style={styles.badgeRemainingtxt}>
+                  {badge.points}
+                </Text>
+              </View>
+            </View>
+            {badge.locked && (
                 <TouchableOpacity style={styles.lockButton}>
                   <Ionicons name="lock-closed" size={24} color={colors.text.secondary} />
                 </TouchableOpacity>
               )}
             </View>
-          </TouchableOpacity>
-        </Animated.View>
-
-      {/* {badges.map((badge, index) => (
-        <Animated.View
-          key={badge.id}
-          entering={FadeInUp.delay(index * 100).springify()}
-        >
-          <TouchableOpacity
-            style={[
-              styles.badgeCard,
-              badge.locked && styles.badgeCardLocked
-            ]}
-            activeOpacity={0.8}
-          >
-            {badge.hasImage && (
-              <Image 
-                 source={require('../../../assets/images/foods/meal.png')}
-                style={styles.badgeImage}
-              />
-            )}
-            
-            <View style={styles.badgeContent}>
-              <View style={styles.badgeInfo}>
-                <View style={[styles.badgeIcon, { backgroundColor: badge.color + '30' }]}>
-                  <Image source={badge.icon}/>
-                </View>
-                
-                <View style={styles.badgeDetails}>
-                  <Text style={[styles.badgeName, { color: badge.color }]}>
-                    {badge.name}
-                  </Text>
-                  <Text style={styles.badgeDeadline}>
-                    Deadline: {badge.deadline}
-                  </Text>
-                  <Text style={styles.badgePoints}>
-                    Points: {badge.points}
-                  </Text>
-                  {badge.remaining && (
-                    <Text style={styles.badgeRemaining}>
-                      Earn: {badge.remaining} Remaining to earn this Badge
-                    </Text>
-                  )}
-                </View>
-              </View>
-              
-              {badge.locked && (
-                <TouchableOpacity style={styles.lockButton}>
-                  <Ionicons name="lock-closed" size={24} color={colors.text.secondary} />
-                </TouchableOpacity>
-              )}
-            </View>
-          </TouchableOpacity>
-        </Animated.View>
-      ))} */}
-    </ScrollView>
+          </View>
+        ))}
+      </TouchableOpacity>
+    </Animated.View>
   );
 
   const renderStatsTab = () => (
-    <ScrollView showsVerticalScrollIndicator={false}>
+    <View>
       {/* Daily Macros */}
       <Animated.View entering={FadeInUp.springify()} style={styles.statsCard}>
         <View style={styles.statsHeader}>
-          <Ionicons name="calendar" size={24} color={colors.primary} />
-          <Text style={styles.statsTitle}>Daily Macros</Text>
+          <View style={styles.listItem}>
+            <Image source={require('../../../assets/images/icons/calendar.svg')} style={{width: 25, height: 25}} />
+            <Text style={styles.statsTitle}>Daily Macro</Text>
+          </View>
+          <View style={styles.macrosGrid}>
+            <View style={styles.macroItem}>
+              <Text style={styles.macroValue}>{stats.dailyMacros.protein.value}{stats.dailyMacros.protein.unit}</Text>
+              <Text style={styles.macroLabel}>Protein</Text>
+            </View>
+            <View style={styles.macroItem}>
+              <Text style={styles.macroValue}>{stats.dailyMacros.carb.value}{stats.dailyMacros.carb.unit}</Text>
+              <Text style={styles.macroLabel}>Carb</Text>
+            </View>
+            <View style={styles.macroItem}>
+              <Text style={styles.macroValue}>{stats.dailyMacros.fat.value}{stats.dailyMacros.fat.unit}</Text>
+              <Text style={styles.macroLabel}>Fat</Text>
+            </View>
+          </View>
         </View>
-        <View style={styles.macrosGrid}>
-          <View style={styles.macroItem}>
-            <Text style={styles.macroValue}>{stats.dailyMacros.protein.value}{stats.dailyMacros.protein.unit}</Text>
-            <Text style={styles.macroLabel}>Protein</Text>
+        <View style={styles.statsHeader1}>
+          <View style={styles.listItem}>
+            <Image source={require('../../../assets/images/icons/fruit_white.svg')} style={{width: 25, height: 25}} />
+            <Text style={styles.statsTitle}>Food Introduced</Text>
           </View>
-          <View style={styles.macroItem}>
-            <Text style={styles.macroValue}>{stats.dailyMacros.carb.value}{stats.dailyMacros.carb.unit}</Text>
-            <Text style={styles.macroLabel}>Carb</Text>
-          </View>
-          <View style={styles.macroItem}>
-            <Text style={styles.macroValue}>{stats.dailyMacros.fat.value}{stats.dailyMacros.fat.unit}</Text>
-            <Text style={styles.macroLabel}>Fat</Text>
+          <View style={styles.macrosGrid}>
+            <View style={styles.macroItem}>
+              <Text style={styles.macroValue}>{stats.dailyMacros.protein.value}{stats.dailyMacros.protein.unit}</Text>
+              <Text style={styles.macroLabel}>Protein</Text>
+            </View>
+            <View style={styles.macroItem}>
+              <Text style={styles.macroValue}>{stats.dailyMacros.carb.value}{stats.dailyMacros.carb.unit}</Text>
+              <Text style={styles.macroLabel}>Carb</Text>
+            </View>
+            <View style={styles.macroItem}>
+              <Text style={styles.macroValue}>{stats.dailyMacros.fat.value}{stats.dailyMacros.fat.unit}</Text>
+              <Text style={styles.macroLabel}>Fat</Text>
+            </View>
           </View>
         </View>
-      </Animated.View>
-
-      {/* Food & Learning Stats */}
-      <Animated.View entering={FadeInUp.delay(100).springify()} style={styles.statsCard}>
-        <View style={styles.statsRow}>
-          <View style={styles.statBox}>
-            <Ionicons name="restaurant" size={24} color={colors.primary} />
-            <Text style={styles.statBoxTitle}>Foods Introduced</Text>
-            <Text style={styles.statBoxValue}>{stats.foodsIntroduced.total}</Text>
-            <Text style={styles.statBoxSubtext}>Introduced</Text>
-            <Text style={styles.statBoxValue}>{stats.foodsIntroduced.accepted}</Text>
-            <Text style={styles.statBoxSubtext}>Accepted</Text>
+        <View style={styles.statsHeader}>
+          <View style={styles.listItem}>
+            <Image source={require('../../../assets/images/icons/learning_video.svg')} style={{width: 25, height: 25}} />
+            <Text style={styles.statsTitle}>Learning Modules</Text>
           </View>
-          
-          <View style={styles.statBox}>
-            <Ionicons name="play-circle" size={24} color={colors.primary} />
-            <Text style={styles.statBoxTitle}>Learning Modules</Text>
-            <Text style={styles.statBoxValue}>{stats.learningModules.watched}</Text>
-            <Text style={styles.statBoxSubtext}>Watched</Text>
-            <Text style={styles.statBoxValue}>{stats.learningModules.accepted}</Text>
-            <Text style={styles.statBoxSubtext}>Accepted</Text>
-            <Text style={styles.statBoxValue}>{stats.learningModules.refused}</Text>
-            <Text style={styles.statBoxSubtext}>Refused</Text>
+          <View style={styles.macrosGrid}>
+            <View style={styles.macroItem}>
+              <Text style={styles.macroValue}>{stats.dailyMacros.protein.value}{stats.dailyMacros.protein.unit}</Text>
+              <Text style={styles.macroLabel}>Protein</Text>
+            </View>
+            <View style={styles.macroItem}>
+              <Text style={styles.macroValue}>{stats.dailyMacros.carb.value}{stats.dailyMacros.carb.unit}</Text>
+              <Text style={styles.macroLabel}>Carb</Text>
+            </View>
+            <View style={styles.macroItem}>
+              <Text style={styles.macroValue}>{stats.dailyMacros.fat.value}{stats.dailyMacros.fat.unit}</Text>
+              <Text style={styles.macroLabel}>Fat</Text>
+            </View>
           </View>
         </View>
       </Animated.View>
@@ -260,32 +246,39 @@ const BadgesScreen = ({ navigation }) => {
       {/* Statistics */}
       <Animated.View entering={FadeInUp.delay(200).springify()} style={styles.statsSection}>
         <Text style={styles.sectionTitle}>Statistics</Text>
-        
         <View style={styles.achievementsGrid}>
           <View style={styles.achievementItem}>
-            <Ionicons name="flame" size={32} color={colors.primary} />
-            <Text style={styles.achievementValue}>{stats.achievements.streak}</Text>
-            <Text style={styles.achievementLabel}>Day Streak</Text>
+            <Image source={require('../../../assets/images/icons/fire.svg')} style={{width: 32, height: 32}} />
+            <View>
+              <Text style={styles.achievementValue}>{stats.achievements.streak}</Text>
+              <Text style={styles.achievementLabel}>Day Streak</Text>
+            </View>
           </View>
           
           <View style={styles.achievementItem}>
-            <Ionicons name="flash" size={32} color={colors.warning} />
-            <Text style={styles.achievementValue}>{stats.achievements.totalXP}</Text>
-            <Text style={styles.achievementLabel}>Total XP</Text>
+            <Image source={require('../../../assets/images/icons/flash.svg')} style={{width: 32, height: 32}} />
+            <View>
+              <Text style={styles.achievementValue}>{stats.achievements.totalXP}</Text>
+              <Text style={styles.achievementLabel}>Total XP</Text>
+            </View>
           </View>
           
           <View style={styles.achievementItem}>
             <View style={styles.leagueBadge}>
-              <Text style={styles.leagueEmoji}>🥉</Text>
+              <Image source={require('../../../assets/images/icons/bronze_medal.svg')} style={{width: 50, height: 50}} />
             </View>
-            <Text style={styles.achievementValue}>{stats.achievements.league}</Text>
-            <Text style={styles.achievementLabel}>Current League</Text>
+            <View>
+              <Text style={styles.achievementValue}>{stats.achievements.league}</Text>
+              <Text style={styles.achievementLabel}>Current League</Text>
+            </View>
           </View>
           
           <View style={styles.achievementItem}>
-            <Ionicons name="trophy" size={32} color={colors.info} />
-            <Text style={styles.achievementValue}>{stats.achievements.topFinishes}</Text>
-            <Text style={styles.achievementLabel}>Top 3 Finishes</Text>
+            <Image source={require('../../../assets/images/icons/top-medal.svg')} style={{width: 50, height: 50}} />
+            <View>
+              <Text style={styles.achievementValue}>{stats.achievements.topFinishes}</Text>
+              <Text style={styles.achievementLabel}>Top 3</Text>
+            </View>
           </View>
         </View>
       </Animated.View>
@@ -372,14 +365,15 @@ const BadgesScreen = ({ navigation }) => {
           </View>
         </View>
       </Animated.View>
-    </ScrollView>
+    </View>
   );
 
   return (
     <View style={styles.container}>
       <StatusBar />
       <View style={styles.header}>
-      <HeaderProfile/>
+        <HeaderProfile/>
+      </View>
       <View style={styles.contentContainer}>
         <View style={styles.tabsContainer}>
           <TouchableOpacity
@@ -399,17 +393,25 @@ const BadgesScreen = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.content}>
+        <ScrollView 
+          style={styles.content}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.scrollContent}
+        >
           {activeTab === 'badge' && renderBadgeTab()}
           {activeTab === 'stats' && renderStatsTab()}
-        </View>
+        </ScrollView>
       </View>
-    </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  listItem: {
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 8,
+  },
   contentContainer: {
     flex: 1,
     backgroundColor: 'white',
@@ -417,6 +419,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     paddingHorizontal: 20,
     paddingTop: 20,
+    paddingBottom: 20,
     alignItems: 'center',
   },
   container: {
@@ -425,7 +428,6 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: colors.primary,
-    paddingBottom: 16,
   },
   tabsContainer: {
     flexDirection: 'row',
@@ -450,14 +452,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: colors.primary,
     paddingBottom: 2, // This creates space between text and underline
-    
     fontSize: 18,
     fontWeight: '600',
   },
   content: {
     flex: 1,
     paddingHorizontal: 24,
-    paddingTop: 24,
+  },
+  scrollContent: {
+    paddingBottom: 20,
   },
   // Badge styles
   badgeCard: {
@@ -488,12 +491,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     borderWidth: 1,
-    borderColor: 'grey',
+    borderColor: colors.whiteGrey,
     borderRadius: 16,
     width: width - 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
-
+  },
+  badgeInfo1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    flex: 1,
+    borderWidth: 1,
+    borderColor: colors.whiteGrey,
+    borderRadius: 16,
+    width: width - 20,
+    paddingHorizontal: 20,
   },
   badgeIcon: {
     width: 64,
@@ -502,15 +515,30 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: 16,
+    marginTop: 10,
     flexDirection: 'column',
+  },
+  badgeIcon1: {
+    borderRadius: 32,
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 10,
   },
   badgeEmoji: {
     fontSize: 32,
   },
   badgeDetails: {
     flex: 1,
+    gap: 4,
+    marginTop: 10,
+    marginBottom: 10,
   },
   badgeName: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  badgeName1: {
     fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 4,
@@ -530,43 +558,64 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     fontWeight: '600',
   },
+  badgeRemainingtxt: {
+    fontSize: 12,
+    color: colors.text.secondary,
+  },
   lockButton: {
     padding: 8,
   },
   // Stats styles
   statsCard: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.goldB,
     borderRadius: 16,
-    padding: 20,
+    paddingTop: 20,
+    paddingBottom: 10,
+    width: width - 30,
     marginBottom: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   statsHeader: {
-    flexDirection: 'row',
+    flexDirection: 'column',
+    gap:8,
     alignItems: 'center',
     marginBottom: 16,
+    flex: 1,
+  },
+  statsHeader1: {
+    flexDirection: 'column',
+    gap:8,
+    alignItems: 'center',
+    marginBottom: 16,
+    flex: 1,
+    borderRightWidth: 2,
+    borderLeftWidth: 2,
+    borderColor: 'rgba(255, 255, 255, 0.5)',
   },
   statsTitle: {
-    fontSize: 18,
+    fontSize: 9,
     fontWeight: 'bold',
-    color: colors.text.inverse,
+    color: 'white',
+    opacity: 0.5,
     marginLeft: 8,
   },
   macrosGrid: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-around',
   },
   macroItem: {
     alignItems: 'center',
+    flexDirection: 'Row',
+    gap: 30,
   },
   macroValue: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 9,
     color: colors.text.inverse,
   },
   macroLabel: {
-    fontSize: 14,
+    fontSize: 9,
     color: colors.text.inverse,
-    opacity: 0.8,
   },
   statsRow: {
     flexDirection: 'row',
@@ -599,13 +648,12 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   statsSection: {
-    marginBottom: 24,
+    marginTop: 15,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.text.primary,
-    marginBottom: 16,
   },
   achievementsGrid: {
     flexDirection: 'row',
@@ -619,6 +667,8 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
     marginBottom: 12,
+    flexDirection: 'row',
+    gap: 10,
   },
   leagueBadge: {
     width: 48,
@@ -630,10 +680,9 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   achievementValue: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: colors.text.primary,
-    marginVertical: 8,
+    color: colors.goldB,
   },
   achievementLabel: {
     fontSize: 14,
@@ -652,6 +701,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: colors.text.inverse,
     marginBottom: 16,
+    width: '60%',
   },
   leaderboardButton: {
     position: 'absolute',
