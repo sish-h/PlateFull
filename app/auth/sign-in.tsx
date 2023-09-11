@@ -166,15 +166,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   header: {
-    paddingTop: 40,
+    paddingTop: 10,
     paddingBottom: 50,
     alignItems: 'center',
   },
   mascot: {
-    width: 80,
-    height: 80,
+    width: 120,
+    height: 120,
     resizeMode: 'contain',
-    marginBottom: 0,
   },
   welcomeText: {
     fontSize: 24,

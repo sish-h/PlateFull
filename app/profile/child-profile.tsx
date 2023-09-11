@@ -131,15 +131,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   header: {
-    paddingTop: 60,
-    paddingBottom: 30,
+    paddingTop: 10,
+    paddingBottom: 50,
     alignItems: 'center',
   },
   mascot: {
-    width: 80,
-    height: 80,
+    width: 120,
+    height: 120,
     resizeMode: 'contain',
-    marginBottom: 16,
   },
   welcomeText: {
     fontSize: 24,

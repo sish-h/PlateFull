@@ -266,15 +266,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   header: {
-    paddingTop: 30,
-    paddingBottom: 30,
+    paddingTop: 10,
+    paddingBottom: 50,
     alignItems: 'center',
   },
   mascot: {
-    width: 80,
-    height: 80,
+    width: 120,
+    height: 120,
     resizeMode: 'contain',
-    // marginBottom: 16,
   },
   welcomeText: {
     fontSize: 24,
@@ -291,7 +290,7 @@ const styles = StyleSheet.create({
     // fontSize: 14,
     color: colors.text.inverse,
     textAlign: 'center',
-    marginBottom: 32,
+    // marginBottom: 32,
     fontSize: 20,
     fontWeight: 'bold',
   },

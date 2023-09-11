@@ -3,20 +3,20 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    Dimensions,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import Animated, {
-  FadeIn,
-  FadeOut,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring
+    FadeIn,
+    FadeOut,
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring
 } from 'react-native-reanimated';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
@@ -247,39 +247,55 @@ const ChildNameStep: React.FC<StepProps> = ({ profileData, setProfileData }) => 
   </View>
 );
 
-const AgeStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
-  <View style={styles.stepContainer}>
-    <Text style={styles.stepTitle}>Let&apos;s Learn About Your Family!</Text>
-    <Text style={styles.stepQuestion}>How old is your child?</Text>
-    
-    <TouchableOpacity style={styles.dropdown}>
-      <Text style={styles.dropdownText}>
-        {profileData.age || 'Select Age'}
-      </Text>
-      <Ionicons name="chevron-down" size={24} color={colors.text.secondary} />
-    </TouchableOpacity>
-    
-    <View style={styles.ageOptions}>
-      {config.ageRanges.map((age: { label: string; value: string }) => (
-        <TouchableOpacity
-          key={age.value}
-          style={[
-            styles.ageOption,
-            profileData.age === age.label && styles.ageOptionSelected
-          ]}
-          onPress={() => setProfileData({ ...profileData, age: age.label })}
-        >
-          <Text style={[
-            styles.ageOptionText,
-            profileData.age === age.label && styles.ageOptionTextSelected
-          ]}>
-            {age.label}
-          </Text>
-        </TouchableOpacity>
-      ))}
+const AgeStep: React.FC<StepProps> = ({ profileData, setProfileData }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
+  return (
+    <View style={styles.stepContainer}>
+      <Text style={styles.stepTitle}>Let&apos;s Learn About Your Family!</Text>
+      <Text style={styles.stepQuestion}>How old is your child?</Text>
+      
+      <TouchableOpacity 
+        style={styles.dropdown}
+        onPress={() => setIsDropdownOpen(!isDropdownOpen)}
+      >
+        <Text style={styles.dropdownText}>
+          {profileData.age || 'Select Age'}
+        </Text>
+        <Ionicons 
+          name={isDropdownOpen ? "chevron-up" : "chevron-down"} 
+          size={24} 
+          color={colors.text.secondary} 
+        />
+      </TouchableOpacity>
+      
+      {isDropdownOpen && (
+        <View style={styles.ageOptions}>
+          {config.ageRanges.map((age: { label: string; value: string }) => (
+            <TouchableOpacity
+              key={age.value}
+              style={[
+                styles.ageOption,
+                profileData.age === age.label && styles.ageOptionSelected
+              ]}
+              onPress={() => {
+                setProfileData({ ...profileData, age: age.label });
+                setIsDropdownOpen(false);
+              }}
+            >
+              <Text style={[
+                styles.ageOptionText,
+                profileData.age === age.label && styles.ageOptionTextSelected
+              ]}>
+                {age.label}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
     </View>
-  </View>
-);
+  );
+};
 
 const GenderStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
   <View style={styles.stepContainer}>
@@ -318,52 +334,65 @@ const GenderStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
   </View>
 );
 
-const RestrictionsStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
-  <View style={styles.stepContainer}>
-    <Text style={styles.stepTitle}>Let&apos;s Learn About Your Family!</Text>
-    <Text style={styles.stepQuestion}>
-      Does your child have allergies or dietary restrictions?
-    </Text>
-    
-    <TouchableOpacity style={styles.dropdown}>
-      <Text style={styles.dropdownText}>
-        {profileData.restrictions.length > 0 
-          ? `${profileData.restrictions.length} selected`
-          : 'Select your Restrictions'
-        }
+const RestrictionsStep: React.FC<StepProps> = ({ profileData, setProfileData }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
+  return (
+    <View style={styles.stepContainer}>
+      <Text style={styles.stepTitle}>Let&apos;s Learn About Your Family!</Text>
+      <Text style={styles.stepQuestion}>
+        Does your child have allergies or dietary restrictions?
       </Text>
-      <Ionicons name="chevron-down" size={24} color={colors.text.secondary} />
-    </TouchableOpacity>
-    
-    <View style={styles.restrictionOptions}>
-      {config.dietaryRestrictions.map((restriction: { label: string; value: string }) => (
-        <TouchableOpacity
-          key={restriction.value}
-          style={[
-            styles.restrictionOption,
-            profileData.restrictions.includes(restriction.value) && 
-            styles.restrictionOptionSelected
-          ]}
-          onPress={() => {
-            const current = profileData.restrictions;
-            const updated = current.includes(restriction.value)
-              ? current.filter((r: string) => r !== restriction.value)
-              : [...current, restriction.value];
-            setProfileData({ ...profileData, restrictions: updated });
-          }}
-        >
-          <Text style={[
-            styles.restrictionOptionText,
-            profileData.restrictions.includes(restriction.value) && 
-            styles.restrictionOptionTextSelected
-          ]}>
-            {restriction.label}
-          </Text>
-        </TouchableOpacity>
-      ))}
+      
+      <TouchableOpacity 
+        style={styles.dropdown}
+        onPress={() => setIsDropdownOpen(!isDropdownOpen)}
+      >
+        <Text style={styles.dropdownText}>
+          {profileData.restrictions.length > 0 
+            ? `${profileData.restrictions.length} selected`
+            : 'Select your Restrictions'
+          }
+        </Text>
+        <Ionicons 
+          name={isDropdownOpen ? "chevron-up" : "chevron-down"} 
+          size={24} 
+          color={colors.text.secondary} 
+        />
+      </TouchableOpacity>
+      
+      {isDropdownOpen && (
+        <View style={styles.restrictionOptions}>
+          {config.dietaryRestrictions.map((restriction: { label: string; value: string }) => (
+            <TouchableOpacity
+              key={restriction.value}
+              style={[
+                styles.restrictionOption,
+                profileData.restrictions.includes(restriction.value) && 
+                styles.restrictionOptionSelected
+              ]}
+              onPress={() => {
+                const current = profileData.restrictions;
+                const updated = current.includes(restriction.value)
+                  ? current.filter((r: string) => r !== restriction.value)
+                  : [...current, restriction.value];
+                setProfileData({ ...profileData, restrictions: updated });
+              }}
+            >
+              <Text style={[
+                styles.restrictionOptionText,
+                profileData.restrictions.includes(restriction.value) && 
+                styles.restrictionOptionTextSelected
+              ]}>
+                {restriction.label}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
     </View>
-  </View>
-);
+  );
+};
 
 const FoodSelectionStep: React.FC<FoodSelectionStepProps> = ({ type, profileData, setProfileData, foods }) => {
   const handleFoodToggle = (foodId: string) => {
@@ -415,15 +444,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   header: {
-    paddingTop: 60,
-    paddingBottom: 30,
+    paddingTop: 10,
+    paddingBottom: 50,
     alignItems: 'center',
   },
   mascot: {
-    width: 80,
-    height: 80,
+    width: 120,
+    height: 120,
     resizeMode: 'contain',
-    marginBottom: 16,
   },
   welcomeText: {
     fontSize: 24,
@@ -540,7 +568,7 @@ const styles = StyleSheet.create({
   },
   genderOptionSelected: {
     borderColor: colors.primary,
-    backgroundColor: colors.primaryLight + '20',
+    backgroundColor: colors.primary + '20',
   },
   genderAvatar: {
     width: 120,
@@ -599,7 +627,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   foodImageSelected: {
-    backgroundColor: colors.primaryLight + '30',
+    backgroundColor: colors.primary + '30',
     borderWidth: 2,
     borderColor: colors.primary,
   },
