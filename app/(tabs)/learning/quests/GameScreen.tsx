@@ -491,12 +491,6 @@ const GameScreen = ({ navigation, route }: GameScreenProps) => {
             />
           </View>
           
-          {/* <View style={styles.instructionContainer}>
-            <Text style={styles.instructionText}>
-              👂 Tap the question to hear it again
-            </Text>
-          </View> */}
-          
           <TouchableOpacity 
             style={styles.questionTouchable}
             onPress={handleQuestionPress}
@@ -536,12 +530,6 @@ const GameScreen = ({ navigation, route }: GameScreenProps) => {
             )}
           </TouchableOpacity>
           
-          {/* <View style={styles.readButtonsInstruction}>
-            <Text style={styles.readButtonsInstructionText}>
-              🔊 Use the buttons to hear questions and answers
-            </Text>
-          </View>
-           */}
           {hintText ? (
             <View style={styles.hintContainer}>
               <Ionicons name="bulb" size={18} color="#FFD93D" />
@@ -1018,6 +1006,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
   },
+  
+
 });
 
 export default GameScreen;

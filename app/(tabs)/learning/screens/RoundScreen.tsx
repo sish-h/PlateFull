@@ -248,36 +248,58 @@ const RoundScreen: React.FC<RoundScreenProps> = ({ difficulty, onBack, onStartQu
         <TouchableOpacity
           onPress={() => handleSubRoundPress(levelIndex, roundIndex, subRoundIndex)}
           disabled={isLocked}
-          style={styles.subRoundButton}
+          style={[
+            styles.subRoundButton,
+            isCurrent && styles.currentSubRoundButton,
+            isCompleted && styles.completedSubRoundButton
+          ]}
           activeOpacity={0.8}
         >
-          {/* Progress ring for active sub-round */}
-          {isCurrent && <View style={styles.progressRing} />}
+          {/* Enhanced progress ring for active sub-round */}
+          {isCurrent && (
+            <Animated.View entering={ZoomIn.delay(300)} style={styles.progressRingContainer}>
+              <View style={styles.progressRing} />
+              <View style={styles.progressRingGlow} />
+            </Animated.View>
+          )}
+          
           <Image
             source={
               isCompleted 
                 ? require('../../../../assets/images/characters/complet_sub_round.png')
                 : isCurrent
-                ? require('../../../../assets/images/characters/complet_sub_round.png') // Use same for current (available)
+                ? require('../../../../assets/images/characters/complet_sub_round.png')
                 : require('../../../../assets/images/characters/sub_round.png')
             }
             style={[
               styles.subRoundImage,
-              isLocked && styles.lockedSubRoundImage
+              isLocked && styles.lockedSubRoundImage,
+              isCurrent && styles.currentSubRoundImage,
+              isCompleted && styles.completedSubRoundImage
             ]}
           />
           
-          {/* Progress indicator for current sub-round */}
+          {/* Enhanced current indicator with pulsing animation */}
           {isCurrent && (
             <Animated.View entering={ZoomIn.delay(300)} style={styles.currentIndicator}>
               <View style={styles.currentDot} />
+              <View style={styles.currentPulse} />
             </Animated.View>
           )}
           
+          {/* Enhanced completion check with celebration effect */}
           {isCompleted && (
             <Animated.View entering={ZoomIn.delay(300)} style={styles.completionCheck}>
               <Ionicons name="checkmark" size={24} color="white" />
+              <View style={styles.completionGlow} />
             </Animated.View>
+          )}
+          
+          {/* Lock indicator for locked sub-rounds */}
+          {isLocked && (
+            <View style={styles.subRoundLock}>
+              <Ionicons name="lock-closed" size={20} color="#666" />
+            </View>
           )}
         </TouchableOpacity>
       </Animated.View>
@@ -305,31 +327,43 @@ const RoundScreen: React.FC<RoundScreenProps> = ({ difficulty, onBack, onStartQu
         <TouchableOpacity
           onPress={() => handleBoxPress(levelIndex, roundIndex)}
           disabled={!isUnlocked}
-          style={styles.treasureBoxButton}
+          style={[
+            styles.treasureBoxButton,
+            isUnlocked && !isCompleted && styles.unlockedTreasureBoxButton,
+            isCompleted && styles.completedTreasureBoxButton
+          ]}
           activeOpacity={0.8}
         >
           <Image
             source={require('../../../../assets/images/characters/box.png')}
             style={[
               styles.treasureBoxImage,
-              !isUnlocked && styles.lockedTreasureBoxImage
+              !isUnlocked && styles.lockedTreasureBoxImage,
+              isUnlocked && !isCompleted && styles.unlockedTreasureBoxImage
             ]}
           />
           
-          {/* Glow effect for unlocked but not completed treasure box */}
+          {/* Enhanced glow effect for unlocked treasure box */}
           {isUnlocked && !isCompleted && (
-            <Animated.View entering={ZoomIn.delay(300)} style={styles.treasureGlow} />
-          )}
-          
-          {isCompleted && (
-            <Animated.View entering={ZoomIn.delay(300)} style={styles.completionCheck}>
-              <Ionicons name="checkmark" size={24} color="white" />
+            <Animated.View entering={ZoomIn.delay(300)} style={styles.treasureGlowContainer}>
+              <View style={styles.treasureGlow} />
+              <View style={styles.treasureGlowPulse} />
             </Animated.View>
           )}
           
+          {/* Enhanced completion check */}
+          {isCompleted && (
+            <Animated.View entering={ZoomIn.delay(300)} style={styles.completionCheck}>
+              <Ionicons name="checkmark" size={24} color="white" />
+              <View style={styles.completionGlow} />
+            </Animated.View>
+          )}
+          
+          {/* Enhanced lock indicator */}
           {!isUnlocked && (
             <View style={styles.treasureBoxLock}>
               <Ionicons name="lock-closed" size={20} color="#666" />
+              <View style={styles.lockGlow} />
             </View>
           )}
         </TouchableOpacity>
@@ -993,7 +1027,6 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   progressRing: {
-    position: 'absolute',
     width: 92,
     height: 92,
     borderRadius: 46,
@@ -1052,9 +1085,9 @@ const styles = StyleSheet.create({
   completedTreasureBoxButton: {
     opacity: 1,
   },
-  unlockedTreasureBoxButton: {
-    opacity: 1,
-  },
+  // unlockedTreasureBoxButton: {
+  //   opacity: 1,
+  // },
   lockedTreasureBoxButton: {
     opacity: 0.6,
   },
@@ -1079,21 +1112,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 5,
   },
-  treasureGlow: {
-    position: 'absolute',
-    top: -10,
-    left: -10,
-    right: -10,
-    bottom: -10,
-    borderRadius: 50,
-    backgroundColor: '#ffd700',
-    opacity: 0.3,
-    shadowColor: '#ffd700',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.8,
-    shadowRadius: 20,
-    elevation: 0,
-  },
+
   characterContainer: {
     width: 80,
     alignItems: 'center',
@@ -1285,6 +1304,140 @@ const styles = StyleSheet.create({
     color: '#888',
     fontWeight: '800',
     letterSpacing: 1,
+  },
+  
+  // Enhanced sub-round styles
+  currentSubRoundButton: {
+    transform: [{ scale: 1.05 }],
+  },
+  completedSubRoundButton: {
+    transform: [{ scale: 1.02 }],
+  },
+  currentSubRoundImage: {
+    transform: [{ scale: 1.1 }],
+  },
+  completedSubRoundImage: {
+    transform: [{ scale: 1.05 }],
+  },
+  
+  // Enhanced progress ring
+  progressRingContainer: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  progressRingGlow: {
+    position: 'absolute',
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: '#58cc02',
+    opacity: 0.2,
+    shadowColor: '#58cc02',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 20,
+    elevation: 0,
+  },
+  
+  // Enhanced current indicator
+  currentPulse: {
+    position: 'absolute',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#58cc02',
+    opacity: 0.3,
+    transform: [{ scale: 0.8 }],
+  },
+  
+  // Enhanced completion glow
+  completionGlow: {
+    position: 'absolute',
+    top: -5,
+    left: -5,
+    right: -5,
+    bottom: -5,
+    borderRadius: 20,
+    backgroundColor: '#58cc02',
+    opacity: 0.3,
+    shadowColor: '#58cc02',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 15,
+    elevation: 0,
+  },
+  
+  // Enhanced sub-round lock
+  subRoundLock: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -15 }, { translateY: -15 }],
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
+    borderRadius: 15,
+    padding: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 5,
+  },
+  
+  // Enhanced treasure box styles
+  unlockedTreasureBoxButton: {
+    transform: [{ scale: 1.05 }],
+  },
+  // completedTreasureBoxButton: {
+  //   transform: [{ scale: 1.02 }],
+  // },
+  unlockedTreasureBoxImage: {
+    transform: [{ scale: 1.1 }],
+  },
+  
+  // Enhanced treasure glow
+  treasureGlowContainer: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  treasureGlow: {
+    position: 'absolute',
+    top: -10,
+    left: -10,
+    right: -10,
+    bottom: -10,
+    borderRadius: 50,
+    backgroundColor: '#ffd700',
+    opacity: 0.3,
+    shadowColor: '#ffd700',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.8,
+    shadowRadius: 20,
+    elevation: 0,
+  },
+  treasureGlowPulse: {
+    position: 'absolute',
+    top: -15,
+    left: -15,
+    right: -15,
+    bottom: -15,
+    borderRadius: 55,
+    backgroundColor: '#ffd700',
+    opacity: 0.1,
+    transform: [{ scale: 0.9 }],
+  },
+  
+  // Enhanced lock glow
+  lockGlow: {
+    position: 'absolute',
+    top: -3,
+    left: -3,
+    right: -3,
+    bottom: -3,
+    borderRadius: 18,
+    backgroundColor: '#666',
+    opacity: 0.2,
   },
 });
 
