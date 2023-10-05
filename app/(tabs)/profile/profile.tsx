@@ -18,6 +18,7 @@ import { colors } from '../../../constants/colors';
 import { useAuthStore } from '../../../stores/authStore';
 import { useMealStore } from '../../../stores/mealStore';
 import { useUserStore } from '../../../stores/userStore';
+import { getAvatarSource } from '../../../utils/avatarUtils';
 
 interface ChildProfile {
   name: string;
@@ -79,7 +80,7 @@ const ProfileScreen = () => {
     name: 'Loading...',
     ageRange: 'Loading...',
     gender: 'Loading...',
-    avatar: require('../../../assets/images/avatars/girl.png'),
+    avatar: 'girl',
     allergies: [],
     preferences: {},
     height: "0",
@@ -94,7 +95,7 @@ const ProfileScreen = () => {
     name: 'Loading...',
     email: 'Loading...',
     phone: 'Loading...',
-    avatar: require('../../../assets/images/avatars/user.jpg'),
+    avatar: 'user',
     children: [],
     role: 'Loading...',
     isVerified: false,
@@ -134,7 +135,7 @@ const ProfileScreen = () => {
       <Animated.View entering={FadeInUp.springify()}>
         <View style={styles.profileCard}>
           <View style={styles.profileHeader}>
-            <Image source={childProfile.avatar} style={styles.profileAvatar} />
+            <Image source={getAvatarSource(childProfile)} style={styles.profileAvatar} />
             <View style={styles.profileInfo}>
               <Text style={styles.profileName}>{childProfile.name}</Text>
               <Text style={styles.profileSubtext}>{childProfile.ageRange}</Text>
@@ -237,7 +238,7 @@ const ProfileScreen = () => {
       <Animated.View entering={FadeInUp.springify()}>
         <View style={styles.profileCard}>
           <View style={styles.profileHeader}>
-            <Image source={userProfile.avatar} style={styles.profileAvatar} />
+            <Image source={getAvatarSource(userProfile)} style={styles.profileAvatar} />
             <View style={styles.profileInfo}>
               <Text style={styles.profileName}>{userProfile.name}</Text>
               <Text style={styles.profileSubtext}>{userProfile.role} Member</Text>

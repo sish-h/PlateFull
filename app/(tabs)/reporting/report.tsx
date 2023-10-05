@@ -4,22 +4,23 @@ import { useUserStore } from '@/stores/userStore';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useEffect, useState } from 'react';
 import {
-  Alert,
-  Image,
-  Platform,
-  ScrollView,
-  Share,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    Alert,
+    Image,
+    Platform,
+    ScrollView,
+    Share,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring
 } from 'react-native-reanimated';
 import { colors } from '../../../constants/colors';
+import { getAvatarSource } from '../../../utils/avatarUtils';
 import { getFoodImageSource } from '../../../utils/imageUtils';
 
 const ReportSection = ({ title, children }: { title: string; children: React.ReactNode }) => (
@@ -56,7 +57,7 @@ const FoodReportScreen = () => {
     name: 'Loading...',
     ageRange: 'Loading...',
     gender: 'Loading...',
-    avatar: require('../../../assets/images/avatars/girl.png'),
+    avatar: 'girl',
     allergies: [],
     preferences: {},
     height: "0",
@@ -205,7 +206,7 @@ const FoodReportScreen = () => {
       <ReportSection title="Child Profile">
         <View style={styles.profileCard}>
           <View style={styles.profileHeader}>
-            <Image source={dummyChildProfile.avatar} style={styles.profileAvatar} />
+            <Image source={getAvatarSource(dummyChildProfile)} style={styles.profileAvatar} />
             <View style={styles.profileInfo}>
               <Text style={styles.childName}>{dummyChildProfile.name}</Text>
               <Text style={styles.childAge}>{dummyChildProfile.ageRange}</Text>
@@ -256,7 +257,7 @@ const FoodReportScreen = () => {
           <View style={styles.foodGroupsContainer}>
             {Object.entries(dummyNutritionSummary.foodGroups).map(([group, servings]) => (
               <View key={group} style={styles.foodGroupItem}>
-                <Text style={styles.foodGroupLabel}>{group.charAt(0).toUpperCase() + group.slice(1)}</Text>
+                <Text style={styles.foodGroupLabel}>{group.charAt(0).toUpperCase() + group.slice(1)} : </Text>
                 <Text style={styles.foodGroupValue}>{servings?.join(', ')}</Text>
               </View>
             ))}
