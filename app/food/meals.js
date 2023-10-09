@@ -14,9 +14,9 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import Button from '../../../components/common/Button';
-import { colors } from '../../../constants/colors';
-import { getFoodsByCategory } from '../../../constants/foods';
+import Button from '../../components/common/Button';
+import { colors } from '../../constants/colors';
+import { getFoodsByCategory } from '../../constants/foods';
 
 const { width, height } = Dimensions.get('window');
 

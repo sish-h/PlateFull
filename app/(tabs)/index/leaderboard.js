@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React, { useState } from 'react';
 import {
   Dimensions,
@@ -10,19 +11,18 @@ import {
   View
 } from 'react-native';
 import Animated, {
-  FadeIn,
   FadeInUp,
   SlideInRight,
   useAnimatedStyle,
   useSharedValue,
   withSpring
 } from 'react-native-reanimated';
-import StatusBar from '../../../components/common/StatusBar';
+import HeaderProfile from '../../../components/common/HeaderProfile';
 import { colors } from '../../../constants/colors';
 
 const { width } = Dimensions.get('window');
 
-const LeaderboardScreen = ({ navigation }) => {
+const LeaderboardScreen = () => {
   const [activeTab, setActiveTab] = useState('weekly');
   const [timeRemaining] = useState('06d 23h 00m');
   
@@ -55,12 +55,12 @@ const LeaderboardScreen = ({ navigation }) => {
   ];
 
   const leaderboard = [
-    { id: 4, rank: 4, name: 'Madelyn Dias', country: '🇧🇷', points: 590, avatar: null },
-    { id: 5, rank: 5, name: 'Zain Vaccaro', country: '🇮🇹', points: 448, avatar: null },
-    { id: 6, rank: 6, name: 'Skylar Geidt', country: '🇨🇿', points: 448, avatar: null },
-    { id: 7, rank: 7, name: 'Justin Bator', country: '🇳🇴', points: 448, avatar: null },
-    { id: 8, rank: 8, name: 'Cooper Lipshutz', country: '🇩🇪', points: 448, avatar: null },
-    { id: 9, rank: 9, name: 'Alfredo Septimus', country: '🇮🇹', points: 447, avatar: null },
+    { id: 4, rank: 4, name: 'Madelyn Dias', country: '🇧🇷', points: 590, avatar: require('../../../assets/images/avatars/user4.jpg') },
+    { id: 5, rank: 5, name: 'Zain Vaccaro', country: '🇮🇹', points: 448, avatar: require('../../../assets/images/avatars/user5.jpg') },
+    { id: 6, rank: 6, name: 'Skylar Geidt', country: '🇨🇿', points: 448, avatar: require('../../../assets/images/avatars/user6.jpg') },
+    { id: 7, rank: 7, name: 'Justin Bator', country: '🇳🇴', points: 448, avatar: require('../../../assets/images/avatars/user7.jpg') },
+    { id: 8, rank: 8, name: 'Cooper Lipshutz', country: '🇩🇪', points: 448, avatar: require('../../../assets/images/avatars/user8.jpg') },
+    { id: 9, rank: 9, name: 'Alfredo Septimus', country: '🇮🇹', points: 447, avatar: require('../../../assets/images/avatars/user9.jpg') },
   ];
 
   const PodiumPlace = ({ user, index }) => {
@@ -79,7 +79,7 @@ const LeaderboardScreen = ({ navigation }) => {
       };
     });
 
-    const podiumHeight = user.rank === 1 ? 120 : user.rank === 2 ? 90 : 70;
+    const podiumHeight = user.rank === 1 ? 180 : user.rank === 2 ? 120 : 90;
     
     return (
       <Animated.View
@@ -100,7 +100,6 @@ const LeaderboardScreen = ({ navigation }) => {
         </TouchableOpacity>
         
         <Text style={styles.podiumName}>{user.name}</Text>
-        <Text style={styles.podiumCountry}>{user.country}</Text>
         <Text style={styles.podiumPoints}>{user.points}</Text>
         
         <Animated.View
@@ -162,46 +161,16 @@ const LeaderboardScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={colors.primary} />
-      
       <View style={styles.header}>
         <TouchableOpacity 
           style={styles.backButton}
-          onPress={() => navigation.goBack()}
+          onPress={() => router.back()}
         >
-          <Ionicons name="arrow-back" size={24} color={colors.text.primary} />
+          <Ionicons name="arrow-back" size={24} color={colors.primary} />
         </TouchableOpacity>
         
         <Text style={styles.headerTitle}>Leaderboard</Text>
-        
-        <View style={styles.headerRight}>
-          <View style={styles.userProfile}>
-            <Image 
-              source={require('../../../assets/images/avatars/user.jpg')}
-              style={styles.headerAvatar}
-            />
-            <Text style={styles.headerName}>Laurentia Clarissa</Text>
-            <View style={styles.premiumBadge}>
-              <Ionicons name="checkmark-circle" size={16} color={colors.primary} />
-              <Text style={styles.premiumText}>Premium</Text>
-            </View>
-          </View>
-          
-          <View style={styles.statsContainer}>
-            <View style={styles.statItem}>
-              <Ionicons name="add-circle" size={20} color={colors.info} />
-              <Text style={styles.statValue}>50</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Ionicons name="star" size={20} color={colors.warning} />
-              <Text style={styles.statValue}>50</Text>
-            </View>
-          </View>
-        </View>
-      </View>
-
-      <View style={styles.content}>
-        {/* Tabs */}
+        <HeaderProfile />
         <View style={styles.tabsContainer}>
           <TouchableOpacity
             style={[styles.tab, activeTab === 'weekly' && styles.tabActive]}
@@ -220,30 +189,27 @@ const LeaderboardScreen = ({ navigation }) => {
             </Text>
           </TouchableOpacity>
         </View>
+      </View>
 
-        {/* User Ranking Card */}
-        <Animated.View
-          entering={FadeIn.springify()}
-          style={styles.userRankCard}
-        >
-          <View style={styles.rankBadge}>
-            <Text style={styles.rankBadgeText}>#4</Text>
-          </View>
-          <Text style={styles.userRankText}>
-            You're doing better than 60%{'\n'}of other players!
-          </Text>
-        </Animated.View>
-
-        {/* Timer */}
-        <View style={styles.timerContainer}>
-          <Ionicons name="time-outline" size={20} color={colors.text.secondary} />
-          <Text style={styles.timerText}>{timeRemaining}</Text>
-        </View>
-
+      <View style={styles.content}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContent}
         >
+          <Animated.View style={styles.userRankCard}>
+            <View style={styles.rankBadge}>
+              <Text style={styles.rankBadgeText}>#4</Text>
+            </View>
+            <Text style={styles.userRankText}>
+              You're doing better than 60%{'\n'}of other players!
+            </Text>
+          </Animated.View>
+
+          {/* Timer */}
+          <View style={styles.timerContainer}>
+            <Ionicons name="time-outline" size={20} color={colors.text.secondary} />
+            <Text style={styles.timerText}>{timeRemaining}</Text>
+          </View>
           {/* Top 3 Podium */}
           <View style={styles.podiumContainer}>
             <PodiumPlace user={topThree[0]} index={0} />
@@ -266,11 +232,11 @@ const LeaderboardScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.primary,
   },
   header: {
     backgroundColor: colors.primary,
-    paddingTop: 60,
+    paddingTop: 40,
     paddingBottom: 20,
     paddingHorizontal: 24,
     borderBottomLeftRadius: 24,
@@ -287,9 +253,12 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: colors.text.inverse,
-    marginBottom: 16,
+    fontWeight: '700',
+    color: 'white',
+    textAlign: 'center',
+    marginLeft: 10,
+    marginTop: -50,
+    marginBottom: -20,
   },
   headerRight: {
     flexDirection: 'row',
@@ -342,14 +311,12 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    paddingHorizontal: 24,
   },
   tabsContainer: {
     flexDirection: 'row',
     backgroundColor: colors.surface,
     borderRadius: 24,
     padding: 4,
-    marginTop: 20,
   },
   tab: {
     flex: 1,
@@ -370,12 +337,12 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   userRankCard: {
-    backgroundColor: colors.primary + '20',
+    backgroundColor: colors.goldW,
+    marginHorizontal: 25,
     borderRadius: 16,
     padding: 20,
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 20,
   },
   rankBadge: {
     width: 56,
@@ -393,15 +360,15 @@ const styles = StyleSheet.create({
   },
   userRankText: {
     fontSize: 16,
-    color: colors.text.primary,
+    color: colors.text.inverse,
     lineHeight: 22,
   },
   timerContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 20,
     marginBottom: 10,
+    marginHorizontal: 25,
+    marginTop: 10,
+    justifyContent: 'flex-end',
   },
   timerText: {
     fontSize: 16,
@@ -410,21 +377,20 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   scrollContent: {
-    paddingBottom: 100,
+    // paddingBottom: 100,
   },
   podiumContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'flex-end',
     marginTop: 20,
-    marginBottom: 40,
   },
   podiumPlace: {
     alignItems: 'center',
-    marginHorizontal: 10,
+    // marginHorizontal: 10,
   },
   winnerPlace: {
-    marginBottom: 20,
+    // marginBottom: 20,
   },
   crownContainer: {
     position: 'absolute',
@@ -445,21 +411,21 @@ const styles = StyleSheet.create({
   podiumName: {
     fontSize: 14,
     fontWeight: '600',
-    color: colors.text.primary,
+    color: colors.text.inverse,
     marginBottom: 2,
-  },
-  podiumCountry: {
-    fontSize: 20,
-    marginBottom: 4,
   },
   podiumPoints: {
     fontSize: 14,
     fontWeight: 'bold',
     color: colors.primary,
     marginBottom: 16,
+    backgroundColor: colors.background,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 10,
   },
   podium: {
-    width: 80,
+    width: 100,
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 12,
@@ -482,8 +448,10 @@ const styles = StyleSheet.create({
   },
   leaderboardContainer: {
     backgroundColor: colors.surface,
-    borderRadius: 16,
-    padding: 16,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingHorizontal: 45,
+    paddingVertical: 20,
   },
   leaderboardItem: {
     flexDirection: 'row',

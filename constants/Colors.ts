@@ -79,6 +79,7 @@ export const colors = {
   info: '#2196F3',
   whiteGrey: '#E7E7E6',
   goldB: '#E5A339',
+  goldW: '#FFB380',
   
   background: '#FFFFFF',
   surface: '#F5F5F5',

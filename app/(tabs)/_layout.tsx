@@ -1,4 +1,4 @@
-import { Tabs } from 'expo-router';
+import { Tabs, usePathname } from 'expo-router';
 import { Image, Platform } from 'react-native';
 
 import { HapticTab } from '../../components/HapticTab';
@@ -28,11 +28,14 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
     // Hide tab bar if hideTabBar prop is true OR if current route requires hiding
     const shouldHide = hideTabBar || shouldHideTabBar;
 
+    console.log('Tab bar visibility check:', { shouldHide, shouldHideTabBar, pathname: usePathname() });
+
     if (shouldHide) {
       return {
         ...baseStyle,
         display: 'none' as const,
         height: 0,
+        opacity: 0,
       };
     }
 
@@ -44,12 +47,17 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
     };
   };
 
+  const pathname = usePathname();
+  const shouldHide = hideTabBar || shouldHideTabBar;
+  
+  console.log('Tab bar visibility check:', { shouldHide, shouldHideTabBar, pathname });
+
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: colors.primary,
         headerShown: false,
-        tabBarButton: HapticTab,
+        tabBarButton: shouldHide ? () => null : HapticTab,
         tabBarBackground: TabBarBackground,
         tabBarStyle: getTabBarStyle(),
       }}>

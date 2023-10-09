@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import {
   Dimensions,
@@ -14,9 +15,8 @@ import Animated, {
   FadeIn,
   FadeInUp
 } from 'react-native-reanimated';
-import StatusBar from '../../components/common/StatusBar';
-import { colors } from '../../constants/colors';
-import { getFoodById } from '../../db/foods';
+import { colors } from '../../../constants/colors';
+import { getFoodById } from '../../../db/foods';
 
 const { width } = Dimensions.get('window');
 
@@ -87,9 +87,9 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
       date: '8/1/2024',
       time: '19:30pm',
       meals: {
-        fruits: { name: 'Fruits Eaten', value: 'CARBS 27%', image: apple?.image },
-        vegetables: { name: 'Veg Eaten', value: 'NUTRIENTS 27%', image: carrot?.image },
-        protein: { name: 'Protien Eaten', value: 'CARBS 27%', image: beef?.image }
+        fruits: { name: 'Fruits Eaten', value: 'CARBS 27%', image: require('../../../assets/images/foods/apple.png') },
+        vegetables: { name: 'Veg Eaten', value: 'NUTRIENTS 27%', image: require('../../../assets/images/foods/carrot.png') },
+        protein: { name: 'Protien Eaten', value: 'CARBS 27%', image: require('../../../assets/images/foods/beef.png') }
       }
     },
     {
@@ -97,9 +97,9 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
       date: '8/1/2024',
       time: '19:30pm',
       meals: {
-        fruits: { name: 'Fruits Eaten', value: 'CARBS 27%', image: apple?.image },
-        vegetables: { name: 'Veg Eaten', value: 'NUTRIENTS 27%', image: carrot?.image },
-        protein: { name: 'Protien Eaten', value: 'CARBS 27%', image: beef?.image }
+        fruits: { name: 'Fruits Eaten', value: 'CARBS 27%', image: require('../../../assets/images/foods/apple.png') },
+        vegetables: { name: 'Veg Eaten', value: 'NUTRIENTS 27%', image: require('../../../assets/images/foods/carrot.png') },
+        protein: { name: 'Protien Eaten', value: 'CARBS 27%', image: require('../../../assets/images/foods/beef.png') }
       }
     }
   ];
@@ -120,22 +120,7 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
       <View style={styles.chartContainer}>
         <View style={styles.pieChart}>
           <View style={styles.chartCenter}>
-            <Ionicons name="person" size={24} color={colors.primary} />
-          </View>
-          {/* Simplified pie chart representation */}
-          <View style={styles.chartSegments}>
-            {segments.map((segment, index) => (
-              <View
-                key={index}
-                style={[
-                  styles.chartSegment,
-                  {
-                    backgroundColor: segment.color,
-                    flex: segment.percentage
-                  }
-                ]}
-              />
-            ))}
+            <Image source={require('../../../assets/images/characters/marketing.png')} style={{width: 150, height: 150}}/>
           </View>
         </View>
         
@@ -167,7 +152,6 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
           {Object.values(meal.meals).map((item: MealItemType, idx) => (
             <View key={idx} style={styles.mealItem}>
               <View style={styles.mealItemLeft}>
-                <View style={styles.mealIcon}>
                   {item.image ? (
                     <Image 
                       source={item.image} 
@@ -175,16 +159,15 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
                       resizeMode="contain"
                     />
                   ) : (
-                    <Text style={styles.mealEmoji}>🍽️</Text>
+                    <Image source={item.image} style={{width: 20, height: 20}}/>
                   )}
-                </View>
                 <View>
                   <Text style={styles.mealItemName}>{item.name}</Text>
                   <Text style={styles.mealItemValue}>{item.value}</Text>
                 </View>
               </View>
               <TouchableOpacity>
-                <Ionicons name="bookmark" size={20} color={colors.primary} />
+              <Image source={require('../../../assets/images/icons/Bookmark.png')} style={{width: 30, height: 30}}/>
               </TouchableOpacity>
             </View>
           ))}
@@ -197,64 +180,14 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar />
-      
       <View style={styles.header}>
-        <View style={styles.headerTop}>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Ionicons name="arrow-back" size={24} color={colors.text.inverse} />
-          </TouchableOpacity>
-          
-          <View style={styles.userInfo}>
-            <Image 
-              source={require('../../assets/images/avatars/user.jpg')}
-              style={styles.userAvatar}
-            />
-            <Text style={styles.userName}>Laurentia Clarissa</Text>
-            <View style={styles.premiumBadge}>
-              <Ionicons name="checkmark-circle" size={16} color={colors.text.inverse} />
-              <Text style={styles.premiumText}>Premium</Text>
-            </View>
-          </View>
-          
-          <View style={styles.statsContainer}>
-            <TouchableOpacity style={styles.statItem}>
-              <Ionicons name="add-circle" size={20} color={colors.info} />
-              <Text style={styles.statValue}>50</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.statItem}>
-              <Ionicons name="star" size={20} color={colors.warning} />
-              <Text style={styles.statValue}>50</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        <View style={styles.tabsContainer}>
-          <TouchableOpacity
-            style={[styles.tab, activeTab === 'food' && styles.tabActive]}
-            onPress={() => setActiveTab('food')}
-          >
-            <Text style={[styles.tabText, activeTab === 'food' && styles.tabTextActive]}>
-              Food
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.tab, activeTab === 'mealHistory' && styles.tabActive]}
-            onPress={() => setActiveTab('mealHistory')}
-          >
-            <Text style={[styles.tabText, activeTab === 'mealHistory' && styles.tabTextActive]}>
-              Meal History
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.tab, activeTab === 'learning' && styles.tabActive]}
-            onPress={() => setActiveTab('learning')}
-          >
-            <Text style={[styles.tabText, activeTab === 'learning' && styles.tabTextActive]}>
-              Learning Module
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity 
+          style={styles.backButton}
+          onPress={() => router.back()}
+        >
+          <Ionicons name="arrow-back" size={24} color={colors.primary} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Meal History</Text>
       </View>
 
       <ScrollView 
@@ -263,8 +196,6 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
       >
         {/* Header Section */}
         <View style={styles.headerSection}>
-          <Text style={styles.welcomeText}>Welcome how are we doing today?</Text>
-          
           <View style={styles.searchContainer}>
             <Ionicons name="search" size={20} color={colors.text.secondary} />
             <Text style={styles.searchPlaceholder}>Search here</Text>
@@ -291,23 +222,19 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
           style={styles.progressCard}
         >
           <View style={styles.progressHeader}>
-            <Ionicons name="ribbon" size={24} color={colors.primary} />
+            <Image source={require('../../../assets/images/icons/Bookmark.png')} style={{width: 30, height: 30}}/>
             <Text style={styles.progressTitle}>Today Nutrient</Text>
-            <View style={styles.progressBadge}>
-              <Text style={styles.progressBadgeText}>Good</Text>
-            </View>
-          </View>
-          
+            <Text style={styles.progressPercentage}>{todayProgress.completed}%</Text>
+          </View>          
           <View style={styles.progressBar}>
             <View style={[styles.progressFill, { width: `${todayProgress.completed}%` }]} />
           </View>
           
           <View style={styles.progressLabels}>
-            <Text style={styles.progressLabel}>Completed</Text>
-            <Text style={styles.progressLabel}>Remaining</Text>
+            <Text style={styles.progressLabel1}>Completed</Text>
+            <Text style={styles.progressLabel2}>Remaining</Text>
           </View>
           
-          <Text style={styles.progressPercentage}>{todayProgress.completed}%</Text>
         </Animated.View>
 
         {/* Achievement */}
@@ -315,7 +242,7 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
           entering={FadeIn.delay(300).springify()}
           style={styles.achievementCard}
         >
-          <Ionicons name="ribbon" size={24} color={colors.primary} />
+          <Image source={require('../../../assets/images/icons/Bookmark.png')} style={{width: 30, height: 30}}/>
           <Text style={styles.achievementText}>
             Produce weekly Variety{'\n'}
             <Text style={styles.achievementSubtext}>you've earned a new reward</Text>
@@ -334,105 +261,44 @@ const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.primary,
   },
   header: {
     backgroundColor: colors.primary,
-    paddingTop: 60,
-    paddingBottom: 0,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-  },
-  headerTop: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 24,
-    marginBottom: 20,
-  },
-  userInfo: {
+    paddingTop: 40,
+    paddingBottom: 25,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  userAvatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    marginRight: 8,
-  },
-  userName: {
-    fontSize: 16,
+  headerTitle: {
+    fontSize: 22,
     fontWeight: '600',
-    color: colors.text.inverse,
-    marginRight: 8,
+    color: 'white',
+    textAlign: 'center',
+    marginLeft: 10,
   },
-  premiumBadge: {
-    flexDirection: 'row',
+  backButton: {
+    position: 'absolute',
+    left: 20,
+    width: 40,
+    height: 40,
+    backgroundColor: 'white',
+    borderRadius: 12,
+    justifyContent: 'center',
     alignItems: 'center',
-  },
-  premiumText: {
-    fontSize: 14,
-    color: colors.text.inverse,
-    marginLeft: 4,
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  statItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    marginLeft: 8,
-  },
-  statValue: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: colors.text.inverse,
-    marginLeft: 4,
-  },
-  tabsContainer: {
-    flexDirection: 'row',
-    backgroundColor: colors.background,
-    marginHorizontal: 24,
-    marginBottom: -1,
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-    overflow: 'hidden',
-  },
-  tab: {
-    flex: 1,
-    paddingVertical: 12,
-    alignItems: 'center',
-  },
-  tabActive: {
-    borderBottomWidth: 3,
-    borderBottomColor: colors.warning,
-  },
-  tabText: {
-    fontSize: 14,
-    color: colors.text.secondary,
-  },
-  tabTextActive: {
-    color: colors.warning,
-    fontWeight: '600',
+    zIndex: 1,
   },
   content: {
     flex: 1,
     paddingHorizontal: 24,
+    backgroundColor: colors.background,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
   headerSection: {
     marginTop: 24,
     marginBottom: 20,
-  },
-  welcomeText: {
-    fontSize: 22,
-    fontWeight: '600',
-    color: colors.text.primary,
-    marginBottom: 16,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -471,7 +337,7 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
   },
   nutrientChange: {
-    fontSize: 14,
+    fontSize: 12,
     color: colors.text.secondary,
   },
   chartContainer: {
@@ -497,16 +363,6 @@ const styles = StyleSheet.create({
     marginTop: -30,
     marginLeft: -30,
     zIndex: 1,
-  },
-  chartSegments: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 75,
-    overflow: 'hidden',
-    flexDirection: 'row',
-  },
-  chartSegment: {
-    height: '100%',
   },
   chartLegend: {
     flex: 1,
@@ -541,7 +397,7 @@ const styles = StyleSheet.create({
   progressHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 8,
   },
   progressTitle: {
     fontSize: 16,
@@ -549,17 +405,6 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
     marginLeft: 8,
     flex: 1,
-  },
-  progressBadge: {
-    backgroundColor: colors.success + '20',
-    paddingVertical: 4,
-    paddingHorizontal: 12,
-    borderRadius: 12,
-  },
-  progressBadgeText: {
-    fontSize: 12,
-    color: colors.success,
-    fontWeight: '600',
   },
   progressBar: {
     height: 12,
@@ -578,12 +423,22 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 4,
   },
-  progressLabel: {
-    fontSize: 12,
-    color: colors.text.secondary,
+  progressLabel1: {
+    position: 'absolute',
+    left : 20,
+    top : -20,
+    fontSize: 8,
+    color: colors.background,
+  },
+  progressLabel2: {
+    position: 'absolute',
+    right : 20,
+    top : -20,
+    fontSize: 8,
+    color: colors.primary,
   },
   progressPercentage: {
-    fontSize: 24,
+    fontSize: 16,
     fontWeight: 'bold',
     color: colors.primary,
     textAlign: 'center',
@@ -600,7 +455,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: colors.text.primary,
-    marginLeft: 12,
+    marginLeft: 8,
     lineHeight: 22,
   },
   achievementSubtext: {
@@ -609,7 +464,7 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
   },
   mealCard: {
-    backgroundColor: colors.surface,
+    backgroundColor: colors.background2,
     borderRadius: 16,
     padding: 20,
     marginBottom: 16,
@@ -626,7 +481,7 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
   },
   mealDateTime: {
-    fontSize: 14,
+    fontSize: 12,
     color: colors.text.secondary,
   },
   mealItems: {
@@ -644,15 +499,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  mealIcon: {
-    width: 48,
-    height: 48,
-    backgroundColor: colors.background,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 12,
-  },
   mealEmoji: {
     fontSize: 24,
   },
@@ -662,7 +508,7 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
   },
   mealItemValue: {
-    fontSize: 14,
+    fontSize: 10,
     color: colors.text.secondary,
     marginTop: 2,
   },
@@ -670,6 +516,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.text.secondary,
     opacity: 0.5,
+    textAlign: 'right',
   },
   mealImage: {
     width: 48,

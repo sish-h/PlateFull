@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import {
   Dimensions,
@@ -18,11 +19,9 @@ import Animated, {
   useSharedValue,
   withSpring
 } from 'react-native-reanimated';
-import Button from '../../components/common/Button';
-import StatusBar from '../../components/common/StatusBar';
-import { colors } from '../../constants/colors';
-import { getAllFoods } from '../../db/foods';
-
+import Button from '../../../components/common/Button';
+import { colors } from '../../../constants/colors';
+import { getAllFoods } from '../../../db/foods';
 const { width } = Dimensions.get('window');
 
 interface NavigationProps {
@@ -85,7 +84,7 @@ const MealTrackingScreen = ({ navigation }: { navigation: NavigationProps }) => 
         >
           <View style={styles.foodImageContainer}>
             <Image 
-              source={food.image} 
+              source={food.icon} 
               style={styles.foodImage}
               resizeMode="contain"
             />
@@ -172,20 +171,7 @@ const MealTrackingScreen = ({ navigation }: { navigation: NavigationProps }) => 
           <Text style={styles.caloriesText}>65 Calories</Text>
 
           <View style={styles.pairingImage}>
-            <View style={styles.plateCircle}>
-              {/* Simplified food plate representation */}
-              <View style={styles.foodSections}>
-                <View style={[styles.foodSection, { backgroundColor: '#FFE5E5' }]}>
-                  <Text style={styles.sectionEmoji}>🍓</Text>
-                </View>
-                <View style={[styles.foodSection, { backgroundColor: '#E5F3FF' }]}>
-                  <Text style={styles.sectionEmoji}>🥕</Text>
-                </View>
-                <View style={[styles.foodSection, { backgroundColor: '#E5FFE5' }]}>
-                  <Text style={styles.sectionEmoji}>🥜</Text>
-                </View>
-              </View>
-            </View>
+            <Image source={require('../../../assets/images/logo/1.png')} style={{width: 180, height: 170}} />
           </View>
 
           <Text style={styles.modalTitle}>Time To Eat</Text>
@@ -221,17 +207,7 @@ const MealTrackingScreen = ({ navigation }: { navigation: NavigationProps }) => 
           <Text style={styles.modalTitle}>Time To Eat</Text>
 
           <View style={styles.plateImage}>
-            <View style={styles.vegetablePlate}>
-              {/* Vegetable plate representation */}
-              <View style={styles.vegSection}>
-                <Text>🥦</Text>
-                <Text>🌽</Text>
-                <Text>🥕</Text>
-              </View>
-              <View style={styles.mainFood}>
-                <Text style={styles.mainFoodEmoji}>🍣</Text>
-              </View>
-            </View>
+            <Image source={require('../../../assets/images/logo/platefull-logo.png')} style={{width: 180, height: 170}} />
           </View>
 
           <Button
@@ -246,27 +222,24 @@ const MealTrackingScreen = ({ navigation }: { navigation: NavigationProps }) => 
 
   return (
     <View style={styles.container}>
-      <StatusBar backgroundColor={colors.primary} />
-      
       <View style={styles.header}>
         <TouchableOpacity 
           style={styles.backButton}
-          onPress={() => navigation.goBack()}
+          onPress={() => router.back()}
         >
-          <Ionicons name="arrow-back" size={24} color={colors.text.inverse} />
+          <Ionicons name="arrow-back" size={24} color={colors.primary} />
         </TouchableOpacity>
         
         <Text style={styles.headerTitle}>Meal</Text>
         
         <View style={styles.headerImage}>
-          <Text style={styles.headerEmoji}>🥗</Text>
+          <Image source={require('../../../assets/images/characters/meal_fruit_logo.png')} style={styles.headerImage1} />
         </View>
+        <Text style={styles.title}>Which Meal Are You Eating</Text>
+        <Text style={styles.subtitle}>Select Meal Type</Text>
       </View>
 
       <View style={styles.content}>
-        <Text style={styles.title}>Which Meal Are You Eating</Text>
-        <Text style={styles.subtitle}>Select Meal Type</Text>
-
         <View style={styles.searchContainer}>
           <Ionicons name="search" size={20} color={colors.text.secondary} />
           <TextInput
@@ -338,19 +311,17 @@ const MealTrackingScreen = ({ navigation }: { navigation: NavigationProps }) => 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.primary,
   },
   header: {
-    backgroundColor: colors.primary,
-    paddingTop: 60,
-    paddingBottom: 30,
-    paddingHorizontal: 24,
+    paddingTop: 30,
+    paddingHorizontal: 20,
     alignItems: 'center',
   },
   backButton: {
     position: 'absolute',
     left: 24,
-    top: 60,
+    top: 25,
     width: 40,
     height: 40,
     backgroundColor: colors.background,
@@ -359,39 +330,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: 22,
+    fontWeight: '600',
     color: colors.text.inverse,
     marginBottom: 20,
   },
   headerImage: {
-    width: 100,
-    height: 100,
-    backgroundColor: colors.text.inverse,
-    borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  headerEmoji: {
-    fontSize: 60,
+  headerImage1: {
+    width: 150,
+    height: 140,
   },
   content: {
     flex: 1,
     paddingHorizontal: 24,
     paddingTop: 24,
+    backgroundColor: colors.background,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: colors.text.primary,
+    color: colors.text.inverse,
     textAlign: 'center',
-    marginBottom: 8,
+    marginBottom: 5,
   },
   subtitle: {
-    fontSize: 16,
-    color: colors.text.secondary,
+    fontSize: 15,
+    color: colors.text.inverse,
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom: 15,
   },
   searchContainer: {
     flexDirection: 'row',
@@ -400,7 +371,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 16,
     paddingVertical: 14,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   searchInput: {
     flex: 1,
@@ -409,24 +380,26 @@ const styles = StyleSheet.create({
     marginLeft: 12,
   },
   mealTypes: {
-    marginBottom: 24,
+    marginBottom:10,
   },
   mealTypesContent: {
     paddingRight: 24,
   },
   mealTypeButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingVertical: 3,
+    paddingHorizontal: 15,
     borderRadius: 20,
     borderWidth: 2,
     borderColor: colors.primary,
     marginRight: 12,
+    paddingBottom: 23,
+    marginBottom: 20,
   },
   mealTypeButtonActive: {
     backgroundColor: colors.primary,
   },
   mealTypeText: {
-    fontSize: 16,
+    fontSize: 14,
     color: colors.primary,
     fontWeight: '500',
   },
@@ -549,58 +522,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 24,
   },
-  plateCircle: {
-    width: 180,
-    height: 180,
-    borderRadius: 90,
-    backgroundColor: colors.surface,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 3,
-    borderColor: colors.border,
-  },
-  foodSections: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    paddingHorizontal: 20,
-  },
-  foodSection: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  sectionEmoji: {
-    fontSize: 24,
-  },
   plateImage: {
     width: 200,
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 24,
-  },
-  vegetablePlate: {
-    width: 180,
-    height: 180,
-    borderRadius: 90,
-    backgroundColor: colors.surface,
-    padding: 20,
-    borderWidth: 3,
-    borderColor: colors.border,
-  },
-  vegSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginBottom: 20,
-  },
-  mainFood: {
-    alignItems: 'center',
-  },
-  mainFoodEmoji: {
-    fontSize: 48,
   },
 });
 

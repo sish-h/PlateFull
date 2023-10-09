@@ -4,20 +4,20 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    Dimensions,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-  withDelay,
-  withSpring,
-  withTiming
+    useAnimatedStyle,
+    useSharedValue,
+    withDelay,
+    withSpring,
+    withTiming
 } from 'react-native-reanimated';
 import { colors } from '../constants/colors';
 import { NavigationService } from '../utils/navigation';
@@ -140,7 +140,16 @@ const MainScreen: React.FC = () => {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <Text style={styles.loadingText}>Loading...</Text>
+        <LinearGradient
+          colors={[colors.primary, colors.primaryDark]}
+          style={styles.loadingGradient}
+        >
+          <Image 
+            source={require('../assets/images/logo/platefull-mascot.png')}
+            style={styles.loadingLogo}
+          />
+          <Text style={styles.loadingText}>Loading...</Text>
+        </LinearGradient>
       </View>
     );
   }
@@ -246,13 +255,22 @@ const styles = StyleSheet.create({
   },
   loadingContainer: {
     flex: 1,
+  },
+  loadingGradient: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: colors.background,
+  },
+  loadingLogo: {
+    width: 80,
+    height: 80,
+    resizeMode: 'contain',
+    marginBottom: 20,
   },
   loadingText: {
     fontSize: 18,
-    color: colors.text.primary,
+    color: colors.text.inverse,
+    fontWeight: '600',
   },
   header: {
     paddingTop: 60,

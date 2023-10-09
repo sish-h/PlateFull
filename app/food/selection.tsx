@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 import {
   Dimensions,
@@ -26,13 +27,10 @@ interface RouteParams {
   onComplete?: () => void;
 }
 
-interface NavigationProps {
-  navigate: (screen: string, params?: any) => void;
-  goBack: () => void;
-}
-
-const FoodSelectionScreen = ({ route, navigation }: { route: { params: RouteParams }, navigation: NavigationProps }) => {
-  const { category, step, onComplete } = route.params;
+const FoodSelectionScreen = () => {
+  const params = useLocalSearchParams();
+  const category = params.category as string;
+  const step = params.step ? parseInt(params.step as string) : 0;
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
   
   // Get food data from database based on category
@@ -67,19 +65,23 @@ const FoodSelectionScreen = ({ route, navigation }: { route: { params: RoutePara
     
     // Navigate to next step
     if (category === 'fats') {
-      navigation.navigate('FoodSelection', {
-        category: 'dairy',
-        step: (step || 0) + 1,
-        onComplete
+      router.push({
+        pathname: '/(tabs)/food/selection',
+        params: {
+          category: 'dairy',
+          step: (step || 0) + 1
+        }
       });
     } else if (category === 'dairy') {
-      navigation.navigate('FoodSelection', {
-        category: 'proteins',
-        step: (step || 0) + 1,
-        onComplete
+      router.push({
+        pathname: '/(tabs)/food/selection',
+        params: {
+          category: 'proteins',
+          step: (step || 0) + 1
+        }
       });
     } else {
-      navigation.navigate('ProfileComplete');
+      // router.replace('/(tabs)');
     }
   };
 
@@ -135,7 +137,7 @@ const FoodSelectionScreen = ({ route, navigation }: { route: { params: RoutePara
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => router.back()}>
           <Ionicons name="arrow-back" size={24} color={colors.text.primary} />
         </TouchableOpacity>
         
@@ -168,7 +170,7 @@ const FoodSelectionScreen = ({ route, navigation }: { route: { params: RoutePara
       </ScrollView>
 
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity onPress={() => router.back()}>
           <Text style={styles.previousText}>Previous</Text>
         </TouchableOpacity>
         
