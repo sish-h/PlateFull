@@ -1,7 +1,6 @@
-import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
+import { Image, Platform } from 'react-native';
 
 import { HapticTab } from '../../components/HapticTab';
 import TabBarBackground from '../../components/ui/TabBarBackground';
@@ -29,7 +28,7 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
 
     // Hide tab bar if hideTabBar prop is true OR if current route requires hiding
     const shouldHide = hideTabBar || shouldHideTabBar;
-    
+
     if (shouldHide) {
       return {
         ...baseStyle,
@@ -59,35 +58,48 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color }) => <Ionicons name="home" size={24} color={color} />,
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../../assets/images/tab/home.png')}
+              style={{ width: 30, height: 30 }}
+            />
+          ),
         }}
       />
       <Tabs.Screen
         name="food"
         options={{
-          title: 'Food',
-          tabBarIcon: ({ color }) => <Ionicons name="restaurant" size={24} color={color} />,
+          title: 'Child\'s Profile',
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../../assets/images/tab/profile.png')}
+              style={{ width: 30, height: 30 }}
+            />
+          ),
         }}
       />
       <Tabs.Screen
         name="meals"
         options={{
-          title: 'Meals',
-          tabBarIcon: ({ color }) => <Ionicons name="fast-food" size={24} color={color} />,
+          title: 'Learning Modules',
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../../assets/images/tab/learning.png')}
+              style={{ width: 30, height: 30 }}
+            />
+          ),
         }}
       />
       <Tabs.Screen
         name="learning"
         options={{
-          title: 'Learn',
-          tabBarIcon: ({ color }) => <Ionicons name="school" size={24} color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="profile"
-        options={{
-          title: 'Profile',
-          tabBarIcon: ({ color }) => <Ionicons name="person" size={24} color={color} />,
+          title: 'Reporting',
+          tabBarIcon: ({ color }) => (
+            <Image
+              source={require('../../assets/images/tab/report.png')}
+              style={{ width: 30, height: 30 }}
+            />
+          ),
         }}
       />
     </Tabs>
