@@ -1,14 +1,17 @@
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
+  Alert,
+  Dimensions,
   Image,
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View
 } from 'react-native';
 import Button from '../../components/common/Button';
@@ -17,36 +20,29 @@ import PhoneInput from '../../components/common/PhoneInput';
 import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
 
+const { width } = Dimensions.get('window');
+
 interface FormData {
   fullName: string;
   email: string;
   phoneNumber: string;
-  password: string;
-  confirmPassword: string;
 }
 
 interface FormErrors {
   fullName?: string;
   email?: string;
   phoneNumber?: string;
-  password?: string;
-  confirmPassword?: string;
 }
 
-const SignUpScreen = () => {
+const SignUpScreen: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
     phoneNumber: '',
-    password: '',
-    confirmPassword: ''
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
-  const [countryCode, setCountryCode] = useState('US');
-  const [country, setCountry] = useState(null);
-  const [withCountryNameButton, setWithCountryNameButton] = useState(false);
-  const [phone, setPhone] = useState('');
+
   
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -55,39 +51,23 @@ const SignUpScreen = () => {
       newErrors.fullName = 'Full name is required';
     }
     
-    // if (!formData.email.trim()) {
-    //   newErrors.email = 'Email is required';
-    // } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    //   newErrors.email = 'Please enter a valid email';
-    // }
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
     
-    // if (!formData.phoneNumber || !formData.phoneNumber.trim()) {
-    //   newErrors.phoneNumber = 'Phone number is required';
-    // } else {
-    //   // Remove the country code to get just the number
-    //   const phoneWithoutCode = formData.phoneNumber.replace(/^\+\d{1,4}/, '');
-    //   if (phoneWithoutCode.length < 7) {
-    //     newErrors.phoneNumber = 'Please enter a valid phone number';
-    //   }
-    // }
-    
-    // if (!formData.password) {
-    //   newErrors.password = 'Password is required';
-    // } else if (formData.password.length < 6) {
-    //   newErrors.password = 'Password must be at least 6 characters';
-    // }
-    
-    // if (formData.password !== formData.confirmPassword) {
-    //   newErrors.confirmPassword = 'Passwords do not match';
-    // } else if (formData.confirmPassword != formData.password) {
-    //   newErrors.confirmPassword = 'Input the same password';
-    // }
+    if (!formData.phoneNumber.trim()) {
+      newErrors.phoneNumber = 'Phone number is required';
+    } else if (formData.phoneNumber.length < 10) {
+      newErrors.phoneNumber = 'Please enter a valid phone number';
+    }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
   
-  const handleSignUp = async (): Promise<void> => {
+  const handleSignUp = async () => {
     if (!validateForm()) {
       return;
     }
@@ -95,25 +75,27 @@ const SignUpScreen = () => {
     setLoading(true);
     
     try {
-      // Register user with local authentication service
-      // const result = await authService.registerUser({
-      //   email: formData.email,
-      //   password: formData.password,
-      //   fullName: formData.fullName,
-      //   phoneNumber: formData.phoneNumber
-      // });
-      // if (result.success) {
-        // Navigate to OTP or main app as needed (for local, go to main app)
-        router.replace('/(tabs)');
-      // }
+      // Simulate sending OTP
+      console.log('Sending phone OTP to:', formData.phoneNumber);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Navigate to OTP verification with consistent absolute path
+      router.replace({
+        pathname: '/auth/otp',
+        params: { 
+          phoneNumber: formData.phoneNumber,
+          isSignUp: 'true' 
+        }
+      });
     } catch (error) {
-      setErrors({ ...errors, email: (error as Error).message || 'Registration failed. Please try again.' });
+      console.error('Sign up error:', error);
+      Alert.alert('Error', 'Failed to send OTP. Please try again.');
     } finally {
       setLoading(false);
     }
   };
   
-  const handleGoogleSignUp = async (): Promise<void> => {
+  const handleGoogleSignUp = async () => {
     try {
       // Implement Google OAuth
       console.log('Google Sign Up');
@@ -122,7 +104,7 @@ const SignUpScreen = () => {
     }
   };
   
-  const updateFormData = (field: keyof FormData, value: string): void => {
+  const updateFormData = (field: keyof FormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }));
@@ -164,8 +146,7 @@ const SignUpScreen = () => {
               placeholder="Enter your full name"
               value={formData.fullName}
               onChangeText={(text) => updateFormData('fullName', text)}
-              error={errors.fullName}
-              icon={<Ionicons name="person" />}
+              icon={<Ionicons name="person-outline" />}
             />
             
             <Input
@@ -173,49 +154,23 @@ const SignUpScreen = () => {
               onChangeText={(text) => updateFormData('email', text)}
               placeholder="Enter your email"
               keyboardType="email-address"
-              error={errors.email}
-              icon={<Ionicons name="mail" />}
+              icon={<Ionicons name="mail-outline" />}
             />
             
             <PhoneInput
               value={formData.phoneNumber}
               onChangeText={(text: string) => updateFormData('phoneNumber', text)}
               placeholder="Enter your phone number"
-              error={errors.phoneNumber}
               style={{}}
               containerStyle={{}}
             />
             
-            <Input
-              value={formData.password}
-              onChangeText={(text) => updateFormData('password', text)}
-              placeholder="Create a password"
-              secureTextEntry
-              error={errors.password}
-              icon={<Ionicons name="lock-closed" />}
-            />
-            
-            <Input
-              value={formData.confirmPassword}
-              onChangeText={(text) => updateFormData('confirmPassword', text)}
-              placeholder="Confirm your password"
-              secureTextEntry
-              error={errors.confirmPassword}
-              icon={<Ionicons name="lock-closed" />}
-            />
             
             <Button
               title="Sign Up"
               onPress={handleSignUp}
               loading={loading}
               style={styles.signUpButton}
-            />
-            
-            <Button
-              title="Back to Sign In"
-              onPress={() => router.push('/auth/sign-in')}
-              variant="outline"
-              style={styles.backToSignInButton}
             />
             
             <View style={styles.dividerContainer}>
@@ -239,6 +194,13 @@ const SignUpScreen = () => {
             <View style={styles.footer}>
               <Text style={styles.footerText}>By creating an account, you agree to our Terms of Service and Privacy Policy</Text>
             </View>
+            
+            <View style={styles.signInContainer}>
+              <Text style={styles.signInText}>Already have an account? </Text>
+              <TouchableOpacity onPress={() => router.replace('/auth/sign-in')}>
+                <Text style={styles.signInLink}>Sign In</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
@@ -252,15 +214,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
   header: {
-    paddingTop: 60,
+    paddingTop: 20,
     paddingBottom: 30,
     alignItems: 'center',
   },
   mascot: {
-    width: 180,
-    height: 180,
+    width: 80,
+    height: 80,
     resizeMode: 'contain',
-    marginBottom: 16,
   },
   welcomeText: {
     fontSize: 24,
@@ -287,7 +248,7 @@ const styles = StyleSheet.create({
   },
   formHeader: {
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 20,
   },
   formTitle: {
     fontSize: 28,
@@ -303,17 +264,17 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   signUpButton: {
-    marginTop: 8,
-    marginBottom: 24,
+    marginTop: 12,
+    marginBottom: 12,
   },
   backToSignInButton: {
-    marginTop: 8,
-    marginBottom: 24,
+    marginTop: 12,
+    marginBottom: 12,
   },
   dividerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginVertical: 24,
+    marginVertical: 12,
   },
   divider: {
     flex: 1,
@@ -347,6 +308,21 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: '600',
   },
+  signInContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  signInText: {
+    fontSize: 14,
+    color: colors.text.secondary,
+  },
+  signInLink: {
+    fontSize: 14,
+    color: colors.primary,
+    fontWeight: '600',
+  },
 });
 
-export default SignUpScreen; 
+export default SignUpScreen;

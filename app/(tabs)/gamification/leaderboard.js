@@ -230,13 +230,13 @@ const LeaderboardScreen = ({ navigation }) => {
             <Text style={styles.rankBadgeText}>#4</Text>
           </View>
           <Text style={styles.userRankText}>
-            You&apos;re doing better than 60%{'\n'}of other players!
+            You're doing better than 60%{'\n'}of other players!
           </Text>
         </Animated.View>
 
         {/* Timer */}
         <View style={styles.timerContainer}>
-                      <Ionicons name="time" size={20} color={colors.text.secondary} />
+          <Ionicons name="time-outline" size={20} color={colors.text.secondary} />
           <Text style={styles.timerText}>{timeRemaining}</Text>
         </View>
 

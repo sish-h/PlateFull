@@ -3,20 +3,20 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import {
-    Dimensions,
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Animated, {
-    FadeIn,
-    FadeOut,
-    useAnimatedStyle,
-    useSharedValue,
-    withSpring
+  FadeIn,
+  FadeOut,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring
 } from 'react-native-reanimated';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
@@ -26,46 +26,73 @@ import { config } from '../../constants/config';
 
 const { width } = Dimensions.get('window');
 
+// Types
+interface Food {
+  id: string;
+  name: string;
+  image: any;
+}
+
+interface ProfileData {
+  childName: string;
+  age: string;
+  gender: string;
+  restrictions: string[];
+  fruits: string[];
+  vegetables: string[];
+  proteins: string[];
+}
+
+interface StepProps {
+  profileData: ProfileData;
+  setProfileData: (data: ProfileData) => void;
+}
+
+interface FoodSelectionStepProps extends StepProps {
+  type: 'fruits' | 'vegetables' | 'proteins';
+  foods: Food[];
+}
+
 // Food data
 const foodData = {
   fruits: [
-    { id: 'apple', name: 'Apple', image: require('../../assets/images/foods/fruits.png') },
-    { id: 'banana', name: 'Banana', image: require('../../assets/images/foods/fruits.png') },
-    { id: 'orange', name: 'Orange', image: require('../../assets/images/foods/fruits.png') },
-    { id: 'strawberry', name: 'Strawberry', image: require('../../assets/images/characters/strawberry.png') },
-    { id: 'grapes', name: 'Grapes', image: require('../../assets/images/foods/fruits.png') },
-    { id: 'watermelon', name: 'Watermelon', image: require('../../assets/images/foods/fruits.png') },
-    { id: 'mango', name: 'Mango', image: require('../../assets/images/foods/fruits.png') },
-    { id: 'pear', name: 'Pear', image: require('../../assets/images/foods/pineapple.png') },
-    { id: 'peach', name: 'Peach', image: require('../../assets/images/foods/fruits.png') },
+    { id: 'apple', name: 'Apple', image: require('../../assets/images/foods/apple.png') },
+    { id: 'banana', name: 'Banana', image: require('../../assets/images/foods/banana.png') },
+    { id: 'orange', name: 'Orange', image: require('../../assets/images/foods/orange.png') },
+    { id: 'strawberry', name: 'Strawberry', image: require('../../assets/images/foods/strawberry.png') },
+    { id: 'grapes', name: 'Grapes', image: require('../../assets/images/foods/grapes.png') },
+    { id: 'watermelon', name: 'Watermelon', image: require('../../assets/images/foods/watermelon.png') },
+    { id: 'mango', name: 'Mango', image: require('../../assets/images/foods/mango.png') },
+    { id: 'pear', name: 'Pear', image: require('../../assets/images/foods/pear.png') },
+    { id: 'peach', name: 'Peach', image: require('../../assets/images/foods/peach.png') },
   ],
   vegetables: [
-    { id: 'carrot', name: 'Carrots', image: require('../../assets/images/characters/carrot.png') },
-    { id: 'broccoli', name: 'Broccoli', image: require('../../assets/images/foods/zicon (15).png') },
-    { id: 'sweetpotato', name: 'Sweet Potatoes', image: require('../../assets/images/foods/potato.png') },
-    { id: 'peas', name: 'Peas', image: require('../../assets/images/foods/zicon (25).png') },
-    { id: 'corn', name: 'Corn', image: require('../../assets/images/foods/maize .png') },
-    { id: 'cucumber', name: 'Cucumber', image: require('../../assets/images/foods/zicon (28).png') },
-    { id: 'bellpepper', name: 'Bell Peppers', image: require('../../assets/images/foods/zicon (31).png') },
-    { id: 'spinach', name: 'Spinach', image: require('../../assets/images/foods/zicon (32).png') },
-    { id: 'tomato', name: 'Tomatoes', image: require('../../assets/images/foods/tomato (2).png') },
+    { id: 'carrot', name: 'Carrots', image: require('../../assets/images/foods/carrot.png') },
+    { id: 'broccoli', name: 'Broccoli', image: require('../../assets/images/foods/broccoli.png') },
+    { id: 'sweetpotato', name: 'Sweet Potatoes', image: require('../../assets/images/foods/sweetpotato.png') },
+    { id: 'peas', name: 'Peas', image: require('../../assets/images/foods/peas.png') },
+    { id: 'corn', name: 'Corn', image: require('../../assets/images/foods/corn.png') },
+    { id: 'cucumber', name: 'Cucumber', image: require('../../assets/images/foods/cucumber.png') },
+    { id: 'bellpepper', name: 'Bell Peppers', image: require('../../assets/images/foods/bellpepper.png') },
+    { id: 'spinach', name: 'Spinach', image: require('../../assets/images/foods/spinach.png') },
+    { id: 'tomato', name: 'Tomatoes', image: require('../../assets/images/foods/tomato.png') },
   ],
   proteins: [
-    { id: 'chicken', name: 'Chicken', image: require('../../assets/images/foods/meat.png') },
-    { id: 'fish', name: 'Fish', image: require('../../assets/images/foods/zicon (33).png') },
-    { id: 'eggs', name: 'Eggs', image: require('../../assets/images/foods/egg.png') },
-    { id: 'beans', name: 'Beans', image: require('../../assets/images/foods/zicon (34).png') },
-    { id: 'lentils', name: 'Lentils', image: require('../../assets/images/foods/zicon (35).png') },
-    { id: 'tofu', name: 'Tofu', image: require('../../assets/images/foods/tofus.png') },
-    { id: 'beef', name: 'Lean Beef', image: require('../../assets/images/foods/meat.png') },
-    { id: 'turkey', name: 'Turkey', image: require('../../assets/images/foods/meat.png') },
-    { id: 'nuts', name: 'Nuts', image: require('../../assets/images/foods/peanut.png') },
+    { id: 'chicken', name: 'Chicken', image: require('../../assets/images/foods/chicken.png') },
+    { id: 'fish', name: 'Fish', image: require('../../assets/images/foods/fish.png') },
+    { id: 'eggs', name: 'Eggs', image: require('../../assets/images/foods/eggs.png') },
+    { id: 'beans', name: 'Beans', image: require('../../assets/images/foods/beans.png') },
+    { id: 'lentils', name: 'Lentils', image: require('../../assets/images/foods/lentils.png') },
+    { id: 'tofu', name: 'Tofu', image: require('../../assets/images/foods/tofu.png') },
+    { id: 'beef', name: 'Lean Beef', image: require('../../assets/images/foods/beef.png') },
+    { id: 'turkey', name: 'Turkey', image: require('../../assets/images/foods/turkey.png') },
+    { id: 'nuts', name: 'Nuts', image: require('../../assets/images/foods/nuts.png') },
   ]
 };
 
 const ProfileSetupScreen = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [profileData, setProfileData] = useState({
+  const [profileData, setProfileData] = useState<ProfileData>({
     childName: '',
     age: '',
     gender: '',
@@ -162,7 +189,7 @@ const ProfileSetupScreen = () => {
           style={styles.mascot}
         />
         <Text style={styles.welcomeText}>Welcome to PLATEFULL</Text>
-                    <Text style={styles.subtitleText}>Let&apos;s get started.</Text>
+        <Text style={styles.subtitleText}>Let&apos;s get started.</Text>
       </LinearGradient>
       
       <View style={styles.contentContainer}>
@@ -205,7 +232,7 @@ const ProfileSetupScreen = () => {
 };
 
 // Step Components
-const ChildNameStep = ({ profileData, setProfileData }) => (
+const ChildNameStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
   <View style={styles.stepContainer}>
     <Text style={styles.stepTitle}>Let&apos;s Learn About Your Family!</Text>
     <Text style={styles.stepQuestion}>What&apos;s your child name?</Text>
@@ -214,13 +241,13 @@ const ChildNameStep = ({ profileData, setProfileData }) => (
       value={profileData.childName}
       onChangeText={(text) => setProfileData({ ...profileData, childName: text })}
       placeholder="Johnny"
-                    icon={<Ionicons name="person" />}
+      icon={<Ionicons name="person-outline" />}
       style={styles.input}
     />
   </View>
 );
 
-const AgeStep = ({ profileData, setProfileData }) => (
+const AgeStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
   <View style={styles.stepContainer}>
     <Text style={styles.stepTitle}>Let&apos;s Learn About Your Family!</Text>
     <Text style={styles.stepQuestion}>How old is your child?</Text>
@@ -233,7 +260,7 @@ const AgeStep = ({ profileData, setProfileData }) => (
     </TouchableOpacity>
     
     <View style={styles.ageOptions}>
-      {config.ageRanges.map((age) => (
+      {config.ageRanges.map((age: { label: string; value: string }) => (
         <TouchableOpacity
           key={age.value}
           style={[
@@ -254,7 +281,7 @@ const AgeStep = ({ profileData, setProfileData }) => (
   </View>
 );
 
-const GenderStep = ({ profileData, setProfileData }) => (
+const GenderStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
   <View style={styles.stepContainer}>
     <Text style={styles.stepTitle}>Let&apos;s Learn About Your Family!</Text>
     <Text style={styles.stepQuestion}>Tell Us About Your Child Gender?</Text>
@@ -291,7 +318,7 @@ const GenderStep = ({ profileData, setProfileData }) => (
   </View>
 );
 
-const RestrictionsStep = ({ profileData, setProfileData }) => (
+const RestrictionsStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
   <View style={styles.stepContainer}>
     <Text style={styles.stepTitle}>Let&apos;s Learn About Your Family!</Text>
     <Text style={styles.stepQuestion}>
@@ -309,7 +336,7 @@ const RestrictionsStep = ({ profileData, setProfileData }) => (
     </TouchableOpacity>
     
     <View style={styles.restrictionOptions}>
-      {config.dietaryRestrictions.map((restriction) => (
+      {config.dietaryRestrictions.map((restriction: { label: string; value: string }) => (
         <TouchableOpacity
           key={restriction.value}
           style={[
@@ -320,7 +347,7 @@ const RestrictionsStep = ({ profileData, setProfileData }) => (
           onPress={() => {
             const current = profileData.restrictions;
             const updated = current.includes(restriction.value)
-              ? current.filter(r => r !== restriction.value)
+              ? current.filter((r: string) => r !== restriction.value)
               : [...current, restriction.value];
             setProfileData({ ...profileData, restrictions: updated });
           }}
@@ -338,11 +365,11 @@ const RestrictionsStep = ({ profileData, setProfileData }) => (
   </View>
 );
 
-const FoodSelectionStep = ({ type, profileData, setProfileData, foods }) => {
-  const handleFoodToggle = (foodId) => {
+const FoodSelectionStep: React.FC<FoodSelectionStepProps> = ({ type, profileData, setProfileData, foods }) => {
+  const handleFoodToggle = (foodId: string) => {
     const current = profileData[type] || [];
     const updated = current.includes(foodId)
-      ? current.filter(f => f !== foodId)
+      ? current.filter((f: string) => f !== foodId)
       : [...current, foodId];
     setProfileData({ ...profileData, [type]: updated });
   };
@@ -355,7 +382,7 @@ const FoodSelectionStep = ({ type, profileData, setProfileData, foods }) => {
       </Text>
       
       <View style={styles.foodGrid}>
-        {foods.map((food) => (
+        {foods.map((food: Food) => (
           <TouchableOpacity
             key={food.id}
             style={styles.foodItem}
@@ -393,8 +420,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mascot: {
-    width: 180,
-    height: 180,
+    width: 80,
+    height: 80,
     resizeMode: 'contain',
     marginBottom: 16,
   },

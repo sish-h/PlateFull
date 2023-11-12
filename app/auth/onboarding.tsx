@@ -210,7 +210,7 @@ const OnboardingScreen = () => {
       </View>
       {isHovering.value && (
         <Animated.View style={styles.boundarySpinner}>
-          <Ionicons name="pulse" size={40} color={colors.accent} />
+          <Ionicons name="pulse" size={40} color={colors.primary} />
         </Animated.View>
       )}
     </LinearGradient>

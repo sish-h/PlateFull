@@ -10,4 +10,4 @@ export default function AuthLayout() {
       <Stack.Screen name="verification-success" options={{ headerShown: false }} />
     </Stack>
   );
-}
+} 

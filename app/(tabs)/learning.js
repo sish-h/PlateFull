@@ -1,18 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
 import {
-    Dimensions,
-    Image,
-    Modal,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Dimensions,
+  Image,
+  Modal,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Animated, {
-    FadeIn,
-    FadeInUp
+  FadeIn,
+  FadeInUp
 } from 'react-native-reanimated';
 import Button from '../../components/common/Button';
 import StatusBar from '../../components/common/StatusBar';

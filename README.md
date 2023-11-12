@@ -1,39 +1,50 @@
-# PlateFull - Children's Nutrition App
+# Welcome to your Expo app 👋
 
-A React Native app built with Expo Router for tracking children's nutrition and making healthy eating fun through gamification.
+This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-## Features
+## Get started
 
-- **Child-focused nutrition tracking**
-- **Food identification and logging**
-- **Educational content about nutrition**
-- **Gamification with badges and rewards**
-- **Parent dashboard and insights**
+1. Install dependencies
 
-## Getting Started
+   ```bash
+   npm install
+   ```
 
-1. Install dependencies:
+2. Start the app
+
+   ```bash
+   npx expo start
+   ```
+
+In the output, you'll find options to open the app in a
+
+- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
+- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
+- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
+- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+
+You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+
+## Get a fresh project
+
+When you're ready, run:
+
 ```bash
-npm install
+npm run reset-project
 ```
 
-2. Start the development server:
-```bash
-npx expo start
-```
+This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-3. Run on your device:
-- Press `i` for iOS simulator
-- Press `a` for Android emulator
-- Scan QR code with Expo Go app
+## Learn more
 
-## Development Notes
+To learn more about developing your project with Expo, look at the following resources:
 
-- All critical TypeScript compilation errors have been resolved
-- ESLint configuration is set up for code quality
-- Tab bar visibility is automatically managed based on routes
-- Custom styling supports both iOS and Android platforms
+- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
+- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
 
-## License
+## Join the community
 
-This project is licensed under the MIT License.
+Join our community of developers creating universal apps.
+
+- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
+- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.

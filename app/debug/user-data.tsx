@@ -68,14 +68,14 @@ const UserDataDebugScreen = () => {
       await authService.signOut();
       Alert.alert('Success', 'All data cleared! App will restart from splash screen.');
       // Navigate back to index which will redirect to splash
-      router.replace('/');
+      router.replace('./');
     } catch (error) {
       Alert.alert('Error', 'Failed to clear data');
     }
   };
 
   const testSplashNavigation = () => {
-    router.replace('/splash');
+    router.replace('./splash');
   };
 
   const testOnboarding = () => {
@@ -83,11 +83,11 @@ const UserDataDebugScreen = () => {
   };
 
   const testSignIn = () => {
-    router.replace('/(tabs)/../auth/sign-in' as any);
+    router.replace('./(tabs)/../auth/sign-in' as any);
   };
 
   const testMainApp = () => {
-    router.replace('/(tabs)');
+    router.replace('./(tabs)');
   };
 
   if (loading) {
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
   dataText: {
     fontSize: 12,
     color: colors.text.secondary,
-    backgroundColor: colors.backgroundSecondary,
+    backgroundColor: colors.background,
     padding: 10,
     borderRadius: 8,
     fontFamily: 'monospace',

@@ -86,7 +86,7 @@ const DebugResetScreen: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, 500));
       
       // Navigate to root to restart the app flow
-      router.replace('/');
+      router.replace('./');
       
       Alert.alert('Success', 'App data cleared. Restarting app flow...');
     } catch (error) {
@@ -98,7 +98,7 @@ const DebugResetScreen: React.FC = () => {
   };
 
   const handleNavigateHome = () => {
-    router.replace('/');
+    router.replace('./');
   };
 
   return (
@@ -223,7 +223,7 @@ const styles = StyleSheet.create({
   refreshButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.backgroundSecondary,
+    backgroundColor: colors.background,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 15,
@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   storageItem: {
-    backgroundColor: colors.backgroundSecondary,
+    backgroundColor: colors.background,
     padding: 15,
     borderRadius: 10,
     marginBottom: 10,
@@ -286,7 +286,7 @@ const styles = StyleSheet.create({
   infoSection: {
     marginTop: 30,
     padding: 20,
-    backgroundColor: colors.backgroundSecondary,
+    backgroundColor: colors.background,
     borderRadius: 10,
   },
   infoTitle: {

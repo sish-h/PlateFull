@@ -1,17 +1,18 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
-    Dimensions,
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Dimensions,
+  Image,
+  ImageSourcePropType,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Animated, {
-    FadeIn,
-    FadeInUp
+  FadeIn,
+  FadeInUp
 } from 'react-native-reanimated';
 import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
@@ -19,7 +20,32 @@ import { getFoodById } from '../../db/foods';
 
 const { width } = Dimensions.get('window');
 
-const MealHistoryScreen = ({ navigation }) => {
+interface NavigationProps {
+  navigate: (screen: string, params?: any) => void;
+  goBack: () => void;
+}
+
+interface MealItemType {
+  name: string;
+  value: string;
+  image?: ImageSourcePropType;
+}
+
+interface MealMealsType {
+  fruits: MealItemType;
+  vegetables: MealItemType;
+  protein: MealItemType;
+  [key: string]: MealItemType;
+}
+
+interface MealType {
+  id: number;
+  date: string;
+  time: string;
+  meals: MealMealsType;
+}
+
+const MealHistoryScreen = ({ navigation }: { navigation: NavigationProps }) => {
   const [activeTab, setActiveTab] = useState('mealHistory');
   
   const weeklyNutrients = {
@@ -55,7 +81,7 @@ const MealHistoryScreen = ({ navigation }) => {
   const carrot = getFoodById('carrot');
   const beef = getFoodById('beef');
 
-  const mealHistory = [
+  const mealHistory: MealType[] = [
     {
       id: 1,
       date: '8/1/2024',
@@ -126,7 +152,7 @@ const MealHistoryScreen = ({ navigation }) => {
     );
   };
 
-  const MealCard = ({ meal, index }) => {
+  const MealCard = ({ meal, index }: { meal: MealType, index: number }) => {
     return (
       <Animated.View
         entering={FadeInUp.delay(index * 100).springify()}
@@ -138,7 +164,7 @@ const MealHistoryScreen = ({ navigation }) => {
         </View>
         
         <View style={styles.mealItems}>
-          {Object.values(meal.meals).map((item, idx) => (
+          {Object.values(meal.meals).map((item: MealItemType, idx) => (
             <View key={idx} style={styles.mealItem}>
               <View style={styles.mealItemLeft}>
                 <View style={styles.mealIcon}>
@@ -292,7 +318,7 @@ const MealHistoryScreen = ({ navigation }) => {
           <Ionicons name="ribbon" size={24} color={colors.primary} />
           <Text style={styles.achievementText}>
             Produce weekly Variety{'\n'}
-            <Text style={styles.achievementSubtext}>you&apos;ve earned a new reward</Text>
+            <Text style={styles.achievementSubtext}>you've earned a new reward</Text>
           </Text>
         </Animated.View>
 

@@ -1,32 +1,43 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
-    Dimensions,
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Animated, {
-    FadeInUp,
-    useAnimatedStyle,
-    useSharedValue,
-    withSpring
+  FadeInUp,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring
 } from 'react-native-reanimated';
 import { colors } from '../../constants/colors';
 import { getFoodsByCategory } from '../../constants/foods';
 
 const { width } = Dimensions.get('window');
 
-const FoodSelectionScreen = ({ route, navigation }) => {
+interface RouteParams {
+  category: string;
+  step?: number;
+  onComplete?: () => void;
+}
+
+interface NavigationProps {
+  navigate: (screen: string, params?: any) => void;
+  goBack: () => void;
+}
+
+const FoodSelectionScreen = ({ route, navigation }: { route: { params: RouteParams }, navigation: NavigationProps }) => {
   const { category, step, onComplete } = route.params;
-  const [selectedItems, setSelectedItems] = useState([]);
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
   
   // Get food data from database based on category
-  const getCategoryData = (cat) => {
-    const foods = getFoodsByCategory(cat);
+  const getCategoryData = (cat: string) => {
+    const foods = getFoodsByCategory(cat as keyof typeof getFoodsByCategory);
     const titles = {
       fats: 'What Fats have been Introduced?',
       dairy: 'What Dairy Has been Introduced?',
@@ -34,14 +45,14 @@ const FoodSelectionScreen = ({ route, navigation }) => {
     };
     
     return {
-      title: titles[cat] || 'Select Foods',
+      title: (titles as any)[cat] || 'Select Foods',
       items: foods
     };
   };
   
   const categoryData = getCategoryData(category);
 
-  const toggleItem = (itemId) => {
+  const toggleItem = (itemId: string) => {
     if (selectedItems.includes(itemId)) {
       setSelectedItems(selectedItems.filter(id => id !== itemId));
     } else {
@@ -50,20 +61,21 @@ const FoodSelectionScreen = ({ route, navigation }) => {
   };
 
   const handleNext = () => {
+    
     // Save selected items
-    onComplete({ [category]: selectedItems });
+    // onComplete?.(categoryData.items.map((item: any) => item.id));
     
     // Navigate to next step
     if (category === 'fats') {
       navigation.navigate('FoodSelection', {
         category: 'dairy',
-        step: step + 1,
+        step: (step || 0) + 1,
         onComplete
       });
     } else if (category === 'dairy') {
       navigation.navigate('FoodSelection', {
         category: 'proteins',
-        step: step + 1,
+        step: (step || 0) + 1,
         onComplete
       });
     } else {
@@ -71,7 +83,7 @@ const FoodSelectionScreen = ({ route, navigation }) => {
     }
   };
 
-  const FoodItem = ({ item, index }) => {
+  const FoodItem = ({ item, index }: { item: any, index: number }) => {
     const isSelected = selectedItems.includes(item.id);
     const scale = useSharedValue(1);
 
@@ -132,11 +144,11 @@ const FoodSelectionScreen = ({ route, navigation }) => {
             <View 
               style={[
                 styles.progressFill, 
-                { width: `${(step / 10) * 100}%` }
+                { width: `${((step || 1) / 10) * 100}%` }
               ]} 
             />
           </View>
-          <Text style={styles.progressText}>{step}/10</Text>
+          <Text style={styles.progressText}>{step || 1}/10</Text>
         </View>
       </View>
 
@@ -289,11 +301,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 4,
-    shadowColor: colors.primary,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
+    boxShadow: `0 2px 4px ${colors.primary}40`,
   },
 });
 

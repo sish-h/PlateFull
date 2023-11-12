@@ -1,108 +1,105 @@
 import { Camera } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
-import { Alert } from 'react-native';
+import { Platform } from 'react-native';
 
-export interface FoodAnalysisResult {
-  foodName: string;
-  calories: number;
-  confidence: number;
+export interface CameraService {
+  requestPermissions(): Promise<boolean>;
+  takePicture(): Promise<string | null>;
+  pickFromGallery(): Promise<string | null>;
+  isAvailable(): boolean;
 }
 
-class CameraService {
-  // Request camera permissions
+class RealCameraService implements CameraService {
+  private hasPermission: boolean = false;
+
   async requestPermissions(): Promise<boolean> {
     try {
-      const cameraPermission = await Camera.requestCameraPermissionsAsync();
-      const mediaLibraryPermission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      
-      return cameraPermission.status === 'granted' && mediaLibraryPermission.status === 'granted';
+      const { status } = await Camera.requestCameraPermissionsAsync();
+      this.hasPermission = status === 'granted';
+      return this.hasPermission;
     } catch (error) {
-      console.error('Error requesting permissions:', error);
+      console.warn('Camera permission request failed:', error);
       return false;
     }
   }
 
-  // Take a picture using camera
   async takePicture(): Promise<string | null> {
-    try {
-      const permission = await this.requestPermissions();
-      
-      if (!permission) {
-        Alert.alert('Permission Required', 'Camera and media library permissions are required to take photos.');
-        return null;
-      }
-
-      const result = await ImagePicker.launchCameraAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [1, 1],
-        quality: 0.8,
-      });
-
-      if (!result.canceled && result.assets && result.assets[0]) {
-        return result.assets[0].uri;
-      }
-
-      return null;
-    } catch (error) {
-      console.error('Error taking photo:', error);
-      Alert.alert('Error', 'Failed to take photo. Please try again.');
-      return null;
+    if (!this.hasPermission) {
+      const granted = await this.requestPermissions();
+      if (!granted) return null;
     }
+
+    // For emulator, we'll fall back to gallery picker
+    if (Platform.OS === 'android' && __DEV__) {
+      console.log('Camera not available in Android emulator, using gallery picker');
+      return this.pickFromGallery();
+    }
+
+    // This would be used on real devices
+    return null;
   }
 
-  // Pick image from gallery
   async pickFromGallery(): Promise<string | null> {
     try {
-      const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      
-      if (permission.status !== 'granted') {
-        Alert.alert('Permission Required', 'Media library permission is required to select photos.');
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (status !== 'granted') {
+        console.warn('Gallery permission not granted');
         return null;
       }
 
       const result = await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         allowsEditing: true,
-        aspect: [1, 1],
+        aspect: [4, 3],
         quality: 0.8,
       });
 
       if (!result.canceled && result.assets && result.assets[0]) {
         return result.assets[0].uri;
       }
-
       return null;
     } catch (error) {
-      console.error('Error picking image:', error);
-      Alert.alert('Error', 'Failed to pick image from gallery.');
+      console.error('Error picking image from gallery:', error);
       return null;
     }
   }
 
-  // Analyze food from image (mock implementation)
-  async analyzeFoodImage(imageUri: string): Promise<FoodAnalysisResult[]> {
-    try {
-      // Simulate AI food recognition
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Mock results
-      const mockResults: FoodAnalysisResult[] = [
-        { foodName: 'Apple', calories: 52, confidence: 0.95 },
-        { foodName: 'Banana', calories: 89, confidence: 0.87 },
-        { foodName: 'Orange', calories: 47, confidence: 0.92 },
-      ];
-      
-      // Return random result
-      const randomIndex = Math.floor(Math.random() * mockResults.length);
-      return [mockResults[randomIndex]];
-    } catch (error) {
-      console.error('Error analyzing food image:', error);
-      return [];
-    }
+  isAvailable(): boolean {
+    return this.hasPermission;
   }
 }
 
-// FIXED: Export as default instead of named export
-const cameraService = new CameraService();
-export default cameraService; 
+class MockCameraService implements CameraService {
+  async requestPermissions(): Promise<boolean> {
+    // Mock permissions for development
+    return true;
+  }
+
+  async takePicture(): Promise<string | null> {
+    // Return a mock image for development
+    return 'https://via.placeholder.com/400x300/FF9A00/FFFFFF?text=Mock+Food+Image';
+  }
+
+  async pickFromGallery(): Promise<string | null> {
+    // Return a mock image for development
+    return 'https://via.placeholder.com/400x300/4CAF50/FFFFFF?text=Mock+Food+Image';
+  }
+
+  isAvailable(): boolean {
+    return true;
+  }
+}
+
+// Factory function to create appropriate camera service
+export function createCameraService(): CameraService {
+  // Use mock service for development on emulator
+  if (Platform.OS === 'android' && __DEV__) {
+    console.log('Using MockCameraService for Android emulator development');
+    return new MockCameraService();
+  }
+  
+  return new RealCameraService();
+}
+
+// Export the default camera service
+export const cameraService = createCameraService(); 

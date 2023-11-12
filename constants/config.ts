@@ -1,82 +1,128 @@
-// App configuration constants
-export const APP_CONFIG = {
-  API_URL: 'https://api.plateful.com',
+export interface AgeRange {
+  label: string;
+  value: string;
+}
+
+export interface DietaryRestriction {
+  label: string;
+  value: string;
+}
+
+export interface AnimationConfig {
+  duration: {
+    fast: number;
+    normal: number;
+    slow: number;
+  };
+  easing: {
+    standard: string;
+    decelerate: string;
+    accelerate: string;
+  };
+}
+
+export interface OtpConfig {
+  length: number;
+  resendDelay: number;
+  expiryTime: number;
+}
+
+export interface ImageUploadConfig {
+  maxSize: number;
+  allowedTypes: string[];
+  quality: number;
+}
+
+export interface FoodCategories {
+  fruits: string;
+  vegetables: string;
+  proteins: string;
+  grains: string;
+  dairy: string;
+}
+
+export interface Config {
+  APP_NAME: string;
+  API_BASE_URL: string;
+  GOOGLE_IOS_CLIENT_ID: string;
+  GOOGLE_ANDROID_CLIENT_ID: string;
+  GOOGLE_WEB_CLIENT_ID: string;
+  animation: AnimationConfig;
+  otp: OtpConfig;
+  imageUpload: ImageUploadConfig;
+  foodCategories: FoodCategories;
+  ageRanges: AgeRange[];
+  dietaryRestrictions: DietaryRestriction[];
+}
+
+export const config: Config = {
   APP_NAME: 'PlateFull',
-  VERSION: '1.0.0',
+  API_BASE_URL: 'https://api.platefull.com',
   
-  // User preferences
-  DEFAULT_SERVING_SIZE: 1,
-  MAX_DAILY_CALORIES: 2000,
-  MIN_DAILY_CALORIES: 1200,
+  // Google OAuth Configuration
+  GOOGLE_IOS_CLIENT_ID: 'YOUR_IOS_CLIENT_ID',
+  GOOGLE_ANDROID_CLIENT_ID: 'YOUR_ANDROID_CLIENT_ID',
+  GOOGLE_WEB_CLIENT_ID: 'YOUR_WEB_CLIENT_ID',
   
-  // UI Constants
-  ANIMATION_DURATION: 300,
-  DEBOUNCE_DELAY: 500,
-  
-  // Storage keys
-  STORAGE_KEYS: {
-    USER_DATA: '@plateful_user_data',
-    PREFERENCES: '@plateful_preferences',
-    MEAL_HISTORY: '@plateful_meal_history',
-    AUTH_TOKEN: '@plateful_auth_token',
+  // Animation Configuration
+  animation: {
+    duration: {
+      fast: 200,
+      normal: 300,
+      slow: 500
+    },
+    easing: {
+      standard: 'ease-in-out',
+      decelerate: 'ease-out',
+      accelerate: 'ease-in'
+    }
   },
   
-  // Age ranges for setup
-  AGE_RANGES: [
-    { label: '13-17', value: '13-17' },
-    { label: '18-24', value: '18-24' },
-    { label: '25-34', value: '25-34' },
-    { label: '35-44', value: '35-44' },
-    { label: '45-54', value: '45-54' },
-    { label: '55-64', value: '55-64' },
-    { label: '65+', value: '65+' },
+  // OTP Configuration
+  otp: {
+    length: 4,
+    resendDelay: 180, // 3 minutes in seconds
+    expiryTime: 300 // 5 minutes in seconds
+  },
+  
+  // Image Upload Configuration
+  imageUpload: {
+    maxSize: 5 * 1024 * 1024, // 5MB
+    allowedTypes: ['image/jpeg', 'image/png', 'image/jpg'],
+    quality: 0.8
+  },
+  
+  // Food Categories
+  foodCategories: {
+    fruits: 'Fruits',
+    vegetables: 'Vegetables',
+    proteins: 'Proteins',
+    grains: 'Grains',
+    dairy: 'Dairy'
+  },
+  
+  // Age Ranges
+  ageRanges: [
+    { label: '6-12 months', value: '6-12m' },
+    { label: '1-2 years', value: '1-2y' },
+    { label: '2-3 years', value: '2-3y' },
+    { label: '3-4 years', value: '3-4y' },
+    { label: '4-5 years', value: '4-5y' },
+    { label: '5-6 years', value: '5-6y' },
+    { label: '6+ years', value: '6+y' }
   ],
   
-  // Activity levels
-  ACTIVITY_LEVELS: [
-    { label: 'Sedentary', value: 'sedentary', multiplier: 1.2 },
-    { label: 'Lightly Active', value: 'light', multiplier: 1.375 },
-    { label: 'Moderately Active', value: 'moderate', multiplier: 1.55 },
-    { label: 'Very Active', value: 'active', multiplier: 1.725 },
-    { label: 'Extra Active', value: 'extra', multiplier: 1.9 },
-  ],
-  
-  // Goals
-  GOALS: [
-    { label: 'Lose Weight', value: 'lose', calorieAdjustment: -500 },
-    { label: 'Maintain Weight', value: 'maintain', calorieAdjustment: 0 },
-    { label: 'Gain Weight', value: 'gain', calorieAdjustment: 500 },
-  ],
+  // Dietary Restrictions
+  dietaryRestrictions: [
+    { label: 'None', value: 'none' },
+    { label: 'Vegetarian', value: 'vegetarian' },
+    { label: 'Vegan', value: 'vegan' },
+    { label: 'Gluten Free', value: 'gluten_free' },
+    { label: 'Dairy Free', value: 'dairy_free' },
+    { label: 'Nut Free', value: 'nut_free' },
+    { label: 'Egg Free', value: 'egg_free' },
+    { label: 'Soy Free', value: 'soy_free' }
+  ]
 };
 
-// 🔧 DEVELOPMENT CONFIGURATION
-export const DEV_CONFIG = {
-  // Set to override the default app flow
-  FORCE_START_PAGE: null as string | null,
-  
-  // Quick page shortcuts for development
-  PAGES: {
-    HOME: '/(tabs)',
-    SIGN_IN: '/auth/sign-in',
-    SIGN_UP: '/auth/sign-up', 
-    ONBOARDING: '/auth/onboarding',
-    SPLASH: '/splash',
-    DEBUG: '/debug/reset',
-    PROFILE: '/(tabs)/profile',
-    FOOD: '/(tabs)/food',
-    GAMIFICATION: '/gamification',
-    MEALS: '/(tabs)/meals',
-  },
-  
-  // Skip AsyncStorage checks (for testing)
-  SKIP_AUTH_CHECK: false,
-  
-  // Mock user authentication state
-  MOCK_AUTH_STATE: {
-    userToken: null,        // Set to 'mock-token' to simulate logged in user
-    onboardingComplete: null, // Set to 'true' to simulate completed onboarding
-  },
-  
-  // Enable development shortcuts
-  ENABLE_DEV_SHORTCUTS: __DEV__,
-}; 
+export default config;

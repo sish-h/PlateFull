@@ -1,77 +1,448 @@
-// Food categories and data
-export const FOOD_CATEGORIES = {
-  FRUITS: 'fruits',
-  VEGETABLES: 'vegetables',
-  GRAINS: 'grains',
-  PROTEINS: 'proteins',
-  DAIRY: 'dairy',
-  SNACKS: 'snacks',
-  BEVERAGES: 'beverages',
-};
-
-// FIXED: Added Food type interface
 export interface Food {
-  id: string | number;
+  id: string;
   name: string;
-  calories: number;
-  color: string;
-  category?: string;
+  category: string;
+  icon: string;
+  nutrients: {
+    calories: number;
+    protein: number;
+    carbs: number;
+    fiber: number;
+    sugar: number;
+    vitamins: string[];
+    minerals: string[];
+  };
+  benefits: string[];
+  allergens: string[];
+  ageRecommended: string;
 }
 
-export const FOODS_DATA = {
-  [FOOD_CATEGORIES.FRUITS]: [
-    { id: 1, name: 'Apple', calories: 52, color: '#FF6B6B' },
-    { id: 2, name: 'Banana', calories: 89, color: '#FFE66D' },
-    { id: 3, name: 'Orange', calories: 47, color: '#FF8E53' },
-    { id: 4, name: 'Grapes', calories: 62, color: '#A8E6CF' },
-    { id: 5, name: 'Strawberry', calories: 32, color: '#FF8A80' },
+export interface FoodsByCategory {
+  fruits: Food[];
+  vegetables: Food[];
+  proteins: Food[];
+  grains: Food[];
+  dairy: Food[];
+}
+
+export const foods: FoodsByCategory = {
+  fruits: [
+    {
+      id: 'apple',
+      name: 'Apple',
+      category: 'fruits',
+      icon: '🍎',
+      nutrients: {
+        calories: 52,
+        protein: 0.3,
+        carbs: 14,
+        fiber: 2.4,
+        sugar: 10,
+        vitamins: ['C', 'K'],
+        minerals: ['Potassium']
+      },
+      benefits: [
+        'Rich in antioxidants',
+        'Good source of fiber',
+        'Supports heart health'
+      ],
+      allergens: [],
+      ageRecommended: '6+ months'
+    },
+    {
+      id: 'banana',
+      name: 'Banana',
+      category: 'fruits',
+      icon: '🍌',
+      nutrients: {
+        calories: 89,
+        protein: 1.1,
+        carbs: 23,
+        fiber: 2.6,
+        sugar: 12,
+        vitamins: ['B6', 'C'],
+        minerals: ['Potassium', 'Magnesium']
+      },
+      benefits: [
+        'Easy to digest',
+        'Great energy source',
+        'Helps with digestion'
+      ],
+      allergens: [],
+      ageRecommended: '6+ months'
+    },
+    {
+      id: 'orange',
+      name: 'Orange',
+      category: 'fruits',
+      icon: '🍊',
+      nutrients: {
+        calories: 47,
+        protein: 0.9,
+        carbs: 12,
+        fiber: 2.4,
+        sugar: 9,
+        vitamins: ['C', 'Folate'],
+        minerals: ['Potassium']
+      },
+      benefits: [
+        'Immune system booster',
+        'High in vitamin C',
+        'Supports skin health'
+      ],
+      allergens: [],
+      ageRecommended: '8+ months'
+    },
+    {
+      id: 'strawberry',
+      name: 'Strawberry',
+      category: 'fruits',
+      icon: '🍓',
+      nutrients: {
+        calories: 32,
+        protein: 0.7,
+        carbs: 8,
+        fiber: 2,
+        sugar: 5,
+        vitamins: ['C', 'Folate'],
+        minerals: ['Manganese', 'Potassium']
+      },
+      benefits: [
+        'High in antioxidants',
+        'Anti-inflammatory',
+        'Heart healthy'
+      ],
+      allergens: ['berries'],
+      ageRecommended: '8+ months'
+    },
+    {
+      id: 'grapes',
+      name: 'Grapes',
+      category: 'fruits',
+      icon: '🍇',
+      nutrients: {
+        calories: 69,
+        protein: 0.7,
+        carbs: 18,
+        fiber: 0.9,
+        sugar: 15,
+        vitamins: ['K', 'C'],
+        minerals: ['Potassium']
+      },
+      benefits: [
+        'Rich in antioxidants',
+        'Supports brain health',
+        'Good for hydration'
+      ],
+      allergens: [],
+      ageRecommended: '12+ months'
+    },
+    {
+      id: 'watermelon',
+      name: 'Watermelon',
+      category: 'fruits',
+      icon: '🍉',
+      nutrients: {
+        calories: 30,
+        protein: 0.6,
+        carbs: 8,
+        fiber: 0.4,
+        sugar: 6,
+        vitamins: ['A', 'C'],
+        minerals: ['Potassium']
+      },
+      benefits: [
+        'Excellent hydration',
+        'Low calorie',
+        'Heart healthy'
+      ],
+      allergens: [],
+      ageRecommended: '8+ months'
+    }
   ],
-  [FOOD_CATEGORIES.VEGETABLES]: [
-    { id: 6, name: 'Broccoli', calories: 34, color: '#4ECDC4' },
-    { id: 7, name: 'Carrot', calories: 41, color: '#FF8E53' },
-    { id: 8, name: 'Spinach', calories: 23, color: '#A8E6CF' },
-    { id: 9, name: 'Tomato', calories: 18, color: '#FF6B6B' },
-    { id: 10, name: 'Bell Pepper', calories: 31, color: '#FFE66D' },
+  vegetables: [
+    {
+      id: 'carrot',
+      name: 'Carrot',
+      category: 'vegetables',
+      icon: '🥕',
+      nutrients: {
+        calories: 41,
+        protein: 0.9,
+        carbs: 10,
+        fiber: 2.8,
+        sugar: 5,
+        vitamins: ['A', 'K', 'B6'],
+        minerals: ['Potassium']
+      },
+      benefits: [
+        'Excellent for eye health',
+        'Rich in beta-carotene',
+        'Supports immune system'
+      ],
+      allergens: [],
+      ageRecommended: '6+ months'
+    },
+    {
+      id: 'broccoli',
+      name: 'Broccoli',
+      category: 'vegetables',
+      icon: '🥦',
+      nutrients: {
+        calories: 34,
+        protein: 2.8,
+        carbs: 7,
+        fiber: 2.6,
+        sugar: 1.7,
+        vitamins: ['C', 'K', 'Folate'],
+        minerals: ['Iron', 'Potassium']
+      },
+      benefits: [
+        'High in vitamins',
+        'Supports bone health',
+        'Anti-inflammatory'
+      ],
+      allergens: [],
+      ageRecommended: '8+ months'
+    },
+    {
+      id: 'sweetpotato',
+      name: 'Sweet Potato',
+      category: 'vegetables',
+      icon: '🍠',
+      nutrients: {
+        calories: 86,
+        protein: 1.6,
+        carbs: 20,
+        fiber: 3,
+        sugar: 4,
+        vitamins: ['A', 'C', 'B6'],
+        minerals: ['Potassium', 'Manganese']
+      },
+      benefits: [
+        'Rich in fiber',
+        'Good source of energy',
+        'Supports gut health'
+      ],
+      allergens: [],
+      ageRecommended: '6+ months'
+    },
+    {
+      id: 'peas',
+      name: 'Peas',
+      category: 'vegetables',
+      icon: '🫛',
+      nutrients: {
+        calories: 81,
+        protein: 5.4,
+        carbs: 14,
+        fiber: 5.7,
+        sugar: 6,
+        vitamins: ['K', 'C', 'Folate'],
+        minerals: ['Iron', 'Manganese']
+      },
+      benefits: [
+        'High in protein',
+        'Good source of fiber',
+        'Supports bone health'
+      ],
+      allergens: [],
+      ageRecommended: '8+ months'
+    }
   ],
-  [FOOD_CATEGORIES.GRAINS]: [
-    { id: 11, name: 'Rice', calories: 130, color: '#D4B5A0' },
-    { id: 12, name: 'Bread', calories: 265, color: '#DEB887' },
-    { id: 13, name: 'Pasta', calories: 131, color: '#F5DEB3' },
-    { id: 14, name: 'Oats', calories: 389, color: '#E6D3A3' },
-    { id: 15, name: 'Quinoa', calories: 120, color: '#C7B377' },
+  proteins: [
+    {
+      id: 'chicken',
+      name: 'Chicken',
+      category: 'proteins',
+      icon: '🍗',
+      nutrients: {
+        calories: 165,
+        protein: 31,
+        carbs: 0,
+        fiber: 0,
+        sugar: 0,
+        vitamins: ['B6', 'B12'],
+        minerals: ['Iron', 'Zinc']
+      },
+      benefits: [
+        'High in protein',
+        'Easy to digest',
+        'Supports muscle growth'
+      ],
+      allergens: [],
+      ageRecommended: '8+ months'
+    },
+    {
+      id: 'fish',
+      name: 'Fish',
+      category: 'proteins',
+      icon: '🐟',
+      nutrients: {
+        calories: 84,
+        protein: 20,
+        carbs: 0,
+        fiber: 0,
+        sugar: 0,
+        vitamins: ['D', 'B12'],
+        minerals: ['Omega-3', 'Iodine']
+      },
+      benefits: [
+        'Brain development',
+        'Heart healthy',
+        'Rich in omega-3'
+      ],
+      allergens: ['fish'],
+      ageRecommended: '12+ months'
+    },
+    {
+      id: 'eggs',
+      name: 'Eggs',
+      category: 'proteins',
+      icon: '🥚',
+      nutrients: {
+        calories: 155,
+        protein: 13,
+        carbs: 1.1,
+        fiber: 0,
+        sugar: 1.1,
+        vitamins: ['D', 'B12', 'Choline'],
+        minerals: ['Iron', 'Selenium']
+      },
+      benefits: [
+        'Complete protein',
+        'Brain development',
+        'Eye health'
+      ],
+      allergens: ['eggs'],
+      ageRecommended: '8+ months'
+    }
   ],
-  [FOOD_CATEGORIES.PROTEINS]: [
-    { id: 16, name: 'Chicken', calories: 165, color: '#FFA07A' },
-    { id: 17, name: 'Fish', calories: 206, color: '#87CEEB' },
-    { id: 18, name: 'Eggs', calories: 155, color: '#F0E68C' },
-    { id: 19, name: 'Beans', calories: 127, color: '#8B4513' },
-    { id: 20, name: 'Nuts', calories: 607, color: '#D2B48C' },
+  grains: [
+    {
+      id: 'rice',
+      name: 'Rice',
+      category: 'grains',
+      icon: '🍚',
+      nutrients: {
+        calories: 130,
+        protein: 2.7,
+        carbs: 28,
+        fiber: 0.4,
+        sugar: 0.1,
+        vitamins: ['B1', 'B6'],
+        minerals: ['Iron', 'Magnesium']
+      },
+      benefits: [
+        'Easy to digest',
+        'Good energy source',
+        'Gentle on stomach'
+      ],
+      allergens: [],
+      ageRecommended: '6+ months'
+    },
+    {
+      id: 'oats',
+      name: 'Oats',
+      category: 'grains',
+      icon: '🌾',
+      nutrients: {
+        calories: 68,
+        protein: 2.4,
+        carbs: 12,
+        fiber: 1.7,
+        sugar: 0.3,
+        vitamins: ['B1', 'B6'],
+        minerals: ['Iron', 'Zinc']
+      },
+      benefits: [
+        'High in fiber',
+        'Heart healthy',
+        'Sustained energy'
+      ],
+      allergens: [],
+      ageRecommended: '8+ months'
+    }
   ],
-  [FOOD_CATEGORIES.DAIRY]: [
-    { id: 21, name: 'Milk', calories: 42, color: '#F5F5F5' },
-    { id: 22, name: 'Cheese', calories: 113, color: '#FFE4B5' },
-    { id: 23, name: 'Yogurt', calories: 59, color: '#FFF8DC' },
-    { id: 24, name: 'Butter', calories: 717, color: '#FFFFE0' },
-  ],
+  dairy: [
+    {
+      id: 'yogurt',
+      name: 'Yogurt',
+      category: 'dairy',
+      icon: '🥛',
+      nutrients: {
+        calories: 59,
+        protein: 10,
+        carbs: 3.6,
+        fiber: 0,
+        sugar: 3.2,
+        vitamins: ['B12', 'D'],
+        minerals: ['Calcium', 'Phosphorus']
+      },
+      benefits: [
+        'Probiotics',
+        'Bone health',
+        'Digestive health'
+      ],
+      allergens: ['milk'],
+      ageRecommended: '8+ months'
+    },
+    {
+      id: 'cheese',
+      name: 'Cheese',
+      category: 'dairy',
+      icon: '🧀',
+      nutrients: {
+        calories: 113,
+        protein: 7,
+        carbs: 0.4,
+        fiber: 0,
+        sugar: 0.4,
+        vitamins: ['A', 'B12'],
+        minerals: ['Calcium', 'Phosphorus']
+      },
+      benefits: [
+        'High in calcium',
+        'Protein source',
+        'Bone development'
+      ],
+      allergens: ['milk'],
+      ageRecommended: '12+ months'
+    }
+  ]
 };
 
-// FIXED: Added foods export as expected by meals/logging.tsx
-export const foods = FOODS_DATA;
-
-export const getAllFoods = () => {
-  return Object.values(FOODS_DATA).flat();
+export const getFoodById = (id: string): Food | undefined => {
+  for (const category of Object.values(foods)) {
+    const food = category.find((f: Food) => f.id === id);
+    if (food) return food;
+  }
+  return undefined;
 };
 
-export const getFoodsByCategory = (category: string) => {
-  return FOODS_DATA[category] || [];
+export const getFoodsByCategory = (category: keyof FoodsByCategory): Food[] => {
+  return foods[category] || [];
 };
 
-export const getFoodById = (id: number) => {
-  return getAllFoods().find(food => food.id === id);
+export const getFoodsByAge = (ageInMonths: number): Food[] => {
+  const allFoods: Food[] = Object.values(foods).flat();
+  return allFoods.filter(food => {
+    if (!food.ageRecommended) return false;
+    const ageStr = food.ageRecommended.replace(/\D/g, '');
+    const recommendedAge = parseInt(ageStr);
+    return ageInMonths >= recommendedAge;
+  });
 };
 
-// Re-export from db/foods for compatibility
-export {
-    FOODS_DB, getAllFoods as getAllFoodsFromDB, getFoodById as getFoodByIdFromDB,
-    getFoodsByCategory as getFoodsByCategoryFromDB, type FoodItem
-} from '../db/foods';
+export const searchFoods = (query: string): Food[] => {
+  const allFoods: Food[] = Object.values(foods).flat();
+  const lowercaseQuery = query.toLowerCase();
+  
+  return allFoods.filter(food => 
+    food.name.toLowerCase().includes(lowercaseQuery) ||
+    food.category.toLowerCase().includes(lowercaseQuery) ||
+    food.benefits.some(benefit => 
+      benefit.toLowerCase().includes(lowercaseQuery)
+    )
+  );
+}; 

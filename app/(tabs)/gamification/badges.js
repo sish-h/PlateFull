@@ -167,7 +167,7 @@ const BadgesScreen = ({ navigation }) => {
           >
             {badge.hasImage && (
               <Image 
-                source={require('../../../assets/images/foods/meal.png')}
+                 source={require('../../../assets/images/foods/meal.png')}
                 style={styles.badgeImage}
               />
             )}
