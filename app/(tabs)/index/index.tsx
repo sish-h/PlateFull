@@ -9,8 +9,7 @@ import {
   TextInput,
   View
 } from 'react-native';
-import HeaderProfile from '../../components/common/HeaderProfile';
-import StatusBar from '../../components/common/StatusBar';
+import HeaderProfile from '../../../components/common/HeaderProfile';
 
 const { width } = Dimensions.get('window');
 
@@ -38,7 +37,7 @@ const HomeScreen: React.FC = () => {
   const [userData, setUserData] = useState<UserData>({
     name: 'Laurentia Claris',
     childName: 'Emma',
-    avatar: require('../../assets/images/avatars/boy.png'),
+    avatar: require('../../../assets/images/avatars/boy.png'),
     childAge: '2',
     streak: 7,
     level: 3,
@@ -48,7 +47,6 @@ const HomeScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar barStyle="light-content" backgroundColor="#F57C00" />
       <HeaderProfile/>
       <View style={styles.contentContainer}>
         <Text style={styles.welcomeMessage}>Welcome how are we doing today?</Text>
@@ -75,28 +73,28 @@ const HomeScreen: React.FC = () => {
         <View style={styles.menuGrid}>
           <View style={styles.menuItem1}>
             <View style={styles.menuIconContainer}>
-              <Image source={require('../../assets/images/characters/fruits.png')} style={styles.menuIcon} />
+              <Image source={require('../../../assets/images/characters/fruits.png')} style={styles.menuIcon} />
             </View>
             <Text style={styles.menuTitle}>What Are We Eating?</Text>
           </View>
 
           <View style={styles.menuItem2}>
             <View style={styles.menuIconContainer}>
-              <Image source={require('../../assets/images/characters/splash-icon.png')} style={styles.menuIcon} />
+              <Image source={require('../../../assets/images/characters/splash-icon.png')} style={styles.menuIcon} />
             </View>
             <Text style={styles.menuTitle}>Lets Learn</Text>
           </View>
 
           <View style={styles.menuItem3}>
             <View style={styles.menuIconContainer}>
-              <Image source={require('../../assets/images/characters/meal.png')} style={styles.menuIcon} />
+              <Image source={require('../../../assets/images/characters/meal.png')} style={styles.menuIcon} />
             </View>
             <Text style={styles.menuTitle}>Time To Eat</Text>
           </View>
 
           <View style={styles.menuItem4}>
             <View style={styles.menuIconContainer}>
-              <Image source={require('../../assets/images/characters/zicon (4).png')} style={styles.menuIcon} />
+              <Image source={require('../../../assets/images/characters/zicon (4).png')} style={styles.menuIcon} />
             </View>
             <Text style={styles.menuTitle}>Ours Chart</Text>
           </View>
@@ -238,4 +236,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default HomeScreen; 

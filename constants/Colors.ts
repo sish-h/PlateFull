@@ -82,12 +82,14 @@ export const colors = {
   
   background: '#FFFFFF',
   surface: '#F5F5F5',
+  background2: '#FFF5EC',
   
   text: {
     primary: '#212121',
     secondary: '#757575',
     disabled: '#BDBDBD',
-    inverse: '#FFFFFF'
+    inverse: '#FFFFFF',
+    green: '#3B9F21',
   },
   
   border: '#E0E0E0',

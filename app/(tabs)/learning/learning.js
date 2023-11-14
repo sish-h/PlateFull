@@ -14,10 +14,9 @@ import Animated, {
   FadeIn,
   FadeInUp
 } from 'react-native-reanimated';
-import Button from '../../components/common/Button';
-import StatusBar from '../../components/common/StatusBar';
-import { colors } from '../../constants/colors';
-import { getFoodById } from '../../db/foods';
+import Button from '../../../components/common/Button';
+import HeaderProfile from '../../../components/common/HeaderProfile';
+import { colors } from '../../../constants/colors';
 
 const { width, height } = Dimensions.get('window');
 
@@ -31,14 +30,14 @@ const LearningModuleScreen = ({ navigation }) => {
     {
       id: 'quiz',
       title: 'My Quizes',
-      icon: '📝',
+      icon: require('../../../assets/images/characters/zicon (40).png'),
       description: 'Lorem ipsum dolor sit amet consectetur.',
       action: 'View Quiz'
     },
     {
       id: 'rewards',
       title: 'Rewards',
-      icon: '🏆',
+      icon: require('../../../assets/images/characters/zicon (24).png'),
       description: 'Lorem ipsum dolor sit amet consectetur.',
       action: 'View Rewards'
     }
@@ -60,9 +59,6 @@ const LearningModuleScreen = ({ navigation }) => {
       color: '#4ECDC4'
     }
   ];
-
-  // Get tomato from database
-  const foods = [getFoodById('tomato')].filter(Boolean);
 
   const handleModulePress = (moduleId) => {
     if (moduleId === 'quiz') {
@@ -98,7 +94,7 @@ const LearningModuleScreen = ({ navigation }) => {
           </TouchableOpacity>
 
           <View style={styles.successIcon}>
-            <Text style={styles.successEmoji}>📋</Text>
+            <Image source={require('../../../assets/images/characters/zicon (26).png')} style={styles.successEmoji} />
           </View>
 
           <Text style={styles.successTitle}>Task Completed successfully</Text>
@@ -221,51 +217,15 @@ const LearningModuleScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar />
-      
       <View style={styles.header}>
-        <View style={styles.headerTop}>
-          <View style={styles.userInfo}>
-            <Image 
-              source={require('../../assets/images/avatars/user.jpg')}
-              style={styles.userAvatar}
-            />
-            <View style={styles.userDetails}>
-              <Text style={styles.userName}>Laurentia Clarissa</Text>
-              <View style={styles.premiumBadge}>
-                <Ionicons name="checkmark-circle" size={16} color={colors.primary} />
-                <Text style={styles.premiumText}>Premium</Text>
-              </View>
-            </View>
-          </View>
-          
-          <View style={styles.statsContainer}>
-            <View style={styles.statItem}>
-              <Ionicons name="add-circle" size={20} color={colors.info} />
-              <Text style={styles.statValue}>50</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Ionicons name="star" size={20} color={colors.warning} />
-              <Text style={styles.statValue}>50</Text>
-            </View>
-          </View>
-        </View>
-
+        <HeaderProfile />
         <View style={styles.tabsContainer}>
           <TouchableOpacity
             style={[styles.tab, activeTab === 'food' && styles.tabActive]}
             onPress={() => setActiveTab('food')}
           >
             <Text style={[styles.tabText, activeTab === 'food' && styles.tabTextActive]}>
-              Food
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.tab, activeTab === 'history' && styles.tabActive]}
-            onPress={() => setActiveTab('history')}
-          >
-            <Text style={[styles.tabText, activeTab === 'history' && styles.tabTextActive]}>
-              Meal History
+              Quests
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -302,7 +262,7 @@ const LearningModuleScreen = ({ navigation }) => {
                     activeOpacity={0.8}
                   >
                     <View style={styles.moduleIcon}>
-                      <Text style={styles.moduleEmoji}>{module.icon}</Text>
+                      <Image source={module.icon} style={styles.moduleEmoji} />
                     </View>
                     <Text style={styles.moduleTitle}>{module.title}</Text>
                     <Text style={styles.moduleDescription}>{module.description}</Text>
@@ -330,12 +290,6 @@ const LearningModuleScreen = ({ navigation }) => {
                       <Ionicons name="play" size={32} color={colors.text.inverse} />
                     </TouchableOpacity>
                   </View>
-                  <View style={styles.durationBar}>
-                    <Text style={styles.durationText}>{video.duration}</Text>
-                    <View style={styles.progressBar}>
-                      <View style={styles.progressFill} />
-                    </View>
-                  </View>
                 </TouchableOpacity>
               ))}
             </View>
@@ -344,20 +298,26 @@ const LearningModuleScreen = ({ navigation }) => {
 
         {activeTab === 'food' && (
           <>
-            <Text style={styles.sectionTitle}>Learn About Foods</Text>
-            <View style={styles.foodsGrid}>
-              {foods.map((food, index) => (
-                <TouchableOpacity
-                  key={food.id}
-                  style={styles.foodCard}
-                  onPress={() => handleFoodPress(food)}
-                  activeOpacity={0.8}
-                >
-                  <Text style={styles.foodEmoji}>{food.image}</Text>
-                  <Text style={styles.foodName}>{food.name}</Text>
-                </TouchableOpacity>
-              ))}
-            </View>
+            <ScrollView showsVerticalScrollIndicator={false} style={{ flexDirection: 'column', gap: 40 }}>
+              <View>
+                <Text style={styles.quizText}>Start</Text>
+              </View>
+              <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Image source={require('../../../assets/images/characters/zicon (14).png')} style={{ width: 90, height: 80}} />
+              </View>
+              <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Image source={require('../../../assets/images/characters/box.png')} style={styles.quizBox1} />
+              </View>
+              <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Image source={require('../../../assets/images/characters/star-grey.png')} style={styles.quizBox2} />
+              </View>
+              <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Image source={require('../../../assets/images/characters/zicon (21).png')} style={styles.quizBox3} />
+              </View>
+              <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Image source={require('../../../assets/images/characters/zicon (22).png')} style={styles.quizBox4} />
+              </View>
+            </ScrollView>
           </>
         )}
       </ScrollView>
@@ -375,72 +335,13 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: colors.primary,
-    paddingTop: 60,
-    paddingBottom: 0,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
-  },
-  headerTop: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 24,
-    marginBottom: 20,
-  },
-  userInfo: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  userAvatar: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    marginRight: 12,
-  },
-  userDetails: {
-    justifyContent: 'center',
-  },
-  userName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: colors.text.inverse,
-  },
-  premiumBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 4,
-  },
-  premiumText: {
-    fontSize: 14,
-    color: colors.text.inverse,
-    marginLeft: 4,
-  },
-  statsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  statItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    marginLeft: 8,
-  },
-  statValue: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: colors.text.inverse,
-    marginLeft: 4,
   },
   tabsContainer: {
     flexDirection: 'row',
     backgroundColor: colors.background,
-    marginHorizontal: 24,
-    marginBottom: -1,
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    width: '100%',
     overflow: 'hidden',
   },
   tab: {
@@ -449,15 +350,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabActive: {
-    borderBottomWidth: 3,
+    borderBottomWidth: 2,
     borderBottomColor: colors.primary,
   },
   tabText: {
-    fontSize: 14,
+    fontSize: 16,
     color: colors.text.secondary,
   },
   tabTextActive: {
     color: colors.primary,
+    fontSize: 17,
     fontWeight: '600',
   },
   content: {
@@ -485,7 +387,7 @@ const styles = StyleSheet.create({
   },
   moduleCard: {
     width: (width - 56) / 2,
-    backgroundColor: colors.surface,
+    backgroundColor: colors.background2,
     borderRadius: 16,
     padding: 16,
     alignItems: 'center',
@@ -497,13 +399,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 12,
   },
-  moduleEmoji: {
-    fontSize: 48,
-  },
   moduleTitle: {
     fontSize: 18,
     fontWeight: '600',
-    color: colors.text.primary,
+    color: colors.text.green,
     marginBottom: 8,
   },
   moduleDescription: {
@@ -513,8 +412,8 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   moduleButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingVertical: 6,
+    paddingHorizontal: 14,
   },
   videoSection: {
     marginBottom: 24,
@@ -548,47 +447,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  durationBar: {
-    marginTop: 12,
-  },
-  durationText: {
-    fontSize: 14,
-    color: colors.text.inverse,
-    marginBottom: 8,
-  },
-  progressBar: {
-    height: 4,
-    backgroundColor: 'rgba(255, 255, 255, 0.3)',
-    borderRadius: 2,
-  },
-  progressFill: {
-    height: '100%',
-    width: '30%',
-    backgroundColor: colors.text.inverse,
-    borderRadius: 2,
-  },
   foodsGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-  },
-  foodCard: {
-    width: (width - 72) / 3,
-    aspectRatio: 1,
-    backgroundColor: colors.surface,
-    borderRadius: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  foodEmoji: {
-    fontSize: 48,
-    marginBottom: 8,
-  },
-  foodName: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: colors.text.primary,
   },
   // Modal styles
   modalOverlay: {
@@ -617,7 +479,8 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   successEmoji: {
-    fontSize: 64,
+    width: 120,
+    height: 120,
   },
   successTitle: {
     fontSize: 20,
@@ -661,6 +524,41 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     marginLeft: 16,
     marginBottom: 8,
+  },
+  quizText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.primary,
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  quizBox1: {
+    marginTop: 20,
+    marginBottom: 10,
+    marginLeft: -170,
+    width: 90,
+    height: 90,
+  },
+  quizBox2: {
+    marginTop: 20,
+    marginBottom: 10,
+    marginLeft: -90,
+    width: 90,
+    height: 80,
+  },
+  quizBox3: {
+    marginTop: 20,
+    marginBottom: 10,
+    marginLeft: 20,
+    width: 90,
+    height: 80,
+  },
+  quizBox4: {
+    marginTop: 20,
+    marginBottom: 10,
+    marginLeft: 150,
+    width: 90,
+    height: 80,
   },
 });
 

@@ -78,7 +78,7 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
         }}
       />
       <Tabs.Screen
-        name="meals"
+        name="learning"
         options={{
           title: 'Learning Modules',
           tabBarIcon: ({ color }) => (
@@ -90,7 +90,7 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
         }}
       />
       <Tabs.Screen
-        name="learning"
+        name="reporting"
         options={{
           title: 'Reporting',
           tabBarIcon: ({ color }) => (

@@ -15,7 +15,6 @@ import Animated, {
 import BadgePlatinum from '../../../assets/images/icons/badge_platinum.svg';
 import BadgeSilver from '../../../assets/images/icons/badge_silver.svg';
 import HeaderProfile from '../../../components/common/HeaderProfile';
-import StatusBar from '../../../components/common/StatusBar';
 import { colors } from '../../../constants/colors';
 
 
@@ -140,36 +139,36 @@ const BadgesScreen = ({ navigation }) => {
         </View>
         {badges.map((badge) => (
           <View style={styles.badgeContent}>
-          <View style={styles.badgeInfo1}>
-            <View style={styles.badgeIcon1}>
-              <Image source={badge.icon} style={{width: 40, height: 40}} />
-              <Text style={[styles.badgeName1, { color: colors.primary }]}>
-                {badge.name}
-              </Text>
-            </View>  
-            <View style={styles.badgeDetails}>
-              <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
-                <Text style={styles.badgeRemaining}>
-                  Deadline:
+            <View style={styles.badgeInfo1}>
+              <View style={styles.badgeIcon1}>
+                <Image source={badge.icon} style={{width: 40, height: 40}} />
+                <Text style={[styles.badgeName1, { color: colors.primary }]}>
+                  {badge.name}
                 </Text>
-                <Text style={styles.badgeRemainingtxt}>
-                  {badge.deadline}
-                </Text>
+              </View>  
+              <View style={styles.badgeDetails}>
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
+                  <Text style={styles.badgeRemaining}>
+                    Deadline:
+                  </Text>
+                  <Text style={styles.badgeRemainingtxt}>
+                    {badge.deadline}
+                  </Text>
+                </View>
+                <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
+                  <Text style={styles.badgeRemaining}>
+                    Points:
+                  </Text>
+                  <Text style={styles.badgeRemainingtxt}>
+                    {badge.points}
+                  </Text>
+                </View>
               </View>
-              <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
-                <Text style={styles.badgeRemaining}>
-                  Points:
-                </Text>
-                <Text style={styles.badgeRemainingtxt}>
-                  {badge.points}
-                </Text>
-              </View>
-            </View>
-            {badge.locked && (
-                <TouchableOpacity style={styles.lockButton}>
-                  <Ionicons name="lock-closed" size={24} color={colors.text.secondary} />
-                </TouchableOpacity>
-              )}
+              {badge.locked && (
+                  <TouchableOpacity style={styles.lockButton}>
+                    <Ionicons name="lock-closed" size={24} color={colors.text.secondary} />
+                  </TouchableOpacity>
+                )}
             </View>
           </View>
         ))}
@@ -370,10 +369,7 @@ const BadgesScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar />
-      <View style={styles.header}>
-        <HeaderProfile/>
-      </View>
+      <HeaderProfile/>
       <View style={styles.contentContainer}>
         <View style={styles.tabsContainer}>
           <TouchableOpacity
@@ -424,7 +420,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: colors.background,
+    backgroundColor: colors.primary,
   },
   header: {
     backgroundColor: colors.primary,
@@ -464,7 +460,6 @@ const styles = StyleSheet.create({
   },
   // Badge styles
   badgeCard: {
-    backgroundColor: colors.surface,
     borderRadius: 16,
     marginBottom: 16,
     overflow: 'hidden',
@@ -496,6 +491,7 @@ const styles = StyleSheet.create({
     width: width - 20,
     paddingHorizontal: 20,
     paddingVertical: 10,
+    backgroundColor: colors.surface,
   },
   badgeInfo1: {
     flexDirection: 'row',
@@ -504,6 +500,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderWidth: 1,
     borderColor: colors.whiteGrey,
+    backgroundColor: colors.surface,
     borderRadius: 16,
     width: width - 20,
     paddingHorizontal: 20,

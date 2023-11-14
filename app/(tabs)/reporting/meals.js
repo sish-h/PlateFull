@@ -14,10 +14,9 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import Button from '../../components/common/Button';
-import StatusBar from '../../components/common/StatusBar';
-import { colors } from '../../constants/colors';
-import { getFoodsByCategory } from '../../constants/foods';
+import Button from '../../../components/common/Button';
+import { colors } from '../../../constants/colors';
+import { getFoodsByCategory } from '../../../constants/foods';
 
 const { width, height } = Dimensions.get('window');
 
@@ -229,7 +228,6 @@ const MealLoggingScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <StatusBar />
       <LinearGradient
         colors={[colors.primary, colors.primaryDark]}
         style={styles.header}
