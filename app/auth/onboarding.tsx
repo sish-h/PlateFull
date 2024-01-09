@@ -93,7 +93,6 @@ const OnboardingScreen = () => {
       });
     });
   };
-  
   const handleNext = async (): Promise<void> => {
     if (currentIndex < onboardingData.length - 1) {
       const nextIndex = currentIndex + 1;
