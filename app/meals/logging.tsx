@@ -13,7 +13,6 @@ import {
   View
 } from 'react-native';
 import Button from '../../components/common/Button';
-import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
 import { foods, type Food } from '../../constants/foods';
 import { cameraService } from '../../utils/cameraService';
@@ -233,7 +232,6 @@ const MealLoggingScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <StatusBar />
       <ScrollView style={styles.scrollView}>
         {/* Header */}
         <LinearGradient

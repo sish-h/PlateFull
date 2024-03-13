@@ -1,4 +1,5 @@
 import Ionicons from '@expo/vector-icons/build/Ionicons';
+import { router } from 'expo-router';
 import React, { useState } from 'react';
 import {
   Dimensions,
@@ -7,6 +8,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  TouchableOpacity,
   View
 } from 'react-native';
 import HeaderProfile from '../../../components/common/HeaderProfile';
@@ -71,33 +73,49 @@ const HomeScreen: React.FC = () => {
         </View>
 
         <View style={styles.menuGrid}>
-          <View style={styles.menuItem1}>
+          <TouchableOpacity 
+            style={styles.menuItem1}
+            onPress={() => router.push('./tracking')}
+            activeOpacity={0.7}
+          >
             <View style={styles.menuIconContainer}>
               <Image source={require('../../../assets/images/characters/fruits.png')} style={styles.menuIcon} />
             </View>
             <Text style={styles.menuTitle}>What Are We Eating?</Text>
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.menuItem2}>
+          <TouchableOpacity 
+            style={styles.menuItem2}
+            onPress={() => router.push('./learnTomato')}
+            activeOpacity={0.7}
+          >
             <View style={styles.menuIconContainer}>
               <Image source={require('../../../assets/images/characters/splash-icon.png')} style={styles.menuIcon} />
             </View>
             <Text style={styles.menuTitle}>Lets Learn</Text>
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.menuItem3}>
+          <TouchableOpacity 
+            style={styles.menuItem3}
+            onPress={() => router.push('./history')}
+            activeOpacity={0.7}
+          >
             <View style={styles.menuIconContainer}>
               <Image source={require('../../../assets/images/characters/meal.png')} style={styles.menuIcon} />
             </View>
             <Text style={styles.menuTitle}>Time To Eat</Text>
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.menuItem4}>
+          <TouchableOpacity 
+            style={styles.menuItem4}
+            onPress={() => router.push('./leaderboard')}
+            activeOpacity={0.7}
+          >
             <View style={styles.menuIconContainer}>
               <Image source={require('../../../assets/images/characters/zicon (4).png')} style={styles.menuIcon} />
             </View>
             <Text style={styles.menuTitle}>Ours Chart</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>

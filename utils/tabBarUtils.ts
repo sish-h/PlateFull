@@ -12,6 +12,15 @@ export const HIDDEN_TAB_PAGES = [
   '/food/report',
   '/meals/logging',
   '/profile/setup',
+  // Hide tab bar for specific (tabs) routes
+  '/(tabs)/index/leaderboard',
+  '/(tabs)/index/tracking',
+  '/(tabs)/index/history',
+  // Alternative patterns
+  'leaderboard',
+  'tracking',
+  'history',
+  'learnTomato',
 ];
 
 // Hook to determine if tab bar should be hidden based on current route
