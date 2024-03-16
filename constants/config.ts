@@ -56,7 +56,7 @@ export interface Config {
 }
 
 export const config: Config = {
-  APP_NAME: 'PlateFull',
+  APP_NAME: 'PlateFul',
   API_BASE_URL: process.env.NODE_ENV === 'development' 
     ? 'http://localhost:5000/api'  // Use proxy in development
     : 'https://api.platefull.com',

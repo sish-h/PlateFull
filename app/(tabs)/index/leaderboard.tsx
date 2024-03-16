@@ -232,7 +232,7 @@ const LeaderboardScreen = () => {
         >
           <Ionicons name="arrow-back" size={24} color={colors.primary} />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Our Chat</Text>
+        <Text style={styles.headerTitle}>Our Chart</Text>
       </View>
       <ScrollView 
         style={styles.content}

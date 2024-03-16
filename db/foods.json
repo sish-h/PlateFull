@@ -26,10 +26,10 @@
             {
               "question": "What part of an apple do you eat?",
               "options": [
-                "A) The seeds",
-                "B) The crunchy flesh",
-                "C) The stem",
-                "D) The roots"
+                "The seeds",
+                "The crunchy flesh",
+                "The stem",
+                "The roots"
               ],
               "correct_answer": "B",
               "explanation": "The crunchy flesh"
@@ -37,10 +37,10 @@
             {
               "question": "What season do apples ripen and get picked?",
               "options": [
-                "A) Spring",
-                "B) Summer",
-                "C) Fall",
-                "D) Winter"
+                "Spring",
+                "Summer",
+                "Fall",
+                "Winter"
               ],
               "correct_answer": "C",
               "explanation": "Fall"
@@ -48,10 +48,10 @@
             {
               "question": "What colors can apples be?",
               "options": [
-                "A) Only red",
-                "B) Red, green, and yellow",
-                "C) Only green",
-                "D) Blue and purple"
+                "Only red",
+                "Red, green, and yellow",
+                "Only green",
+                "Blue and purple"
               ],
               "correct_answer": "B",
               "explanation": "Red, green, and yellow"
@@ -59,10 +59,10 @@
             {
               "question": "Where do apple seeds grow inside the fruit?",
               "options": [
-                "A) In the skin",
-                "B) In the stem",
-                "C) In the core",
-                "D) On the outside"
+                "In the skin",
+                "In the stem",
+                "In the core",
+                "On the outside"
               ],
               "correct_answer": "C",
               "explanation": "In the core"
@@ -96,10 +96,10 @@
             {
               "question": "What shape is a pear?",
               "options": [
-                "A) Round like a ball",
-                "B) Square",
-                "C) Like a teardrop",
-                "D) Like a star"
+                "Round like a ball",
+                "Square",
+                "Like a teardrop",
+                "Like a star"
               ],
               "correct_answer": "C",
               "explanation": "Like a teardrop"
@@ -107,10 +107,10 @@
             {
               "question": "What texture does a ripe pear have?",
               "options": [
-                "A) Hard and crunchy",
-                "B) Soft and grainy",
-                "C) Smooth like glass",
-                "D) Bumpy and rough"
+                "Hard and crunchy",
+                "Soft and grainy",
+                "Smooth like glass",
+                "Bumpy and rough"
               ],
               "correct_answer": "B",
               "explanation": "Soft and grainy"
@@ -118,10 +118,10 @@
             {
               "question": "When should you eat a pear?",
               "options": [
-                "A) When it's hard as a rock",
-                "B) When it's perfectly ripe",
-                "C) When it's frozen",
-                "D) When it's still green"
+                "When it's hard as a rock",
+                "When it's perfectly ripe",
+                "When it's frozen",
+                "When it's still green"
               ],
               "correct_answer": "B",
               "explanation": "When it's perfectly ripe"
@@ -129,10 +129,10 @@
             {
               "question": "What colors can pears be?",
               "options": [
-                "A) Only yellow",
-                "B) Green and red",
-                "C) Only brown",
-                "D) Purple and blue"
+                "Only yellow",
+                "Green and red",
+                "Only brown",
+                "Purple and blue"
               ],
               "correct_answer": "B",
               "explanation": "Green and red"
@@ -166,10 +166,10 @@
             {
               "question": "What shape is a banana?",
               "options": [
-                "A) Straight like a stick",
-                "B) Round like a ball",
-                "C) Curved",
-                "D) Square"
+                "Straight like a stick",
+                "Round like a ball",
+                "Curved",
+                "Square"
               ],
               "correct_answer": "C",
               "explanation": "Curved"
@@ -177,10 +177,10 @@
             {
               "question": "How do bananas grow?",
               "options": [
-                "A) One at a time",
-                "B) In bunches",
-                "C) Underground",
-                "D) On the ground"
+                "One at a time",
+                "In bunches",
+                "Underground",
+                "On the ground"
               ],
               "correct_answer": "B",
               "explanation": "In bunches"
@@ -188,10 +188,10 @@
             {
               "question": "What happens to bananas as they get riper?",
               "options": [
-                "A) They get more sour",
-                "B) They get sweeter",
-                "C) They turn blue",
-                "D) They get harder"
+                "They get more sour",
+                "They get sweeter",
+                "They turn blue",
+                "They get harder"
               ],
               "correct_answer": "B",
               "explanation": "They get sweeter"
@@ -199,10 +199,10 @@
             {
               "question": "What do you need to do before eating a banana?",
               "options": [
-                "A) Cook it",
-                "B) Cut it with a knife",
-                "C) Peel it",
-                "D) Wash it with soap"
+                "Cook it",
+                "Cut it with a knife",
+                "Peel it",
+                "Wash it with soap"
               ],
               "correct_answer": "C",
               "explanation": "Peel it"
@@ -236,10 +236,10 @@
             {
               "question": "What vitamin are oranges famous for having lots of?",
               "options": [
-                "A) Vitamin A",
-                "B) Vitamin B",
-                "C) Vitamin C",
-                "D) Vitamin D"
+                "Vitamin A",
+                "Vitamin B",
+                "Vitamin C",
+                "Vitamin D"
               ],
               "correct_answer": "C",
               "explanation": "Vitamin C"
@@ -247,10 +247,10 @@
             {
               "question": "How are oranges organized inside?",
               "options": [
-                "A) In segments",
-                "B) One big piece",
-                "C) In layers",
-                "D) In cubes"
+                "In segments",
+                "One big piece",
+                "In layers",
+                "In cubes"
               ],
               "correct_answer": "A",
               "explanation": "In segments"
@@ -258,10 +258,10 @@
             {
               "question": "What family of fruits do oranges belong to?",
               "options": [
-                "A) Berry family",
-                "B) Stone fruit family",
-                "C) Citrus family",
-                "D) Tropical family"
+                "Berry family",
+                "Stone fruit family",
+                "Citrus family",
+                "Tropical family"
               ],
               "correct_answer": "C",
               "explanation": "Citrus family"
@@ -269,10 +269,10 @@
             {
               "question": "What color is an orange when it's ripe?",
               "options": [
-                "A) Green",
-                "B) Yellow",
-                "C) Red",
-                "D) Orange"
+                "Green",
+                "Yellow",
+                "Red",
+                "Orange"
               ],
               "correct_answer": "D",
               "explanation": "Orange"
@@ -306,10 +306,10 @@
             {
               "question": "What does the outside of a pineapple look like?",
               "options": [
-                "A) Smooth and round",
-                "B) Spiky and rough",
-                "C) Soft and fuzzy",
-                "D) Flat and square"
+                "Smooth and round",
+                "Spiky and rough",
+                "Soft and fuzzy",
+                "Flat and square"
               ],
               "correct_answer": "B",
               "explanation": "Spiky and rough"
@@ -317,10 +317,10 @@
             {
               "question": "How long does it take for a pineapple to grow?",
               "options": [
-                "A) 1 month",
-                "B) 6 months",
-                "C) Almost 2 years",
-                "D) 5 years"
+                "1 month",
+                "6 months",
+                "Almost 2 years",
+                "5 years"
               ],
               "correct_answer": "C",
               "explanation": "Almost 2 years"
@@ -328,10 +328,10 @@
             {
               "question": "What color is the flesh inside a pineapple?",
               "options": [
-                "A) Red",
-                "B) White",
-                "C) Green",
-                "D) Golden yellow"
+                "Red",
+                "White",
+                "Green",
+                "Golden yellow"
               ],
               "correct_answer": "D",
               "explanation": "Golden yellow"
@@ -339,10 +339,10 @@
             {
               "question": "What kind of climate do pineapples need to grow?",
               "options": [
-                "A) Cold and snowy",
-                "B) Tropical and warm",
-                "C) Desert and dry",
-                "D) Rainy and cool"
+                "Cold and snowy",
+                "Tropical and warm",
+                "Desert and dry",
+                "Rainy and cool"
               ],
               "correct_answer": "B",
               "explanation": "Tropical and warm"
@@ -376,10 +376,10 @@
             {
               "question": "What shape is a strawberry?",
               "options": [
-                "A) Round",
-                "B) Square",
-                "C) Heart-shaped",
-                "D) Triangle"
+                "Round",
+                "Square",
+                "Heart-shaped",
+                "Triangle"
               ],
               "correct_answer": "C",
               "explanation": "Heart-shaped"
@@ -387,10 +387,10 @@
             {
               "question": "Where are the seeds on a strawberry?",
               "options": [
-                "A) Inside the fruit",
-                "B) On the outside",
-                "C) In the stem",
-                "D) Underground"
+                "Inside the fruit",
+                "On the outside",
+                "In the stem",
+                "Underground"
               ],
               "correct_answer": "B",
               "explanation": "On the outside"
@@ -398,10 +398,10 @@
             {
               "question": "When do strawberries usually ripen?",
               "options": [
-                "A) Winter",
-                "B) Fall",
-                "C) Early summer",
-                "D) Late summer"
+                "Winter",
+                "Fall",
+                "Early summer",
+                "Late summer"
               ],
               "correct_answer": "C",
               "explanation": "Early summer"
@@ -409,10 +409,10 @@
             {
               "question": "Are strawberries actually berries?",
               "options": [
-                "A) Yes, they are true berries",
-                "B) No, they are not true berries",
-                "C) Sometimes",
-                "D) Only the red ones"
+                "Yes, they are true berries",
+                "No, they are not true berries",
+                "Sometimes",
+                "Only the red ones"
               ],
               "correct_answer": "B",
               "explanation": "No, they are not true berries"
@@ -446,10 +446,10 @@
             {
               "question": "What fruit are we learning about today?",
               "options": [
-                "A) Grapes",
-                "B) Kiwi",
-                "C) Apple",
-                "D) Blueberries"
+                "Grapes",
+                "Kiwi",
+                "Apple",
+                "Blueberries"
               ],
               "correct_answer": "A",
               "explanation": "Grapes"
@@ -457,10 +457,10 @@
             {
               "question": "Where do grapes grow?",
               "options": [
-                "A) On vines",
-                "B) On the moon",
-                "C) Under ground",
-                "D) In the sea"
+                "On vines",
+                "On the moon",
+                "Under ground",
+                "In the sea"
               ],
               "correct_answer": "A",
               "explanation": "On vines"
@@ -468,10 +468,10 @@
             {
               "question": "What colors can grapes be when they're ripe?",
               "options": [
-                "A) Pink, Blue, and Orange",
-                "B) Yellow, Black, and White",
-                "C) Green, Red, and Purple",
-                "D) Brown, Gray, and Silver"
+                "Pink, Blue, and Orange",
+                "Yellow, Black, and White",
+                "Green, Red, and Purple",
+                "Brown, Gray, and Silver"
               ],
               "correct_answer": "C",
               "explanation": "Green, Red, and Purple"
@@ -479,10 +479,10 @@
             {
               "question": "What is one good thing grapes do for your body?",
               "options": [
-                "A) Make you glow in the dark",
-                "B) Help your heart stay healthy",
-                "C) Turn you into a balloon",
-                "D) Make your hair change color"
+                "Make you glow in the dark",
+                "Help your heart stay healthy",
+                "Turn you into a balloon",
+                "Make your hair change color"
               ],
               "correct_answer": "B",
               "explanation": "Help your heart stay healthy"
@@ -516,10 +516,10 @@
             {
               "question": "What is watermelon mostly made of?",
               "options": [
-                "A) Sugar",
-                "B) Water",
-                "C) Protein",
-                "D) Fat"
+                "Sugar",
+                "Water",
+                "Protein",
+                "Fat"
               ],
               "correct_answer": "B",
               "explanation": "Water"
@@ -527,10 +527,10 @@
             {
               "question": "What color is the flesh inside most watermelons?",
               "options": [
-                "A) Green",
-                "B) Yellow",
-                "C) Red",
-                "D) Purple"
+                "Green",
+                "Yellow",
+                "Red",
+                "Purple"
               ],
               "correct_answer": "C",
               "explanation": "Red"
@@ -538,10 +538,10 @@
             {
               "question": "When is watermelon most refreshing to eat?",
               "options": [
-                "A) Cold winter days",
-                "B) Hot summer days",
-                "C) Rainy days",
-                "D) Snowy days"
+                "Cold winter days",
+                "Hot summer days",
+                "Rainy days",
+                "Snowy days"
               ],
               "correct_answer": "B",
               "explanation": "Hot summer days"
@@ -549,10 +549,10 @@
             {
               "question": "How big do watermelons grow?",
               "options": [
-                "A) Small like grapes",
-                "B) Medium like apples",
-                "C) Large and heavy",
-                "D) Tiny like berries"
+                "Small like grapes",
+                "Medium like apples",
+                "Large and heavy",
+                "Tiny like berries"
               ],
               "correct_answer": "C",
               "explanation": "Large and heavy"
@@ -586,10 +586,10 @@
             {
               "question": "What fruit are we learning about today?",
               "options": [
-                "A) Grapes",
-                "B) Kiwi",
-                "C) Apple",
-                "D) Mangoes"
+                "Grapes",
+                "Kiwi",
+                "Apple",
+                "Mangoes"
               ],
               "correct_answer": "D",
               "explanation": "Mangoes"
@@ -597,10 +597,10 @@
             {
               "question": "Where do mangos grow?",
               "options": [
-                "A) On tall trees",
-                "B) Under the ground",
-                "C) In the ocean",
-                "D) On buildings"
+                "On tall trees",
+                "Under the ground",
+                "In the ocean",
+                "On buildings"
               ],
               "correct_answer": "A",
               "explanation": "On tall trees"
@@ -608,10 +608,10 @@
             {
               "question": "What color is the inside of a mango?",
               "options": [
-                "A) Blue",
-                "B) Orange",
-                "C) Purple",
-                "D) Pink"
+                "Blue",
+                "Orange",
+                "Purple",
+                "Pink"
               ],
               "correct_answer": "B",
               "explanation": "Orange"
@@ -619,10 +619,10 @@
             {
               "question": "What healthy things are in mangos?",
               "options": [
-                "A) Candy",
-                "B) Soda",
-                "C) Vitamin C, Vitamin A, and fiber",
-                "D) Ice cream"
+                "Candy",
+                "Soda",
+                "Vitamin C, Vitamin A, and fiber",
+                "Ice cream"
               ],
               "correct_answer": "C",
               "explanation": "Vitamin C, Vitamin A, and fiber"
@@ -656,10 +656,10 @@
             {
               "question": "What color is a ripe peach?",
               "options": [
-                "A) Green",
-                "B) Purple",
-                "C) Brown",
-                "D) Red and Orange"
+                "Green",
+                "Purple",
+                "Brown",
+                "Red and Orange"
               ],
               "correct_answer": "D",
               "explanation": "Red and Orange"
@@ -667,10 +667,10 @@
             {
               "question": "Where do peaches grow?",
               "options": [
-                "A) On the ground",
-                "B) In the ocean",
-                "C) On trees",
-                "D) Under the snow"
+                "On the ground",
+                "In the ocean",
+                "On trees",
+                "Under the snow"
               ],
               "correct_answer": "C",
               "explanation": "On trees"
@@ -678,10 +678,10 @@
             {
               "question": "What happens to the flowers on a peach tree?",
               "options": [
-                "A) They turn into peaches",
-                "B) They fly away",
-                "C) They grow into apples",
-                "D) They melt"
+                "They turn into peaches",
+                "They fly away",
+                "They grow into apples",
+                "They melt"
               ],
               "correct_answer": "A",
               "explanation": "They turn into peaches"
@@ -689,10 +689,10 @@
             {
               "question": "What part of a peach makes your tummy feel good?",
               "options": [
-                "A) The pit",
-                "B) Sugar",
-                "C) The skin",
-                "D) Fiber"
+                "The pit",
+                "Sugar",
+                "The skin",
+                "Fiber"
               ],
               "correct_answer": "D",
               "explanation": "Fiber"
@@ -726,10 +726,10 @@
             {
               "question": "What do apricots look like compared to peaches?",
               "options": [
-                "A) Bigger and fuzzier",
-                "B) Smaller with no fuzz",
-                "C) Same size and texture",
-                "D) Much larger and round"
+                "Bigger and fuzzier",
+                "Smaller with no fuzz",
+                "Same size and texture",
+                "Much larger and round"
               ],
               "correct_answer": "B",
               "explanation": "Smaller with no fuzz"
@@ -737,10 +737,10 @@
             {
               "question": "What color are ripe apricots?",
               "options": [
-                "A) Red",
-                "B) Green",
-                "C) Orange",
-                "D) Purple"
+                "Red",
+                "Green",
+                "Orange",
+                "Purple"
               ],
               "correct_answer": "C",
               "explanation": "Orange"
@@ -748,10 +748,10 @@
             {
               "question": "What kind of climate do apricots need?",
               "options": [
-                "A) Always warm",
-                "B) Always cold",
-                "C) Warm and dry with cold winters",
-                "D) Rainy all year"
+                "Always warm",
+                "Always cold",
+                "Warm and dry with cold winters",
+                "Rainy all year"
               ],
               "correct_answer": "C",
               "explanation": "Warm and dry with cold winters"
@@ -759,10 +759,10 @@
             {
               "question": "When do apricot trees bloom?",
               "options": [
-                "A) Late in the season",
-                "B) Early with white flowers",
-                "C) Never",
-                "D) Only at night"
+                "Late in the season",
+                "Early with white flowers",
+                "Never",
+                "Only at night"
               ],
               "correct_answer": "B",
               "explanation": "Early with white flowers"
@@ -796,10 +796,10 @@
             {
               "question": "What can people make with lemon juice?",
               "options": [
-                "A) Peanut Butter",
-                "B) Lemonade",
-                "C) Ice Cream",
-                "D) Cheese"
+                "Peanut Butter",
+                "Lemonade",
+                "Ice Cream",
+                "Cheese"
               ],
               "correct_answer": "B",
               "explanation": "Lemonade"
@@ -807,10 +807,10 @@
             {
               "question": "What color is a lemon when it's ready to be picked?",
               "options": [
-                "A) Red",
-                "B) Orange",
-                "C) Green",
-                "D) Yellow"
+                "Red",
+                "Orange",
+                "Green",
+                "Yellow"
               ],
               "correct_answer": "D",
               "explanation": "Yellow"
@@ -818,10 +818,10 @@
             {
               "question": "Where do lemons grow?",
               "options": [
-                "A) Inside caves",
-                "B) In the ocean",
-                "C) On trees",
-                "D) Underwater"
+                "Inside caves",
+                "In the ocean",
+                "On trees",
+                "Underwater"
               ],
               "correct_answer": "C",
               "explanation": "On trees"
@@ -829,10 +829,10 @@
             {
               "question": "What vitamin do lemons have that helps keep you healthy?",
               "options": [
-                "A) Vitamin C",
-                "B) Vitamin Z",
-                "C) Vitamin L",
-                "D) Vitamin W"
+                "Vitamin C",
+                "Vitamin Z",
+                "Vitamin L",
+                "Vitamin W"
               ],
               "correct_answer": "A",
               "explanation": "Vitamin C"
@@ -866,10 +866,10 @@
             {
               "question": "What fruit are we talking about in the story?",
               "options": [
-                "A) Banana",
-                "B) Kiwi",
-                "C) Apple",
-                "D) Carrot"
+                "Banana",
+                "Kiwi",
+                "Apple",
+                "Carrot"
               ],
               "correct_answer": "B",
               "explanation": "Kiwi"
@@ -877,10 +877,10 @@
             {
               "question": "What color is the inside of a kiwi?",
               "options": [
-                "A) Red",
-                "B) Purple",
-                "C) Green",
-                "D) Blue"
+                "Red",
+                "Purple",
+                "Green",
+                "Blue"
               ],
               "correct_answer": "C",
               "explanation": "Green"
@@ -888,10 +888,10 @@
             {
               "question": "Where do kiwis grow?",
               "options": [
-                "A) On trees",
-                "B) Under the ground",
-                "C) On vines like grapes",
-                "D) In the ocean"
+                "On trees",
+                "Under the ground",
+                "On vines like grapes",
+                "In the ocean"
               ],
               "correct_answer": "C",
               "explanation": "On vines like grapes"
@@ -899,10 +899,10 @@
             {
               "question": "What is one thing kiwis help with?",
               "options": [
-                "A) Making shoes",
-                "B) Helping your tummy",
-                "C) Fixing cars",
-                "D) Building houses"
+                "Making shoes",
+                "Helping your tummy",
+                "Fixing cars",
+                "Building houses"
               ],
               "correct_answer": "B",
               "explanation": "Helping your tummy"
@@ -936,10 +936,10 @@
             {
               "question": "What do cherries grow from before they become fruit?",
               "options": [
-                "A) Flowers",
-                "B) Leaves",
-                "C) Seeds",
-                "D) Clouds"
+                "Flowers",
+                "Leaves",
+                "Seeds",
+                "Clouds"
               ],
               "correct_answer": "A",
               "explanation": "Flowers"
@@ -947,10 +947,10 @@
             {
               "question": "How do farmers pick cherries?",
               "options": [
-                "A) By hand, one at a time",
-                "B) With a big net",
-                "C) By shaking the trees hard",
-                "D) Using a fishing rod"
+                "By hand, one at a time",
+                "With a big net",
+                "By shaking the trees hard",
+                "Using a fishing rod"
               ],
               "correct_answer": "A",
               "explanation": "By hand, one at a time"
@@ -958,10 +958,10 @@
             {
               "question": "What is inside a cherry that you can't eat?",
               "options": [
-                "A) A seed called a pit",
-                "B) A candy surprise",
-                "C) A small toy",
-                "D) A bubble"
+                "A seed called a pit",
+                "A candy surprise",
+                "A small toy",
+                "A bubble"
               ],
               "correct_answer": "A",
               "explanation": "A seed called a pit"
@@ -969,10 +969,10 @@
             {
               "question": "How do cherries help your body?",
               "options": [
-                "A) They help you jump super high",
-                "B) They give you a magic cape",
-                "C) They help keep your heart and muscles strong",
-                "D) They make you invisible"
+                "They help you jump super high",
+                "They give you a magic cape",
+                "They help keep your heart and muscles strong",
+                "They make you invisible"
               ],
               "correct_answer": "C",
               "explanation": "They help keep your heart and muscles strong"
@@ -1007,10 +1007,10 @@
               "id": 1,
               "question": "What fruit are we learning about today?",
               "options": [
-                "A) Cucumber",
-                "B) Kiwi",
-                "C) Apple",
-                "D) Blueberries"
+                "Cucumber",
+                "Kiwi",
+                "Apple",
+                "Blueberries"
               ],
               "correct_answer": "D",
               "explanation": "Blueberries"
@@ -1019,10 +1019,10 @@
               "id": 2,
               "question": "Where do blueberries grow?",
               "options": [
-                "A) Under the sea",
-                "B) On big trees",
-                "C) On bushes",
-                "D) In caves"
+                "Under the sea",
+                "On big trees",
+                "On bushes",
+                "In caves"
               ],
               "correct_answer": "C",
               "explanation": "On bushes"
@@ -1031,10 +1031,10 @@
               "id": 3,
               "question": "What color are blueberries when they're ready to eat?",
               "options": [
-                "A) Green",
-                "B) Purple",
-                "C) Red",
-                "D) Blue"
+                "Green",
+                "Purple",
+                "Red",
+                "Blue"
               ],
               "correct_answer": "D",
               "explanation": "Blue"
@@ -1043,10 +1043,10 @@
               "id": 4,
               "question": "What is one good thing blueberries do for your body?",
               "options": [
-                "A) Make you sleepy",
-                "B) Help your brain stay sharp",
-                "C) Help you jump higher",
-                "D) Turn you into a robot"
+                "Make you sleepy",
+                "Help your brain stay sharp",
+                "Help you jump higher",
+                "Turn you into a robot"
               ],
               "correct_answer": "B",
               "explanation": "Help your brain stay sharp"
@@ -1082,10 +1082,10 @@
             {
               "question": "What color are most carrots?",
               "options": [
-                "A) Red",
-                "B) Orange",
-                "C) Purple",
-                "D) Blue"
+                "Red",
+                "Orange",
+                "Purple",
+                "Blue"
               ],
               "correct_answer": "B",
               "explanation": "Orange"
@@ -1093,10 +1093,10 @@
             {
               "question": "Where do carrots grow?",
               "options": [
-                "A) On trees",
-                "B) Above ground",
-                "C) Underground",
-                "D) In water"
+                "On trees",
+                "Above ground",
+                "Underground",
+                "In water"
               ],
               "correct_answer": "C",
               "explanation": "Underground"
@@ -1104,10 +1104,10 @@
             {
               "question": "What part of your body do carrots help?",
               "options": [
-                "A) Your ears",
-                "B) Your eyes",
-                "C) Your nose",
-                "D) Your hair"
+                "Your ears",
+                "Your eyes",
+                "Your nose",
+                "Your hair"
               ],
               "correct_answer": "B",
               "explanation": "Your eyes"
@@ -1115,10 +1115,10 @@
             {
               "question": "What grows above ground when carrots are growing?",
               "options": [
-                "A) Nothing",
-                "B) Orange tops",
-                "C) Green leafy tops",
-                "D) Flowers"
+                "Nothing",
+                "Orange tops",
+                "Green leafy tops",
+                "Flowers"
               ],
               "correct_answer": "C",
               "explanation": "Green leafy tops"
@@ -1152,10 +1152,10 @@
             {
               "question": "What does broccoli look like?",
               "options": [
-                "A) Tiny green trees",
-                "B) Long orange sticks",
-                "C) Round red balls",
-                "D) Flat green leaves"
+                "Tiny green trees",
+                "Long orange sticks",
+                "Round red balls",
+                "Flat green leaves"
               ],
               "correct_answer": "A",
               "explanation": "Tiny green trees"
@@ -1163,10 +1163,10 @@
             {
               "question": "What part of the broccoli plant do we eat?",
               "options": [
-                "A) The roots",
-                "B) The flowers before they bloom",
-                "C) The seeds",
-                "D) The bark"
+                "The roots",
+                "The flowers before they bloom",
+                "The seeds",
+                "The bark"
               ],
               "correct_answer": "B",
               "explanation": "The flowers before they bloom"
@@ -1174,10 +1174,10 @@
             {
               "question": "What kind of weather does broccoli like to grow in?",
               "options": [
-                "A) Very hot weather",
-                "B) Cool weather",
-                "C) Freezing cold",
-                "D) Desert conditions"
+                "Very hot weather",
+                "Cool weather",
+                "Freezing cold",
+                "Desert conditions"
               ],
               "correct_answer": "B",
               "explanation": "Cool weather"
@@ -1185,10 +1185,10 @@
             {
               "question": "What happens if you don't harvest broccoli in time?",
               "options": [
-                "A) It turns red",
-                "B) It disappears",
-                "C) Yellow flowers open",
-                "D) It becomes poisonous"
+                "It turns red",
+                "It disappears",
+                "Yellow flowers open",
+                "It becomes poisonous"
               ],
               "correct_answer": "C",
               "explanation": "Yellow flowers open"
@@ -1222,10 +1222,10 @@
             {
               "question": "Where do sweet potatoes grow?",
               "options": [
-                "A) In trees",
-                "B) On top of the grass", 
-                "C) Underground",
-                "D) In a box"
+                "In trees",
+                "On top of the grass", 
+                "Underground",
+                "In a box"
               ],
               "correct_answer": "C",
               "explanation": "Underground"
@@ -1233,10 +1233,10 @@
             {
               "question": "What color are most sweet potatoes on the inside?",
               "options": [
-                "A) Green",
-                "B) Orange",
-                "C) Blue", 
-                "D) Black"
+                "Green",
+                "Orange",
+                "Blue", 
+                "Black"
               ],
               "correct_answer": "B",
               "explanation": "Orange"
@@ -1244,10 +1244,10 @@
             {
               "question": "What vitamin in sweet potatoes helps you see in the dark?",
               "options": [
-                "A) Vitamin C",
-                "B) Vitamin Z",
-                "C) Vitamin K",
-                "D) Vitamin A"
+                "Vitamin C",
+                "Vitamin Z",
+                "Vitamin K",
+                "Vitamin A"
               ],
               "correct_answer": "D",
               "explanation": "Vitamin A"
@@ -1255,10 +1255,10 @@
             {
               "question": "How long does it take sweet potatoes to grow before they're ready to be picked?",
               "options": [
-                "A) 3 Days",
-                "B) 2 Weeks",
-                "C) 4 - 5 Months",
-                "D) 10 Years"
+                "3 Days",
+                "2 Weeks",
+                "4 - 5 Months",
+                "10 Years"
               ],
               "correct_answer": "C",
               "explanation": "4 - 5 Months"
@@ -1292,10 +1292,10 @@
             {
               "question": "What shape are peas?",
               "options": [
-                "A) Square",
-                "B) Triangle", 
-                "C) Round",
-                "D) Star-shaped"
+                "Square",
+                "Triangle", 
+                "Round",
+                "Star-shaped"
               ],
               "correct_answer": "C",
               "explanation": "Round"
@@ -1303,10 +1303,10 @@
             {
               "question": "Where do peas grow?",
               "options": [
-                "A) In pods",
-                "B) On the ground",
-                "C) Under the soil",
-                "D) In trees"
+                "In pods",
+                "On the ground",
+                "Under the soil",
+                "In trees"
               ],
               "correct_answer": "A",
               "explanation": "In pods"
@@ -1314,10 +1314,10 @@
             {
               "question": "What do pea plants need to climb?",
               "options": [
-                "A) Nothing, they grow on the ground",
-                "B) Support like poles or trellises",
-                "C) Other plants",
-                "D) Rocks"
+                "Nothing, they grow on the ground",
+                "Support like poles or trellises",
+                "Other plants",
+                "Rocks"
               ],
               "correct_answer": "B",
               "explanation": "Support like poles or trellises"
@@ -1325,10 +1325,10 @@
             {
               "question": "What do peas taste like?",
               "options": [
-                "A) Bitter and sour",
-                "B) Sweet and pop in your mouth",
-                "C) Spicy and hot",
-                "D) Tasteless"
+                "Bitter and sour",
+                "Sweet and pop in your mouth",
+                "Spicy and hot",
+                "Tasteless"
               ],
               "correct_answer": "B",
               "explanation": "Sweet and pop in your mouth"
@@ -1362,10 +1362,10 @@
             {
               "question": "What does corn grow on?",
               "options": [
-                "A) Trees",
-                "B) Tall green plants",
-                "C) Under the ground",
-                "D) In water"
+                "Trees",
+                "Tall green plants",
+                "Under the ground",
+                "In water"
               ],
               "correct_answer": "B",
               "explanation": "Tall green plants"
@@ -1373,10 +1373,10 @@
             {
               "question": "What covers the ear of corn?",
               "options": [
-                "A) Flowers",
-                "B) Husks (green leaves)",
-                "C) Bark",
-                "D) Feathers"
+                "Flowers",
+                "Husks (green leaves)",
+                "Bark",
+                "Feathers"
               ],
               "correct_answer": "B",
               "explanation": "Husks (green leaves)"
@@ -1384,10 +1384,10 @@
             {
               "question": "How do farmers get the corn?",
               "options": [
-                "A) They pick it by hand or use machines",
-                "B) They catch it from the sky",
-                "C) They dig it out of the sand",
-                "D) They pull it from bushes"
+                "They pick it by hand or use machines",
+                "They catch it from the sky",
+                "They dig it out of the sand",
+                "They pull it from bushes"
               ],
               "correct_answer": "A",
               "explanation": "They pick it by hand or use machines"
@@ -1395,10 +1395,10 @@
             {
               "question": "What healthy things does corn have?",
               "options": [
-                "A) Fiber and vitamins that give you energy",
-                "B) Candy and sugar",
-                "C) Chocolate and ice cream",
-                "D) Soda and chips"
+                "Fiber and vitamins that give you energy",
+                "Candy and sugar",
+                "Chocolate and ice cream",
+                "Soda and chips"
               ],
               "correct_answer": "A",
               "explanation": "Fiber and vitamins that give you energy"
@@ -1432,10 +1432,10 @@
             {
               "question": "What green veggie are we talking about in the story?",
               "options": [
-                "A) Cucumber",
-                "B) Kiwi",
-                "C) Apple",
-                "D) Carrot"
+                "Cucumber",
+                "Kiwi",
+                "Apple",
+                "Carrot"
               ],
               "correct_answer": "A",
               "explanation": "Cucumber"
@@ -1443,10 +1443,10 @@
             {
               "question": "Where do cucumbers grow?",
               "options": [
-                "A) In the sky",
-                "B) On vines in gardens",
-                "C) In caves",
-                "D) On clouds"
+                "In the sky",
+                "On vines in gardens",
+                "In caves",
+                "On clouds"
               ],
               "correct_answer": "B",
               "explanation": "On vines in gardens"
@@ -1454,10 +1454,10 @@
             {
               "question": "What are cucumbers mostly made of?",
               "options": [
-                "A) Chocolate",
-                "B) Air",
-                "C) Water",
-                "D) Cheese"
+                "Chocolate",
+                "Air",
+                "Water",
+                "Cheese"
               ],
               "correct_answer": "C",
               "explanation": "Water"
@@ -1465,10 +1465,10 @@
             {
               "question": "What is one way people eat cucumbers?",
               "options": [
-                "A) In salads",
-                "B) In pancakes",
-                "C) In cereal",
-                "D) In ice cream"
+                "In salads",
+                "In pancakes",
+                "In cereal",
+                "In ice cream"
               ],
               "correct_answer": "A",
               "explanation": "In salads"
@@ -1502,10 +1502,10 @@
             {
               "question": "What shape is a bell pepper?",
               "options": [
-                "A) Like a ball",
-                "B) Like a bell",
-                "C) Like a star",
-                "D) Like a square"
+                "Like a ball",
+                "Like a bell",
+                "Like a star",
+                "Like a square"
               ],
               "correct_answer": "B",
               "explanation": "Like a bell"
@@ -1513,10 +1513,10 @@
             {
               "question": "What color are bell peppers when they first start growing?",
               "options": [
-                "A) Red",
-                "B) Orange",
-                "C) Green",
-                "D) Yellow"
+                "Red",
+                "Orange",
+                "Green",
+                "Yellow"
               ],
               "correct_answer": "C",
               "explanation": "Green"
@@ -1524,10 +1524,10 @@
             {
               "question": "Where do bell peppers grow?",
               "options": [
-                "A) Above the ground",
-                "B) In the ocean",
-                "C) Under the ground",
-                "D) Underwater"
+                "Above the ground",
+                "In the ocean",
+                "Under the ground",
+                "Underwater"
               ],
               "correct_answer": "A",
               "explanation": "Above the ground"
@@ -1535,10 +1535,10 @@
             {
               "question": "What does vitamin C in bell peppers help with?",
               "options": [
-                "A) Help turn your teeth blue",
-                "B) Makes your hair shorter",
-                "C) Helps you to run faster",
-                "D) Help you to stay healthy and not get sick"
+                "Help turn your teeth blue",
+                "Makes your hair shorter",
+                "Helps you to run faster",
+                "Help you to stay healthy and not get sick"
               ],
               "correct_answer": "D",
               "explanation": "Help you to stay healthy and not get sick"
@@ -1572,10 +1572,10 @@
             {
               "question": "What color is spinach?",
               "options": [
-                "A) Light green",
-                "B) Dark green",
-                "C) Yellow",
-                "D) Red"
+                "Light green",
+                "Dark green",
+                "Yellow",
+                "Red"
               ],
               "correct_answer": "B",
               "explanation": "Dark green"
@@ -1583,10 +1583,10 @@
             {
               "question": "What mineral is spinach famous for having?",
               "options": [
-                "A) Gold",
-                "B) Silver",
-                "C) Iron",
-                "D) Copper"
+                "Gold",
+                "Silver",
+                "Iron",
+                "Copper"
               ],
               "correct_answer": "C",
               "explanation": "Iron"
@@ -1594,10 +1594,10 @@
             {
               "question": "When is the best time to harvest baby spinach?",
               "options": [
-                "A) When it's fully grown",
-                "B) Early for tenderness",
-                "C) Never",
-                "D) Only in winter"
+                "When it's fully grown",
+                "Early for tenderness",
+                "Never",
+                "Only in winter"
               ],
               "correct_answer": "B",
               "explanation": "Early for tenderness"
@@ -1605,10 +1605,10 @@
             {
               "question": "How fast does spinach grow?",
               "options": [
-                "A) Very slowly",
-                "B) Quickly",
-                "C) Only in summer",
-                "D) Never grows"
+                "Very slowly",
+                "Quickly",
+                "Only in summer",
+                "Never grows"
               ],
               "correct_answer": "B",
               "explanation": "Quickly"
@@ -1642,10 +1642,10 @@
             {
               "question": "Are tomatoes fruits or vegetables?",
               "options": [
-                "A) Vegetables",
-                "B) Fruits because they have seeds",
-                "C) Neither",
-                "D) Both"
+                "Vegetables",
+                "Fruits because they have seeds",
+                "Neither",
+                "Both"
               ],
               "correct_answer": "B",
               "explanation": "Fruits because they have seeds"
@@ -1653,10 +1653,10 @@
             {
               "question": "What color do tomatoes turn when they're ripe?",
               "options": [
-                "A) Green",
-                "B) Blue",
-                "C) Red",
-                "D) Purple"
+                "Green",
+                "Blue",
+                "Red",
+                "Purple"
               ],
               "correct_answer": "C",
               "explanation": "Red"
@@ -1664,10 +1664,10 @@
             {
               "question": "What do tomato plants need lots of?",
               "options": [
-                "A) Darkness",
-                "B) Cold weather",
-                "C) Sunlight",
-                "D) Snow"
+                "Darkness",
+                "Cold weather",
+                "Sunlight",
+                "Snow"
               ],
               "correct_answer": "C",
               "explanation": "Sunlight"
@@ -1675,10 +1675,10 @@
             {
               "question": "What color are tomatoes before they ripen?",
               "options": [
-                "A) Red",
-                "B) Yellow",
-                "C) Green",
-                "D) Orange"
+                "Red",
+                "Yellow",
+                "Green",
+                "Orange"
               ],
               "correct_answer": "C",
               "explanation": "Green"
@@ -1712,10 +1712,10 @@
             {
               "question": "What shape does cabbage grow in?",
               "options": [
-                "A) Long and thin",
-                "B) Flat and wide",
-                "C) Round tight heads",
-                "D) Triangle shaped"
+                "Long and thin",
+                "Flat and wide",
+                "Round tight heads",
+                "Triangle shaped"
               ],
               "correct_answer": "C",
               "explanation": "Round tight heads"
@@ -1723,10 +1723,10 @@
             {
               "question": "What colors can cabbage be?",
               "options": [
-                "A) Only green",
-                "B) Green, purple, and white",
-                "C) Only red",
-                "D) Yellow and blue"
+                "Only green",
+                "Green, purple, and white",
+                "Only red",
+                "Yellow and blue"
               ],
               "correct_answer": "B",
               "explanation": "Green, purple, and white"
@@ -1734,10 +1734,10 @@
             {
               "question": "How are cabbage leaves arranged?",
               "options": [
-                "A) Randomly scattered",
-                "B) In tight layers",
-                "C) Hanging down",
-                "D) Standing straight up"
+                "Randomly scattered",
+                "In tight layers",
+                "Hanging down",
+                "Standing straight up"
               ],
               "correct_answer": "B",
               "explanation": "In tight layers"
@@ -1745,10 +1745,10 @@
             {
               "question": "When should you harvest cabbage?",
               "options": [
-                "A) When it feels soft",
-                "B) When it feels firm and solid",
-                "C) When it turns brown",
-                "D) Never"
+                "When it feels soft",
+                "When it feels firm and solid",
+                "When it turns brown",
+                "Never"
               ],
               "correct_answer": "B",
               "explanation": "When it feels firm and solid"
@@ -1783,10 +1783,10 @@
               "id": 1,
               "question": "What does asparagus look like?",
               "options": [
-                "A) A round orange fruit",
-                "B) Pointy and green",
-                "C) A purple flower",
-                "D) Yellow and leafy"
+                "A round orange fruit",
+                "Pointy and green",
+                "A purple flower",
+                "Yellow and leafy"
               ],
               "correct_answer": "B",
               "explanation": "Pointy and green"
@@ -1795,10 +1795,10 @@
               "id": 2,
               "question": "How long can it take before asparagus is ready to be picked for the first time?",
               "options": [
-                "A) 1 week",
-                "B) 1 - 3 days",
-                "C) 2 - 3 years",
-                "D) 10 years"
+                "1 week",
+                "1 - 3 days",
+                "2 - 3 years",
+                "10 years"
               ],
               "correct_answer": "C",
               "explanation": "2 - 3 years"
@@ -1807,10 +1807,10 @@
               "id": 3,
               "question": "What are two other colors asparagus can be besides green?",
               "options": [
-                "A) Red and blue",
-                "B) Black and brown",
-                "C) Pink and orange",
-                "D) Purple and white"
+                "Red and blue",
+                "Black and brown",
+                "Pink and orange",
+                "Purple and white"
               ],
               "correct_answer": "D",
               "explanation": "Purple and white"
@@ -1819,10 +1819,10 @@
               "id": 4,
               "question": "Which part of your body does vitamin K in asparagus help?",
               "options": [
-                "A) Your bones",
-                "B) Your ears",
-                "C) Your lungs",
-                "D) Your hair"
+                "Your bones",
+                "Your ears",
+                "Your lungs",
+                "Your hair"
               ],
               "correct_answer": "A",
               "explanation": "Your bones"
@@ -1858,10 +1858,10 @@
             {
               "question": "What type of meat is chicken?",
               "options": [
-                "A) Red meat",
-                "B) White meat",
-                "C) Pink meat",
-                "D) Brown meat"
+                "Red meat",
+                "White meat",
+                "Pink meat",
+                "Brown meat"
               ],
               "correct_answer": "B",
               "explanation": "White meat"
@@ -1869,10 +1869,10 @@
             {
               "question": "What do chickens provide besides meat?",
               "options": [
-                "A) Milk",
-                "B) Wool",
-                "C) Eggs",
-                "D) Honey"
+                "Milk",
+                "Wool",
+                "Eggs",
+                "Honey"
               ],
               "correct_answer": "C",
               "explanation": "Eggs"
@@ -1880,10 +1880,10 @@
             {
               "question": "What do chickens eat on farms?",
               "options": [
-                "A) Only grass",
-                "B) Grain-based diets",
-                "C) Only meat",
-                "D) Nothing"
+                "Only grass",
+                "Grain-based diets",
+                "Only meat",
+                "Nothing"
               ],
               "correct_answer": "B",
               "explanation": "Grain-based diets"
@@ -1891,10 +1891,10 @@
             {
               "question": "What makes chicken a good protein?",
               "options": [
-                "A) It has no protein",
-                "B) It's incomplete protein",
-                "C) It has all essential amino acids",
-                "D) It only has vitamins"
+                "It has no protein",
+                "It's incomplete protein",
+                "It has all essential amino acids",
+                "It only has vitamins"
               ],
               "correct_answer": "C",
               "explanation": "It has all essential amino acids"
@@ -1928,10 +1928,10 @@
             {
               "question": "Where do fish live?",
               "options": [
-                "A) On land",
-                "B) In trees",
-                "C) In water",
-                "D) In caves"
+                "On land",
+                "In trees",
+                "In water",
+                "In caves"
               ],
               "correct_answer": "C",
               "explanation": "In water"
@@ -1939,10 +1939,10 @@
             {
               "question": "What healthy fats do fish provide?",
               "options": [
-                "A) Omega-3 fatty acids",
-                "B) Sugar",
-                "C) Starch",
-                "D) Fiber"
+                "Omega-3 fatty acids",
+                "Sugar",
+                "Starch",
+                "Fiber"
               ],
               "correct_answer": "A",
               "explanation": "Omega-3 fatty acids"
@@ -1950,10 +1950,10 @@
             {
               "question": "How can fish be caught?",
               "options": [
-                "A) Only from farms",
-                "B) Wild-caught or farm-raised",
-                "C) Only from the wild",
-                "D) They catch themselves"
+                "Only from farms",
+                "Wild-caught or farm-raised",
+                "Only from the wild",
+                "They catch themselves"
               ],
               "correct_answer": "B",
               "explanation": "Wild-caught or farm-raised"
@@ -1961,10 +1961,10 @@
             {
               "question": "What makes fish a lean protein?",
               "options": [
-                "A) It has lots of fat",
-                "B) It has little protein",
-                "C) It has high-quality protein with good fats",
-                "D) It has no nutrients"
+                "It has lots of fat",
+                "It has little protein",
+                "It has high-quality protein with good fats",
+                "It has no nutrients"
               ],
               "correct_answer": "C",
               "explanation": "It has high-quality protein with good fats"
@@ -1998,10 +1998,10 @@
             {
               "question": "What animal lays the eggs we eat?",
               "options": [
-                "A) Cows",
-                "B) Chickens",
-                "C) Fish",
-                "D) Pigs"
+                "Cows",
+                "Chickens",
+                "Fish",
+                "Pigs"
               ],
               "correct_answer": "B",
               "explanation": "Chickens"
@@ -2009,10 +2009,10 @@
             {
               "question": "What are the two main parts of an egg?",
               "options": [
-                "A) Shell and inside",
-                "B) Top and bottom",
-                "C) White and yolk",
-                "D) Big and small"
+                "Shell and inside",
+                "Top and bottom",
+                "White and yolk",
+                "Big and small"
               ],
               "correct_answer": "C",
               "explanation": "White and yolk"
@@ -2020,10 +2020,10 @@
             {
               "question": "Which part of the egg has more fat?",
               "options": [
-                "A) The white",
-                "B) The yolk",
-                "C) The shell",
-                "D) Both parts have the same"
+                "The white",
+                "The yolk",
+                "The shell",
+                "Both parts have the same"
               ],
               "correct_answer": "B",
               "explanation": "The yolk"
@@ -2031,10 +2031,10 @@
             {
               "question": "Why are eggs called complete proteins?",
               "options": [
-                "A) They're round",
-                "B) They have all amino acids",
-                "C) They're white",
-                "D) They come in dozens"
+                "They're round",
+                "They have all amino acids",
+                "They're white",
+                "They come in dozens"
               ],
               "correct_answer": "B",
               "explanation": "They have all amino acids"
@@ -2068,10 +2068,10 @@
             {
               "question": "What family do beans belong to?",
               "options": [
-                "A) Fruit family",
-                "B) Vegetable family", 
-                "C) Legume family",
-                "D) Grain family"
+                "Fruit family",
+                "Vegetable family", 
+                "Legume family",
+                "Grain family"
               ],
               "correct_answer": "C",
               "explanation": "Legume family"
@@ -2079,10 +2079,10 @@
             {
               "question": "Where do beans grow?",
               "options": [
-                "A) In pods",
-                "B) On trees",
-                "C) Underground",
-                "D) In water"
+                "In pods",
+                "On trees",
+                "Underground",
+                "In water"
               ],
               "correct_answer": "A",
               "explanation": "In pods"
@@ -2090,10 +2090,10 @@
             {
               "question": "What nutrients are beans high in?",
               "options": [
-                "A) Only protein",
-                "B) Protein and fiber",
-                "C) Only sugar",
-                "D) Only fat"
+                "Only protein",
+                "Protein and fiber",
+                "Only sugar",
+                "Only fat"
               ],
               "correct_answer": "B",
               "explanation": "Protein and fiber"
@@ -2101,10 +2101,10 @@
             {
               "question": "What colors can beans be?",
               "options": [
-                "A) Only brown",
-                "B) Only black",
-                "C) Many colors like black, red, white",
-                "D) Only green"
+                "Only brown",
+                "Only black",
+                "Many colors like black, red, white",
+                "Only green"
               ],
               "correct_answer": "C",
               "explanation": "Many colors like black, red, white"
@@ -2138,10 +2138,10 @@
             {
               "question": "What shape are lentils?",
               "options": [
-                "A) Round like marbles",
-                "B) Long like sticks",
-                "C) Small and lens-shaped",
-                "D) Square"
+                "Round like marbles",
+                "Long like sticks",
+                "Small and lens-shaped",
+                "Square"
               ],
               "correct_answer": "C",
               "explanation": "Small and lens-shaped"
@@ -2149,10 +2149,10 @@
             {
               "question": "How fast do lentils cook compared to other legumes?",
               "options": [
-                "A) Very slowly",
-                "B) They don't cook",
-                "C) Quickly",
-                "D) Only in winter"
+                "Very slowly",
+                "They don't cook",
+                "Quickly",
+                "Only in winter"
               ],
               "correct_answer": "C",
               "explanation": "Quickly"
@@ -2160,10 +2160,10 @@
             {
               "question": "What colors do lentils come in?",
               "options": [
-                "A) Only brown",
-                "B) Red, green, brown, and black",
-                "C) Only red",
-                "D) Only green"
+                "Only brown",
+                "Red, green, brown, and black",
+                "Only red",
+                "Only green"
               ],
               "correct_answer": "B",
               "explanation": "Red, green, brown, and black"
@@ -2171,10 +2171,10 @@
             {
               "question": "What makes lentils a good plant protein?",
               "options": [
-                "A) They have no protein",
-                "B) They have high-quality protein",
-                "C) They only have carbs",
-                "D) They're only good for decoration"
+                "They have no protein",
+                "They have high-quality protein",
+                "They only have carbs",
+                "They're only good for decoration"
               ],
               "correct_answer": "B",
               "explanation": "They have high-quality protein"
@@ -2208,10 +2208,10 @@
             {
               "question": "What is tofu made from?",
               "options": [
-                "A) Milk",
-                "B) Soybeans",
-                "C) Rice",
-                "D) Wheat"
+                "Milk",
+                "Soybeans",
+                "Rice",
+                "Wheat"
               ],
               "correct_answer": "B",
               "explanation": "Soybeans"
@@ -2219,10 +2219,10 @@
             {
               "question": "What does tofu taste like on its own?",
               "options": [
-                "A) Very spicy",
-                "B) Very sweet",
-                "C) Mild and absorbs other flavors",
-                "D) Very salty"
+                "Very spicy",
+                "Very sweet",
+                "Mild and absorbs other flavors",
+                "Very salty"
               ],
               "correct_answer": "C",
               "explanation": "Mild and absorbs other flavors"
@@ -2230,10 +2230,10 @@
             {
               "question": "What textures can tofu come in?",
               "options": [
-                "A) Only hard",
-                "B) Soft to extra-firm",
-                "C) Only soft",
-                "D) Only liquid"
+                "Only hard",
+                "Soft to extra-firm",
+                "Only soft",
+                "Only liquid"
               ],
               "correct_answer": "B",
               "explanation": "Soft to extra-firm"
@@ -2241,10 +2241,10 @@
             {
               "question": "What type of protein is tofu?",
               "options": [
-                "A) Incomplete protein",
-                "B) Complete plant protein",
-                "C) No protein",
-                "D) Only animal protein"
+                "Incomplete protein",
+                "Complete plant protein",
+                "No protein",
+                "Only animal protein"
               ],
               "correct_answer": "B",
               "explanation": "Complete plant protein"
@@ -2278,10 +2278,10 @@
             {
               "question": "What animal does beef come from?",
               "options": [
-                "A) Chickens",
-                "B) Pigs", 
-                "C) Cattle",
-                "D) Sheep"
+                "Chickens",
+                "Pigs", 
+                "Cattle",
+                "Sheep"
               ],
               "correct_answer": "C",
               "explanation": "Cattle"
@@ -2289,10 +2289,10 @@
             {
               "question": "What makes beef 'lean'?",
               "options": [
-                "A) It has lots of fat",
-                "B) It has less visible fat",
-                "C) It's very small",
-                "D) It's raw"
+                "It has lots of fat",
+                "It has less visible fat",
+                "It's very small",
+                "It's raw"
               ],
               "correct_answer": "B",
               "explanation": "It has less visible fat"
@@ -2300,10 +2300,10 @@
             {
               "question": "What important mineral does beef provide?",
               "options": [
-                "A) Gold",
-                "B) Iron",
-                "C) Silver", 
-                "D) Plastic"
+                "Gold",
+                "Iron",
+                "Silver", 
+                "Plastic"
               ],
               "correct_answer": "B",
               "explanation": "Iron"
@@ -2311,10 +2311,10 @@
             {
               "question": "How long are cattle usually raised before processing?",
               "options": [
-                "A) 1 month",
-                "B) 1 week",
-                "C) 18-24 months",
-                "D) 10 years"
+                "1 month",
+                "1 week",
+                "18-24 months",
+                "10 years"
               ],
               "correct_answer": "C",
               "explanation": "18-24 months"
@@ -2348,10 +2348,10 @@
             {
               "question": "What type of meat is turkey?",
               "options": [
-                "A) Red meat",
-                "B) Poultry like chicken",
-                "C) Fish",
-                "D) Vegetable"
+                "Red meat",
+                "Poultry like chicken",
+                "Fish",
+                "Vegetable"
               ],
               "correct_answer": "B",
               "explanation": "Poultry like chicken"
@@ -2359,10 +2359,10 @@
             {
               "question": "When is turkey especially popular?",
               "options": [
-                "A) Summer",
-                "B) Spring",
-                "C) Holidays like Thanksgiving",
-                "D) Never"
+                "Summer",
+                "Spring",
+                "Holidays like Thanksgiving",
+                "Never"
               ],
               "correct_answer": "C",
               "explanation": "Holidays like Thanksgiving"
@@ -2370,10 +2370,10 @@
             {
               "question": "Which part of turkey is leanest?",
               "options": [
-                "A) The skin",
-                "B) The breast meat",
-                "C) The bones",
-                "D) The feathers"
+                "The skin",
+                "The breast meat",
+                "The bones",
+                "The feathers"
               ],
               "correct_answer": "B",
               "explanation": "The breast meat"
@@ -2381,10 +2381,10 @@
             {
               "question": "How is turkey similar to chicken?",
               "options": [
-                "A) Both are fish",
-                "B) Both are lean poultry with complete protein",
-                "C) Both are vegetables",
-                "D) They're not similar at all"
+                "Both are fish",
+                "Both are lean poultry with complete protein",
+                "Both are vegetables",
+                "They're not similar at all"
               ],
               "correct_answer": "B",
               "explanation": "Both are lean poultry with complete protein"

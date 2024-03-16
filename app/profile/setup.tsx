@@ -406,7 +406,7 @@ const ProfileSetupScreen = () => {
           source={require('../../assets/images/logo/platefull-mascot.png')}
           style={styles.mascot}
         />
-        <Text style={styles.welcomeText}>Welcome to PLATEFULL</Text>
+        <Text style={styles.welcomeText}>Welcome to PLATEFUL</Text>
         <Text style={styles.subtitleText}>Let&apos;s get started.</Text>
       </LinearGradient>
       
@@ -449,7 +449,7 @@ const ProfileSetupScreen = () => {
                 >
                   <Text style={styles.nextButtonText}>
                     {currentStep === steps.length - 1 
-                      ? ("Well!") 
+                      ? ("Complete!") 
                       : <Ionicons name="arrow-forward" size={25} color="white" />
                     }
                   </Text>

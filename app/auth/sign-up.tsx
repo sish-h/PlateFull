@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
-import PhoneInput from '../../components/common/PhoneInput';
+// import PhoneInput from '../../components/common/PhoneInput';
 import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
 import { useAuthStore } from '../../stores/authStore';
@@ -28,7 +28,7 @@ interface FormData {
   email: string;
   password: string;
   confirmPassword: string;
-  phoneNumber: string;
+  // phoneNumber: string;
 }
 
 interface FormErrors {
@@ -36,7 +36,7 @@ interface FormErrors {
   password?: string;
   confirmPassword?: string;
   email?: string;
-  phoneNumber?: string;
+  // phoneNumber?: string;
 }
 
 const SignUpScreen: React.FC = () => {
@@ -45,7 +45,7 @@ const SignUpScreen: React.FC = () => {
     password: '',
     confirmPassword: '',
     email: '',
-    phoneNumber: '',
+    // phoneNumber: '',
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ const SignUpScreen: React.FC = () => {
         name: userData.name,
         email: userData.email,
         password: userData.password,
-        phone: userData.phoneNumber,
+        // phone: userData.phoneNumber,
       });
       if(result!=null){
         return { success: true };
@@ -101,11 +101,11 @@ const SignUpScreen: React.FC = () => {
     }
     
     // Phone number validation
-    if (!formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = 'Phone number is required';
-    } else if (formData.phoneNumber.length < 10) {
-      newErrors.phoneNumber = 'Please enter a valid phone number';
-    }
+    // if (!formData.phoneNumber.trim()) {
+    //   newErrors.phoneNumber = 'Phone number is required';
+    // } else if (formData.phoneNumber.length < 10) {
+    //   newErrors.phoneNumber = 'Please enter a valid phone number';
+    // }
     
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -164,7 +164,7 @@ const SignUpScreen: React.FC = () => {
           source={require('../../assets/images/logo/platefull-mascot.png')}
           style={styles.mascot}
         />
-        <Text style={styles.welcomeText}>Join PLATEFULL</Text>
+        <Text style={styles.welcomeText}>Join PLATEFUL</Text>
         <Text style={styles.subtitleText}>Create your account</Text>
       </LinearGradient>
       
@@ -223,14 +223,14 @@ const SignUpScreen: React.FC = () => {
               error={errors.confirmPassword}
             />
             
-            <PhoneInput
+            {/* <PhoneInput
               value={formData.phoneNumber}
               onChangeText={(text: string) => updateFormData('phoneNumber', text)}
               placeholder="Enter your phone number"
               error={errors.phoneNumber}
               style={{}}
               containerStyle={{}}
-            />
+            /> */}
             
             
             <Button
@@ -282,15 +282,13 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingTop: 10,
-    paddingBottom: 30,
+    paddingBottom: 50,
     alignItems: 'center',
   },
   mascot: {
-    position: 'absolute',
     width: 120,
     height: 120,
     resizeMode: 'contain',
-    marginBottom: -20,
   },
   welcomeText: {
     fontSize: 24,
@@ -331,7 +329,6 @@ const styles = StyleSheet.create({
   },
   form: {
     width: '100%',
-    gap: 6,
   },
   signUpButton: {
     marginTop: 8,

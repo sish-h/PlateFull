@@ -4,14 +4,14 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
-    Image,
-    KeyboardAvoidingView,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
@@ -119,7 +119,7 @@ const SignInScreen = () => {
           source={require('../../assets/images/logo/platefull-mascot.png')}
           style={styles.mascot}
         />
-        <Text style={styles.welcomeText}>Welcome to PLATEFULL</Text>
+        <Text style={styles.welcomeText}>Welcome to PLATEFUL</Text>
         <Text style={styles.subtitleText}>Let&apos;s get started.</Text>
       </LinearGradient>
       
