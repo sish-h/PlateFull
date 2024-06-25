@@ -56,15 +56,12 @@ const MainScreen: React.FC = () => {
   };
   
   const startAnimations = useCallback(() => {
-    // Header animation
     headerOpacity.value = withDelay(200, withTiming(1, { duration: 800 }));
     headerTranslateY.value = withDelay(200, withSpring(0, { damping: 15, stiffness: 100 }));
     
-    // Content animation
     contentOpacity.value = withDelay(400, withTiming(1, { duration: 600 }));
     contentTranslateY.value = withDelay(400, withSpring(0, { damping: 15, stiffness: 100 }));
     
-    // Card animations with staggered timing
     cardScale.value = withDelay(600, withSpring(1, { damping: 15, stiffness: 100 }));
     cardOpacity.value = withDelay(600, withTiming(1, { duration: 500 }));
   }, [headerOpacity, headerTranslateY, contentOpacity, contentTranslateY, cardScale, cardOpacity]);
@@ -126,14 +123,6 @@ const MainScreen: React.FC = () => {
       icon: 'person-outline',
       color: colors.warning,
       gradient: colors.gradients.success as [string, string]
-    },
-    {
-      id: 'gamification',
-      title: 'Rewards',
-      subtitle: 'Earn badges & points',
-      icon: 'trophy-outline',
-      color: colors.info,
-      gradient: colors.gradients.food as [string, string]
     }
   ];
   

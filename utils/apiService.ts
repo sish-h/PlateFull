@@ -221,7 +221,16 @@ class ApiService {
           statusText: response.statusText,
           data: data
         });
-        throw new Error(data.error || data.message || `HTTP ${response.status}: ${response.statusText}`);
+        
+        // Create a proper error response object
+        const errorResponse: ApiResponse = {
+          success: false,
+          error: data.error || data.message || `HTTP ${response.status}: ${response.statusText}`,
+          message: data.message || `HTTP ${response.status}: ${response.statusText}`,
+          data: data.data
+        };
+        
+        throw errorResponse;
       }
 
       // Store data in appropriate store if request was successful
@@ -239,10 +248,27 @@ class ApiService {
       });
       
       if (error instanceof Error && error.name === 'AbortError') {
-        throw new Error('Request timeout. Please check your connection and try again.');
+        const timeoutError: ApiResponse = {
+          success: false,
+          error: 'Request timeout. Please check your connection and try again.',
+          message: 'Request timeout. Please check your connection and try again.'
+        };
+        throw timeoutError;
       }
       
-      throw error;
+      // If error is already an ApiResponse, throw it as is
+      if (error && typeof error === 'object' && 'success' in error) {
+        throw error;
+      }
+      
+      // Convert other errors to ApiResponse format
+      const genericError: ApiResponse = {
+        success: false,
+        error: error instanceof Error ? error.message : 'An unexpected error occurred',
+        message: error instanceof Error ? error.message : 'An unexpected error occurred'
+      };
+      
+      throw genericError;
     }
   }
 
@@ -320,6 +346,12 @@ class ApiService {
     return this.request<any>('/children', {
       method: 'POST',
       body: JSON.stringify(childData),
+    });
+  }
+
+  async getChildById(childId: string): Promise<ApiResponse<any>> {
+    return this.request<any>(`/children/${childId}`, {
+      method: 'GET',
     });
   }
 
