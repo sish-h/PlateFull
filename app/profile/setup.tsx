@@ -3,27 +3,28 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
-    Dimensions,
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View
 } from 'react-native';
 import Animated, {
-    FadeIn,
-    FadeOut,
-    useAnimatedStyle,
-    useSharedValue,
-    withSpring,
-    withTiming
+  FadeIn,
+  FadeOut,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming
 } from 'react-native-reanimated';
 import Input from '../../components/common/Input';
 import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
 import { config } from '../../constants/config';
 import { useUserStore } from '../../stores/userStore';
+import { cameraService } from '../../utils/cameraService';
 import MessageHandler from '../../utils/messageHandler';
 import { shadowPresets } from '../../utils/shadowUtils';
 
@@ -38,12 +39,17 @@ interface Food {
 
 interface ProfileData {
   childName: string;
+  avatar?: string;
   age: string;
   gender: string;
   restrictions: string[];
   fruits: string[];
   vegetables: string[];
   proteins: string[];
+}
+
+interface AvatarStepProps extends StepProps {
+  isUploading?: boolean;
 }
 
 // Convert age string to number for backend
@@ -240,8 +246,10 @@ const foodData = {
 
 const ProfileSetupScreen = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isAvatarUploading, setIsAvatarUploading] = useState(false);
   const [profileData, setProfileData] = useState<ProfileData>({
     childName: '',
+    avatar: undefined,
     age: '',
     gender: '',
     restrictions: [],
@@ -267,6 +275,7 @@ const ProfileSetupScreen = () => {
   
   const steps = [
     'childName',
+    'avatar',
     'age',
     'gender',
     'restrictions',
@@ -291,6 +300,11 @@ const ProfileSetupScreen = () => {
         return;
       }
       
+      if (!profileData.avatar) {
+        MessageHandler.showError('Please select an avatar for your child');
+        return;
+      }
+      
       if (!profileData.age) {
         MessageHandler.showError('Please select your child\'s age');
         return;
@@ -305,6 +319,7 @@ const ProfileSetupScreen = () => {
       // Prepare child data for backend
       const childData = {
         name: profileData.childName.trim(),
+        avatar: profileData.avatar, // This can be 'boy', 'girl', or a custom image URI
         ageRange: profileData.age.trim(),
         gender: convertGenderToBackendFormat(profileData.gender),
         allergies: profileData.restrictions,
@@ -346,6 +361,8 @@ const ProfileSetupScreen = () => {
     switch (steps[currentStep]) {
       case 'childName':
         return <ChildNameStep profileData={profileData} setProfileData={setProfileData} />;
+      case 'avatar':
+        return <AvatarStep profileData={profileData} setProfileData={setProfileData} isUploading={isAvatarUploading} />;
       case 'age':
         return <AgeStep profileData={profileData} setProfileData={setProfileData} />;
       case 'gender':
@@ -474,6 +491,136 @@ const ChildNameStep: React.FC<StepProps> = ({ profileData, setProfileData }) => 
     />
   </View>
 );
+
+const AvatarStep: React.FC<AvatarStepProps> = ({ profileData, setProfileData, isUploading = false }) => {
+  const handleCustomAvatarUpload = async () => {
+    try {
+      const imageUri = await cameraService.pickFromGallery();
+      if (imageUri) {
+        setProfileData({ ...profileData, avatar: imageUri });
+        MessageHandler.showSuccess('Custom avatar uploaded successfully!');
+      } else {
+        MessageHandler.showInfo('No image selected');
+      }
+    } catch (error) {
+      console.error('Gallery picker error:', error);
+      MessageHandler.showError('Failed to upload custom avatar. Please check permissions and try again.');
+    }
+  };
+
+  const handleTakePhoto = async () => {
+    try {
+      const imageUri = await cameraService.takePicture();
+      if (imageUri) {
+        setProfileData({ ...profileData, avatar: imageUri });
+        MessageHandler.showSuccess('Photo taken successfully!');
+      } else {
+        MessageHandler.showInfo('No photo taken');
+      }
+    } catch (error) {
+      console.error('Camera error:', error);
+      MessageHandler.showError('Failed to take photo. Please check camera permissions and try again.');
+    }
+  };
+
+  return (
+    <View style={styles.stepContainer}>
+      <Text style={styles.stepTitle}>Let&apos;s Learn About Your Family!</Text>
+      <Text style={styles.stepQuestion}>Choose an Avatar for Your Child</Text>
+    <Text style={styles.stepSubtitle}>
+      Select from our predefined avatars or upload your own photo
+    </Text>
+      
+      <View style={styles.avatarContainer}>
+        <TouchableOpacity
+          style={[
+            styles.avatarOption,
+            profileData.avatar === 'boy' && styles.avatarOptionSelected
+          ]}
+          onPress={() => setProfileData({ ...profileData, avatar: 'boy' })}
+        >
+          <Image 
+            source={require('../../assets/images/avatars/boy.png')}
+            style={styles.avatarImage}
+          />
+          <Text style={styles.avatarText}>Boy</Text>
+          {profileData.avatar === 'boy' && (
+            <View style={styles.avatarCheckmark}>
+              <Ionicons name="checkmark-circle" size={24} color={colors.primary} />
+            </View>
+          )}
+        </TouchableOpacity>
+        
+        <TouchableOpacity
+          style={[
+            styles.avatarOption,
+            profileData.avatar === 'girl' && styles.avatarOptionSelected
+          ]}
+          onPress={() => setProfileData({ ...profileData, avatar: 'girl' })}
+        >
+          <Image 
+            source={require('../../assets/images/avatars/girl.png')}
+            style={styles.avatarImage}
+          />
+          <Text style={styles.avatarText}>Girl</Text>
+          {profileData.avatar === 'girl' && (
+            <View style={styles.avatarCheckmark}>
+              <Ionicons name="checkmark-circle" size={24} color={colors.primary} />
+            </View>
+          )}
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.customAvatarContainer}>
+        <Text style={styles.customAvatarTitle}>Or Upload Your Own</Text>
+        
+        <View style={styles.customAvatarButtons}>
+          <TouchableOpacity
+            style={[styles.customAvatarButton, isUploading && styles.customAvatarButtonDisabled]}
+            onPress={handleTakePhoto}
+            disabled={isUploading}
+          >
+            <Ionicons name="camera" size={24} color={isUploading ? colors.text.secondary : colors.primary} />
+            <Text style={[styles.customAvatarButtonText, isUploading && styles.customAvatarButtonTextDisabled]}>
+              {isUploading ? 'Taking Photo...' : 'Take Photo'}
+            </Text>
+          </TouchableOpacity>
+          
+          <TouchableOpacity
+            style={[styles.customAvatarButton, isUploading && styles.customAvatarButtonDisabled]}
+            onPress={handleCustomAvatarUpload}
+            disabled={isUploading}
+          >
+            <Ionicons name="images" size={24} color={isUploading ? colors.text.secondary : colors.primary} />
+            <Text style={[styles.customAvatarButtonText, isUploading && styles.customAvatarButtonTextDisabled]}>
+              {isUploading ? 'Uploading...' : 'Choose Photo'}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        {profileData.avatar && profileData.avatar !== 'boy' && profileData.avatar !== 'girl' && (
+          <View style={styles.customAvatarPreview}>
+            <Text style={styles.customAvatarPreviewText}>Selected Image:</Text>
+            <Image 
+              source={{ uri: profileData.avatar }} 
+              style={styles.customAvatarPreviewImage}
+            />
+            <View style={styles.customAvatarCheckmark}>
+              <Ionicons name="checkmark-circle" size={24} color={colors.primary} />
+            </View>
+            <TouchableOpacity
+              style={styles.removeAvatarButton}
+              onPress={() => setProfileData({ ...profileData, avatar: undefined })}
+            >
+              <Ionicons name="close-circle" size={20} color={colors.error || '#FF6B6B'} />
+              <Text style={styles.removeAvatarButtonText}>Remove</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+    </View>
+  );
+};
 
 const AgeStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
   <View style={styles.stepContainer}>
@@ -665,7 +812,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: colors.text.primary,
+    marginBottom: 16,
+  },
+  stepSubtitle: {
+    fontSize: 16,
+    color: colors.text.secondary,
     marginBottom: 32,
+    textAlign: 'center',
+    lineHeight: 22,
   },
   input: {
     marginTop: 8,
@@ -754,6 +908,120 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
     color: colors.text.primary,
+  },
+  avatarContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 32,
+    marginBottom: 16,
+  },
+  avatarOption: {
+    alignItems: 'center',
+    padding: 20,
+    borderRadius: 16,
+    borderColor: colors.border,
+    width: (width - 72) / 2,
+  },
+  avatarOptionSelected: {
+    borderColor: colors.primary,
+    backgroundColor: colors.primary + '20',
+  },
+  avatarImage: {
+    width: 120,
+    height: 120,
+    resizeMode: 'contain',
+    marginBottom: 12,
+  },
+  avatarText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.text.primary,
+  },
+  customAvatarContainer: {
+    marginTop: 32,
+    alignItems: 'center',
+  },
+  customAvatarTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: colors.text.secondary,
+    marginBottom: 16,
+  },
+  customAvatarButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    marginBottom: 20,
+  },
+  customAvatarButton: {
+    alignItems: 'center',
+    padding: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: colors.primary,
+    backgroundColor: colors.surface,
+    minWidth: 120,
+  },
+  customAvatarButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: colors.primary,
+    marginTop: 8,
+  },
+  customAvatarButtonDisabled: {
+    opacity: 0.6,
+    borderColor: colors.text.secondary,
+  },
+  customAvatarButtonTextDisabled: {
+    color: colors.text.secondary,
+  },
+  customAvatarPreview: {
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  customAvatarPreviewText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: colors.text.secondary,
+    marginBottom: 12,
+  },
+  customAvatarPreviewImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    borderWidth: 2,
+    borderColor: colors.primary,
+  },
+  avatarCheckmark: {
+    position: 'absolute',
+    top: 8,
+    right: 8,
+    backgroundColor: colors.surface,
+    borderRadius: 12,
+  },
+  customAvatarCheckmark: {
+    position: 'absolute',
+    top: -8,
+    right: -8,
+    backgroundColor: colors.surface,
+    borderRadius: 12,
+  },
+  removeAvatarButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.surface,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: colors.error || '#FF6B6B',
+    marginTop: 12,
+  },
+  removeAvatarButtonText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: colors.error || '#FF6B6B',
+    marginLeft: 4,
   },
   foodGridScrollView: {
     maxHeight: 400,
