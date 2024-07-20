@@ -165,7 +165,7 @@ const SignUpScreen = () => {
               value={formData.fullName}
               onChangeText={(text) => updateFormData('fullName', text)}
               error={errors.fullName}
-              icon={<Ionicons name="person-outline" />}
+              icon={<Ionicons name="person" />}
             />
             
             <Input
@@ -174,7 +174,7 @@ const SignUpScreen = () => {
               placeholder="Enter your email"
               keyboardType="email-address"
               error={errors.email}
-              icon={<Ionicons name="mail-outline" />}
+              icon={<Ionicons name="mail" />}
             />
             
             <PhoneInput
@@ -192,7 +192,7 @@ const SignUpScreen = () => {
               placeholder="Create a password"
               secureTextEntry
               error={errors.password}
-              icon={<Ionicons name="lock-closed-outline" />}
+              icon={<Ionicons name="lock-closed" />}
             />
             
             <Input
@@ -201,7 +201,7 @@ const SignUpScreen = () => {
               placeholder="Confirm your password"
               secureTextEntry
               error={errors.confirmPassword}
-              icon={<Ionicons name="lock-closed-outline" />}
+              icon={<Ionicons name="lock-closed" />}
             />
             
             <Button

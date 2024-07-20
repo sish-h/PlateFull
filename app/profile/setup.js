@@ -29,37 +29,37 @@ const { width } = Dimensions.get('window');
 // Food data
 const foodData = {
   fruits: [
-    { id: 'apple', name: 'Apple', image: require('../../assets/images/foods/apple.png') },
-    { id: 'banana', name: 'Banana', image: require('../../assets/images/foods/banana.png') },
-    { id: 'orange', name: 'Orange', image: require('../../assets/images/foods/orange.png') },
-    { id: 'strawberry', name: 'Strawberry', image: require('../../assets/images/foods/strawberry.png') },
-    { id: 'grapes', name: 'Grapes', image: require('../../assets/images/foods/grapes.png') },
-    { id: 'watermelon', name: 'Watermelon', image: require('../../assets/images/foods/watermelon.png') },
-    { id: 'mango', name: 'Mango', image: require('../../assets/images/foods/mango.png') },
-    { id: 'pear', name: 'Pear', image: require('../../assets/images/foods/pear.png') },
-    { id: 'peach', name: 'Peach', image: require('../../assets/images/foods/peach.png') },
+    { id: 'apple', name: 'Apple', image: require('../../assets/images/foods/fruits.png') },
+    { id: 'banana', name: 'Banana', image: require('../../assets/images/foods/fruits.png') },
+    { id: 'orange', name: 'Orange', image: require('../../assets/images/foods/fruits.png') },
+    { id: 'strawberry', name: 'Strawberry', image: require('../../assets/images/characters/strawberry.png') },
+    { id: 'grapes', name: 'Grapes', image: require('../../assets/images/foods/fruits.png') },
+    { id: 'watermelon', name: 'Watermelon', image: require('../../assets/images/foods/fruits.png') },
+    { id: 'mango', name: 'Mango', image: require('../../assets/images/foods/fruits.png') },
+    { id: 'pear', name: 'Pear', image: require('../../assets/images/foods/pineapple.png') },
+    { id: 'peach', name: 'Peach', image: require('../../assets/images/foods/fruits.png') },
   ],
   vegetables: [
-    { id: 'carrot', name: 'Carrots', image: require('../../assets/images/foods/carrot.png') },
-    { id: 'broccoli', name: 'Broccoli', image: require('../../assets/images/foods/broccoli.png') },
-    { id: 'sweetpotato', name: 'Sweet Potatoes', image: require('../../assets/images/foods/sweetpotato.png') },
-    { id: 'peas', name: 'Peas', image: require('../../assets/images/foods/peas.png') },
-    { id: 'corn', name: 'Corn', image: require('../../assets/images/foods/corn.png') },
-    { id: 'cucumber', name: 'Cucumber', image: require('../../assets/images/foods/cucumber.png') },
-    { id: 'bellpepper', name: 'Bell Peppers', image: require('../../assets/images/foods/bellpepper.png') },
-    { id: 'spinach', name: 'Spinach', image: require('../../assets/images/foods/spinach.png') },
-    { id: 'tomato', name: 'Tomatoes', image: require('../../assets/images/foods/tomato.png') },
+    { id: 'carrot', name: 'Carrots', image: require('../../assets/images/characters/carrot.png') },
+    { id: 'broccoli', name: 'Broccoli', image: require('../../assets/images/foods/zicon (15).png') },
+    { id: 'sweetpotato', name: 'Sweet Potatoes', image: require('../../assets/images/foods/potato.png') },
+    { id: 'peas', name: 'Peas', image: require('../../assets/images/foods/zicon (25).png') },
+    { id: 'corn', name: 'Corn', image: require('../../assets/images/foods/maize .png') },
+    { id: 'cucumber', name: 'Cucumber', image: require('../../assets/images/foods/zicon (28).png') },
+    { id: 'bellpepper', name: 'Bell Peppers', image: require('../../assets/images/foods/zicon (31).png') },
+    { id: 'spinach', name: 'Spinach', image: require('../../assets/images/foods/zicon (32).png') },
+    { id: 'tomato', name: 'Tomatoes', image: require('../../assets/images/foods/tomato (2).png') },
   ],
   proteins: [
-    { id: 'chicken', name: 'Chicken', image: require('../../assets/images/foods/chicken.png') },
-    { id: 'fish', name: 'Fish', image: require('../../assets/images/foods/fish.png') },
-    { id: 'eggs', name: 'Eggs', image: require('../../assets/images/foods/eggs.png') },
-    { id: 'beans', name: 'Beans', image: require('../../assets/images/foods/beans.png') },
-    { id: 'lentils', name: 'Lentils', image: require('../../assets/images/foods/lentils.png') },
-    { id: 'tofu', name: 'Tofu', image: require('../../assets/images/foods/tofu.png') },
-    { id: 'beef', name: 'Lean Beef', image: require('../../assets/images/foods/beef.png') },
-    { id: 'turkey', name: 'Turkey', image: require('../../assets/images/foods/turkey.png') },
-    { id: 'nuts', name: 'Nuts', image: require('../../assets/images/foods/nuts.png') },
+    { id: 'chicken', name: 'Chicken', image: require('../../assets/images/foods/meat.png') },
+    { id: 'fish', name: 'Fish', image: require('../../assets/images/foods/zicon (33).png') },
+    { id: 'eggs', name: 'Eggs', image: require('../../assets/images/foods/egg.png') },
+    { id: 'beans', name: 'Beans', image: require('../../assets/images/foods/zicon (34).png') },
+    { id: 'lentils', name: 'Lentils', image: require('../../assets/images/foods/zicon (35).png') },
+    { id: 'tofu', name: 'Tofu', image: require('../../assets/images/foods/tofus.png') },
+    { id: 'beef', name: 'Lean Beef', image: require('../../assets/images/foods/meat.png') },
+    { id: 'turkey', name: 'Turkey', image: require('../../assets/images/foods/meat.png') },
+    { id: 'nuts', name: 'Nuts', image: require('../../assets/images/foods/peanut.png') },
   ]
 };
 
@@ -214,7 +214,7 @@ const ChildNameStep = ({ profileData, setProfileData }) => (
       value={profileData.childName}
       onChangeText={(text) => setProfileData({ ...profileData, childName: text })}
       placeholder="Johnny"
-      icon={<Ionicons name="person-outline" />}
+                    icon={<Ionicons name="person" />}
       style={styles.input}
     />
   </View>

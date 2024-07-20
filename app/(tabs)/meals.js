@@ -342,7 +342,7 @@ const MealLoggingScreen = ({ navigation }) => {
               style={styles.addFoodButton}
               onPress={() => setShowFoodSelector(true)}
             >
-              <Ionicons name="add-circle-outline" size={24} color={colors.primary} />
+              <Ionicons name="add-circle" size={24} color={colors.primary} />
               <Text style={styles.addFoodText}>Add foods</Text>
             </TouchableOpacity>
           )}

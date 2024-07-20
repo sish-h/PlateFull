@@ -52,7 +52,7 @@ const SignInScreen = () => {
       
       // if (result.success) {
         // Navigate to main app after successful sign in
-        router.replace('/meals');
+        router.replace('/(tabs)');
       // }
     } catch (error) {
       console.error('Sign in error:', error);
@@ -111,7 +111,7 @@ const SignInScreen = () => {
               placeholder="Enter your Email"
               keyboardType="email-address"
               error={error}
-              icon={<Ionicons name="mail-outline" />}
+              icon={<Ionicons name="mail" />}
             />
             
             <Input
@@ -124,7 +124,7 @@ const SignInScreen = () => {
               keyboardType="default"
               secureTextEntry
               error={error}
-              icon={<Ionicons name="lock-closed-outline" />}
+              icon={<Ionicons name="lock-closed" />}
             />
             
             <Button

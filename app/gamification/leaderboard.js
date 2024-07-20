@@ -236,7 +236,7 @@ const LeaderboardScreen = ({ navigation }) => {
 
         {/* Timer */}
         <View style={styles.timerContainer}>
-          <Ionicons name="time-outline" size={20} color={colors.text.secondary} />
+                      <Ionicons name="time" size={20} color={colors.text.secondary} />
           <Text style={styles.timerText}>{timeRemaining}</Text>
         </View>
 

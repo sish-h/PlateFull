@@ -3,18 +3,18 @@ import * as ImagePicker from 'expo-image-picker';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
 import {
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    Dimensions,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import Animated, {
-  FadeInUp,
-  useAnimatedStyle,
-  useSharedValue
+    FadeInUp,
+    useAnimatedStyle,
+    useSharedValue
 } from 'react-native-reanimated';
 import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
@@ -78,7 +78,7 @@ const ChildProfileScreen = ({ navigation }) => {
         <View style={styles.headerContent}>
           <Text style={styles.headerTitle}>Profile</Text>
           <TouchableOpacity style={styles.settingsButton}>
-            <Ionicons name="settings-outline" size={24} color="white" />
+            <Ionicons name="settings" size={24} color="white" />
           </TouchableOpacity>
         </View>
       </LinearGradient>
@@ -179,7 +179,7 @@ const ChildProfileScreen = ({ navigation }) => {
           <View style={styles.actionsList}>
             <TouchableOpacity style={styles.actionItem}>
               <View style={styles.actionIcon}>
-                <Ionicons name="fast-food-outline" size={24} color={colors.primary} />
+                <Ionicons name="fast-food" size={24} color={colors.primary} />
               </View>
               <View style={styles.actionContent}>
                 <Text style={styles.actionTitle}>Log a Meal</Text>
@@ -190,7 +190,7 @@ const ChildProfileScreen = ({ navigation }) => {
 
             <TouchableOpacity style={styles.actionItem}>
               <View style={styles.actionIcon}>
-                <Ionicons name="add-circle-outline" size={24} color={colors.food.fruits} />
+                <Ionicons name="add-circle" size={24} color={colors.food.fruits} />
               </View>
               <View style={styles.actionContent}>
                 <Text style={styles.actionTitle}>Add New Food</Text>
@@ -201,7 +201,7 @@ const ChildProfileScreen = ({ navigation }) => {
 
             <TouchableOpacity style={styles.actionItem}>
               <View style={styles.actionIcon}>
-                <Ionicons name="bar-chart-outline" size={24} color={colors.food.proteins} />
+                <Ionicons name="bar-chart" size={24} color={colors.food.proteins} />
               </View>
               <View style={styles.actionContent}>
                 <Text style={styles.actionTitle}>View Progress</Text>

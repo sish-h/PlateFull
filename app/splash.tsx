@@ -160,7 +160,7 @@ const SplashScreen: React.FC = () => {
           ]}
         >
           <Image 
-            source={require('../assets/images/logo/1.png')}
+            source={require('../assets/images/logo/platefull-mascot.png')}
             style={styles.logo}
             onError={(error) => console.log('Splash: Logo load error:', error)}
           />
@@ -172,7 +172,7 @@ const SplashScreen: React.FC = () => {
             { opacity: textOpacity }
           ]}
         >
-          <Text style={styles.appName}>PLATEFUL</Text>
+          <Text style={styles.appName}>Platefull</Text>
           {/* <Text style={styles.tagline}>Nourishing Little Ones</Text> */}
         </Animated.View>
         
@@ -202,11 +202,11 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 0, // Change this number to control spacing between logo and text
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 250,
+    height: 250,
     resizeMode: 'contain',
   },
   textContainer: {

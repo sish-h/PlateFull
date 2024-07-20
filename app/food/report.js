@@ -33,15 +33,15 @@ const FoodReportScreen = ({ navigation }) => {
     foods: allFoods.slice(0, 9), // First 9 foods
     baseline: [
       // These would need to be added to the database
-      { id: 'rice', name: 'Rice', image: require('../../assets/images/foods/rice.png'), category: 'Grains' },
-      { id: 'bread', name: 'Bread', image: require('../../assets/images/foods/bread.png'), category: 'Grains' },
-      { id: 'pasta', name: 'Pasta', image: require('../../assets/images/foods/pasta.png'), category: 'Grains' },
+      { id: 'rice', name: 'Rice', image: require('../../assets/images/foods/zicon (36).png'), category: 'Grains' },
+      { id: 'bread', name: 'Bread', image: require('../../assets/images/foods/zicon (39).png'), category: 'Grains' },
+      { id: 'pasta', name: 'Pasta', image: require('../../assets/images/foods/pasta.jpg'), category: 'Grains' },
     ],
     notIntroduced: [
       // These would need to be added to the database
-      { id: 'honey', name: 'Honey', image: require('../../assets/images/foods/honey.png'), category: 'Sweeteners' },
-      { id: 'shellfish', name: 'Shellfish', image: require('../../assets/images/foods/shellfish.png'), category: 'Proteins' },
-      { id: 'chocolate', name: 'Chocolate', image: require('../../assets/images/foods/chocolate.png'), category: 'Sweets' },
+      { id: 'honey', name: 'Honey', image: require('../../assets/images/foods/zicon (41).png'), category: 'Sweeteners' },
+      { id: 'shellfish', name: 'Shellfish', image: require('../../assets/images/foods/zicon (42).png'), category: 'Proteins' },
+      { id: 'chocolate', name: 'Chocolate', image: require('../../assets/images/foods/ice_cream.png'), category: 'Sweets' },
     ]
   };
 
