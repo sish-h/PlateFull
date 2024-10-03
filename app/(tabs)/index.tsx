@@ -220,8 +220,6 @@ const styles = StyleSheet.create({
   menuIconContainer: {
     width: 60,
     height: 60,
-    borderRadius: 30,
-    backgroundColor: '#FFF',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,

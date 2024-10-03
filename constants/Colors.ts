@@ -36,6 +36,8 @@ export const colors = {
   warning: '#FF9800',
   error: '#F44336',
   info: '#2196F3',
+  whiteGrey: '#E7E7E6',
+  goldB: '#E5A339',
   
   // FIXED: Use string values instead of object
   background: '#FFFFFF',
@@ -86,5 +88,6 @@ export const colors = {
     accent: ['#FFE66D', '#F4D03F'] as const,
     success: ['#4CAF50', '#45A049'] as const,
     food: ['#FF8A80', '#FF5722'] as const,
+    white: ['#FFFFFF1A', '#FFFFFF80', '#FFFFFF1A'] as const,
   },
 }; 
