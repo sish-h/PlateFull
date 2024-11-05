@@ -15,7 +15,6 @@ import QuestionCard from '../components/QuestionCard';
 import { useAnimations } from '../hooks/useAnimations';
 import { useGameFlow } from '../hooks/useGameFlow';
 import { useTTS } from '../hooks/useTTS';
-
 import { RootStackParamList } from '../types/navigation';
 
 type GameScreenProps = NativeStackScreenProps<RootStackParamList, 'Game'>;
