@@ -118,13 +118,12 @@ export class QuestProgressManager {
   }
   
   static completeSubRound(
-    progress: QuestProgress, 
     levelIndex: number, 
     roundIndex: number, 
     subRoundIndex: number,
     stars: number
   ): QuestProgress {
-    const updatedProgress = { ...progress };
+    const updatedProgress = { ...this.getInitialProgress() };
     
     // Mark sub-round as completed
     const subRound = updatedProgress.levels[levelIndex].rounds[roundIndex].subRounds[subRoundIndex];

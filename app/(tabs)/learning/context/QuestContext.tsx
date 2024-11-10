@@ -37,8 +37,8 @@ const questReducer = (state: QuestState, action: QuestAction): QuestState => {
     case 'COMPLETE_SUB_ROUND':
       if (!state.questProgress) return state;
       const updatedProgress = QuestProgressManager.completeSubRound(
-        state.questProgress,
         action.payload.levelIndex,
+        state.questProgress,
         action.payload.roundIndex,
         action.payload.subRoundIndex,
         action.payload.stars
@@ -83,8 +83,8 @@ export const QuestProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (state.questProgress) {
       try {
         const updatedProgress = QuestProgressManager.completeSubRound(
-          state.questProgress,
           levelIndex,
+          state.questProgress,
           roundIndex,
           subRoundIndex,
           stars
