@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { useUserStore } from '../../stores/userStore';
 import { avatarMap, getAvatarSource } from '../../utils/avatarUtils';
+const Base_URL = process.env.EXPO_PUBLIC_BASE_URL;
 
 interface ChildData {
   id: string; // Changed from _id to id to match your usage
@@ -138,13 +139,13 @@ const HeaderProfile: React.FC = () => {
           <View>
             <Text style={styles.profileName}>Loading...</Text>
             <Text style={styles.profileStatus}>
-              <Image source={require('../../assets/images/icons/premium.svg')} style={styles.premiumIcon} />
+              <Image source={require(`${Base_URL}/assets/images/icons/premium.svg`)} style={styles.premiumIcon} />
               Premium
             </Text>
           </View>
         </View>
         <View style={styles.chargeIconContainer}>
-          <Image source={require('../../assets/images/icons/charge.svg')} style={styles.chargeIcon} />
+          <Image source={require(`${Base_URL}/assets/images/icons/charge.svg`)} style={styles.chargeIcon} />
         </View>
       </View>
     );
@@ -181,13 +182,13 @@ const HeaderProfile: React.FC = () => {
         <View>
           <Text style={styles.profileName}>{selectedChild.name}</Text>
           <Text style={styles.profileStatus}>
-            <Image source={require('../../assets/images/icons/premium.svg')} style={styles.premiumIcon} />
+            <Image source={require(`${Base_URL}/assets/images/icons/premium.svg`)} style={styles.premiumIcon} />
             Premium
           </Text>
         </View>
       </View>
       <View style={styles.chargeIconContainer}>
-        <Image source={require('../../assets/images/icons/charge.svg')} style={styles.chargeIcon} />
+        <Image source={require(`${Base_URL}/assets/images/icons/charge.svg`)} style={styles.chargeIcon} />
       </View>
 
       {/* Child Selection Dropdown Modal */}

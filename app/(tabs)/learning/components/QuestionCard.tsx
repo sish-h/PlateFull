@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-
+const Base_URL = process.env.EXPO_PUBLIC_BASE_URL;
 interface QuestionCardProps {
   question: string;
   category: string;
@@ -22,13 +22,13 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   // Get category image
   const getCategoryImage = (category: string) => {
     const normalizedCategory = category?.toLowerCase();
-    if (normalizedCategory?.includes('fruit')) return require('../../../../assets/images/foods/fruits.png');
-    if (normalizedCategory?.includes('vegetable') || normalizedCategory?.includes('veggie')) return require('../../../../assets/images/foods/broccoli.png');
-    if (normalizedCategory?.includes('protein') || normalizedCategory?.includes('meat')) return require('../../../../assets/images/foods/chicken.png');
-    if (normalizedCategory?.includes('grain') || normalizedCategory?.includes('bread') || normalizedCategory?.includes('rice')) return require('../../../../assets/images/foods/rice.png');
-    if (normalizedCategory?.includes('dairy') || normalizedCategory?.includes('milk') || normalizedCategory?.includes('cheese')) return require('../../../../assets/images/foods/milk.png');
-    if (normalizedCategory?.includes('nut')) return require('../../../../assets/images/foods/nuts.png');
-    return require('../../../../assets/images/foods/meal.png');
+    if (normalizedCategory?.includes('fruit')) return require(`${Base_URL}/assets/images/Food/fruits.png`);
+    if (normalizedCategory?.includes('vegetable') || normalizedCategory?.includes('veggie')) return require(`${Base_URL}/assets/images/Food/Vegetable/broccoli.png`);
+    if (normalizedCategory?.includes('protein') || normalizedCategory?.includes('meat')) return require(`${Base_URL}/assets/images/Food/Protein/chicken.png`);
+    if (normalizedCategory?.includes('grain') || normalizedCategory?.includes('bread') || normalizedCategory?.includes('rice')) return require(`${Base_URL}/assets/images/Food/Carbohydrate/rice.png`);
+    if (normalizedCategory?.includes('dairy') || normalizedCategory?.includes('milk') || normalizedCategory?.includes('cheese')) return require(`${Base_URL}/assets/images/Food/Dairy/milk.png`);
+    if (normalizedCategory?.includes('nut')) return require(`${Base_URL}/assets/images/Food/Fats/nut.png`);
+    return require(`${Base_URL}/assets/images/Characters/Box.png`);
   };
 
   const categoryImage = getCategoryImage(category);

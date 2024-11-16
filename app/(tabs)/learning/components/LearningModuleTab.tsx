@@ -25,6 +25,8 @@ import { colors } from "../../../../constants/colors";
 import foodGuideData from "../../../../db/foods.json";
 import { getFoodImageSource } from "../../../../utils/imageUtils";
 
+const Base_URL = process.env.EXPO_PUBLIC_BASE_URL;  
+
 const { width } = Dimensions.get("window");
 
 interface NavigationProp {
@@ -58,7 +60,7 @@ interface FoodItem {
   how_grown?: string[];
   how_produced?: string[];
   how_to_eat?: string[];
-  quiz?: any;
+  quiz?: any[];
   videoUrl?: string;
 }
 
@@ -94,7 +96,7 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
     {
       id: "quiz",
       title: "Food Quest",
-      icon: require("../../../../assets/images/characters/zicon (40).png"),
+      icon: require(`${Base_URL}/assets/images/characters/zicon (40).png`),
       description: "Embark on an exciting journey through food knowledge with interactive quizzes and challenges.",
       action: "Start Quest",
       color: colors.success,
@@ -106,7 +108,7 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
     {
       id: "rewards",
       title: "Achievement Hall",
-      icon: require("../../../../assets/images/characters/zicon (24).png"),
+      icon: require(`${Base_URL}/assets/images/characters/zicon (24).png`),
       description: "Celebrate your accomplishments and collect badges for your food knowledge mastery.",
       action: "View Achievements",
       color: colors.warning,
@@ -118,7 +120,7 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
     {
       id: "learning",
       title: "Knowledge Library",
-      icon: require("../../../../assets/images/characters/learn.png"),
+      icon: require(`${Base_URL}/assets/images/characters/learn.png`),
       description: "Access comprehensive learning materials and educational content about healthy eating.",
       action: "Explore Library",
       color: colors.primary,
@@ -130,7 +132,7 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
     {
       id: "challenges",
       title: "Daily Challenges",
-      icon: require("../../../../assets/images/characters/fire.png"),
+      icon: require(`${Base_URL}/assets/images/characters/fire.png`),
       description: "Take on daily food challenges to keep your knowledge fresh and earn bonus rewards.",
       action: "View Challenges",
       color: colors.error,
@@ -146,62 +148,93 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
     const videos: VideoData[] = [];
     
     // Fruits video
-    const fruits = Object.keys(foodGuideData.fruits).slice(0, 5);
+    const fruits = Object.keys(foodGuideData.categories.fruits.foods).slice(0, 5);
     videos.push({
       id: "fruits",
       title: "Fruits & Berries",
       duration: "8 Min",
       thumbnail: "🍓",
-      color: "#FF6B6B",
+      color: foodGuideData.categories.fruits.color,
       category: "Nutrition Basics",
       isPremium: false,
-      videoSource: require("../../../../assets/videos/fruits.mp4"),
-      description: "Learn about different types of fruits and their nutritional benefits",
+      videoSource: require(`${Base_URL}/assets/videos/fruits.mp4`),
+      description: foodGuideData.categories.fruits.description,
       foodItems: fruits,
     });
 
     // Vegetables video
-    const vegetables = Object.keys(foodGuideData.vegetables).slice(0, 5);
+    const vegetables = Object.keys(foodGuideData.categories.vegetables.foods).slice(0, 5);
     videos.push({
       id: "vegetables",
       title: "Veggie Power",
       duration: "10 Min",
       thumbnail: "🥦",
-      color: "#4CAF50",
+      color: foodGuideData.categories.vegetables.color,
       category: "Plant Nutrition",
       isPremium: false,
-      videoSource: require("../../../../assets/videos/vegetables.mp4"),
-      description: "Discover the amazing world of vegetables and their health benefits",
+      videoSource: require(`${Base_URL}/assets/videos/vegetables.mp4`),
+      description: foodGuideData.categories.vegetables.description,
       foodItems: vegetables,
     });
 
+    //Carbohydrates video
+    const carbohydrates = Object.keys(foodGuideData.categories.carbohydrates.foods).slice(0, 5);
+    videos.push({
+      id: "carbohydrates",
+      title: "Carbohydrate Power",
+      duration: "10 Min",
+      thumbnail: "🍞",
+      color: foodGuideData.categories.carbohydrates.color,
+      category: "Carbohydrate Nutrition",
+      isPremium: false,
+      videoSource: require(`${Base_URL}/assets/videos/carbohydrates.mp4`),
+      description: foodGuideData.categories.carbohydrates.description,
+      foodItems: carbohydrates,
+    });
+
     // Proteins video
-    const proteins = Object.keys(foodGuideData.proteins).slice(0, 5);
+    const proteins = Object.keys(foodGuideData.categories.proteins.foods).slice(0, 5);
     videos.push({
       id: "proteins",
       title: "Protein Power",
       duration: "12 Min",
       thumbnail: "🥩",
-      color: "#45B7D1",
+      color: foodGuideData.categories.proteins.color,
       category: "Building Blocks",
       isPremium: true,
-      videoSource: require("../../../../assets/videos/proteins.mp4"),
-      description: "Understanding protein sources and their importance",
+      videoSource: require(`${Base_URL}/assets/videos/proteins.mp4`),
+      description: foodGuideData.categories.proteins.description,
       foodItems: proteins,
     });
 
+    //Fats video
+    const fats = Object.keys(foodGuideData.categories.fats.foods).slice(0, 5);
+    videos.push({
+      id: "fats",
+      title: "Fat Power",
+      duration: "12 Min",
+      thumbnail: "🥑",
+      color: foodGuideData.categories.fats.color,
+      category: "Fat Nutrition",
+      isPremium: true,
+      videoSource: require(`${Base_URL}/assets/videos/fats.mp4`),
+      description: foodGuideData.categories.fats.description,
+      foodItems: fats,
+    });
+
     // Dairy video
+    const dairy = Object.keys(foodGuideData.categories.dairy.foods).slice(0, 5);
     videos.push({
       id: "dairy",
       title: "Dairy Delights",
       duration: "9 Min",
       thumbnail: "🥛",
-      color: "#9C27B0",
+      color: foodGuideData.categories.dairy.color,
       category: "Calcium & Vitamins",
       isPremium: true,
-      videoSource: require("../../../../assets/videos/dairy.mp4"),
-      description: "Learn about dairy products and their nutritional value",
-      foodItems: ["milk", "cheese", "yogurt"],
+      videoSource: require(`${Base_URL}/assets/videos/dairy.mp4`),
+      description: foodGuideData.categories.dairy.description,
+      foodItems: dairy,
     });
 
     return videos;
@@ -214,51 +247,100 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
     const foods: FoodItem[] = [];
     
     // Add fruits
-    Object.keys(foodGuideData.fruits).forEach(fruitName => {
-      const fruitData = foodGuideData.fruits[fruitName as keyof typeof foodGuideData.fruits];
+    Object.keys(foodGuideData.categories.fruits.foods).forEach(fruitName => {
+      const fruitData = foodGuideData.categories.fruits.foods[fruitName as keyof typeof foodGuideData.categories.fruits.foods];
       foods.push({
         id: fruitName,
-        name: fruitName.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+        name: fruitData.name,
         category: 'fruits',
-        description: fruitData.description,
-        image: fruitData.image,
-        nutrition: (fruitData as any).nutrition_per_medium || (fruitData as any).nutrition_per_cup,
-        how_grown: (fruitData as any).how_grown,
-        how_to_eat: (fruitData as any).how_to_eat,
-        quiz: (fruitData as any).quiz,
+        description: fruitData.learning.summary,
+        image: '', // Images will be handled by getFoodImage function
+        nutrition: {}, // Nutrition data not available in current structure
+        how_grown: fruitData.learning.key_facts,
+        how_to_eat: [], // How to eat data not available in current structure
+        quiz: fruitData.quiz || [],
       });
     });
 
     // Add vegetables
-    Object.keys(foodGuideData.vegetables).forEach(vegName => {
-      const vegData = foodGuideData.vegetables[vegName as keyof typeof foodGuideData.vegetables];
+    Object.keys(foodGuideData.categories.vegetables.foods).forEach(vegName => {
+      const vegData = foodGuideData.categories.vegetables.foods[vegName as keyof typeof foodGuideData.categories.vegetables.foods];
       foods.push({
         id: vegName,
-        name: vegName.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+        name: vegData.name,
         category: 'vegetables',
-        description: vegData.description,
-        image: vegData.image,
-        nutrition: (vegData as any).nutrition_per_medium || (vegData as any).nutrition_per_cup,
-        how_grown: (vegData as any).how_grown,
-        how_to_eat: (vegData as any).how_to_eat,
-        quiz: (vegData as any).quiz,
+        description: vegData.learning.summary,
+        image: '', // Images will be handled by getFoodImage function
+        nutrition: {}, // Nutrition data not available in current structure
+        how_grown: vegData.learning.key_facts,
+        how_to_eat: [], // How to eat data not available in current structure
+        quiz: vegData.quiz || [],
       });
     });
 
     // Add proteins
-    Object.keys(foodGuideData.proteins).forEach(proteinName => {
-      const proteinData = foodGuideData.proteins[proteinName as keyof typeof foodGuideData.proteins];
+    Object.keys(foodGuideData.categories.proteins.foods).forEach(proteinName => {
+      const proteinData = foodGuideData.categories.proteins.foods[proteinName as keyof typeof foodGuideData.categories.proteins.foods];
       foods.push({
         id: proteinName,
-        name: proteinName.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()),
+        name: proteinData.name,
         category: 'proteins',
-        description: proteinData.description,
-        image: proteinData.image,
-        nutrition: (proteinData as any).nutrition_per_3oz || (proteinData as any).nutrition_per_cup || (proteinData as any).nutrition_per_large_egg || (proteinData as any).nutrition_per_ounce,
+        description: proteinData.learning.summary,
+        image: '', // Images will be handled by getFoodImage function
+        nutrition: {}, // Nutrition data not available in current structure
         how_grown: undefined,
-        how_produced: (proteinData as any).how_produced,
-        how_to_eat: (proteinData as any).how_to_eat,
-        quiz: (proteinData as any).quiz,
+        how_produced: proteinData.learning.key_facts,
+        how_to_eat: [], // How to eat data not available in current structure
+        quiz: proteinData.quiz || [],
+      });
+    });
+
+    // Add carbohydrates
+    Object.keys(foodGuideData.categories.carbohydrates.foods).forEach(carbName => {
+      const carbData = foodGuideData.categories.carbohydrates.foods[carbName as keyof typeof foodGuideData.categories.carbohydrates.foods];
+      foods.push({
+        id: carbName,
+        name: carbData.name,
+        category: 'carbohydrates',
+        description: carbData.learning.summary,
+        image: '', // Images will be handled by getFoodImage function
+        nutrition: {}, // Nutrition data not available in current structure
+        how_grown: carbData.learning.key_facts,
+        how_to_eat: [], // How to eat data not available in current structure
+        quiz: carbData.quiz || [],
+      });
+    });
+
+    // Add fats
+    Object.keys(foodGuideData.categories.fats.foods).forEach(fatName => {
+      const fatData = foodGuideData.categories.fats.foods[fatName as keyof typeof foodGuideData.categories.fats.foods];
+      foods.push({
+        id: fatName,
+        name: fatData.name,
+        category: 'fats',
+        description: fatData.learning.summary,
+        image: '', // Images will be handled by getFoodImage function
+        nutrition: {}, // Nutrition data not available in current structure
+        how_grown: fatData.learning.key_facts,
+        how_to_eat: [], // How to eat data not available in current structure
+        quiz: fatData.quiz || [],
+      });
+    });
+
+    // Add dairy
+    Object.keys(foodGuideData.categories.dairy.foods).forEach(dairyName => {
+      const dairyData = foodGuideData.categories.dairy.foods[dairyName as keyof typeof foodGuideData.categories.dairy.foods];
+      foods.push({
+        id: dairyName,
+        name: dairyData.name,
+        category: 'dairy',
+        description: dairyData.learning.summary,
+        image: '', // Images will be handled by getFoodImage function
+        nutrition: {}, // Nutrition data not available in current structure
+        how_grown: undefined,
+        how_produced: dairyData.learning.key_facts,
+        how_to_eat: [], // How to eat data not available in current structure
+        quiz: dairyData.quiz || [],
       });
     });
 
@@ -322,7 +404,7 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
           <Image
             source={
               selectedModule?.icon ||
-              require("../../../../assets/images/characters/zicon (26).png")
+              require(`${Base_URL}/assets/images/characters/zicon (26).png`)
             }
             style={styles.successEmoji}
           />
@@ -580,6 +662,30 @@ const LearningModuleTab: React.FC<LearningModuleTabProps> = ({ navigation }) => 
           >
             <Text style={[styles.categoryText, selectedCategory === 'proteins' && styles.categoryTextActive]}>
               Proteins
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.categoryButton, selectedCategory === 'carbohydrates' && styles.categoryButtonActive]}
+            onPress={() => setSelectedCategory('carbohydrates')}
+          >
+            <Text style={[styles.categoryText, selectedCategory === 'carbohydrates' && styles.categoryTextActive]}>
+              Carbs
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.categoryButton, selectedCategory === 'fats' && styles.categoryButtonActive]}
+            onPress={() => setSelectedCategory('fats')}
+          >
+            <Text style={[styles.categoryText, selectedCategory === 'fats' && styles.categoryTextActive]}>
+              Fats
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.categoryButton, selectedCategory === 'dairy' && styles.categoryButtonActive]}
+            onPress={() => setSelectedCategory('dairy')}
+          >
+            <Text style={[styles.categoryText, selectedCategory === 'dairy' && styles.categoryTextActive]}>
+              Dairy
             </Text>
           </TouchableOpacity>
         </ScrollView>

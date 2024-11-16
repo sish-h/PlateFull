@@ -7,6 +7,7 @@ import TabBarBackground from '../../components/ui/TabBarBackground';
 import { colors } from '../../constants/colors';
 import { useAuthStore } from '../../stores/authStore';
 import { useTabBarVisibility } from '../../utils/tabBarUtils';
+const Base_URL = process.env.EXPO_PUBLIC_BASE_URL;
 
 interface TabLayoutProps {
   hideTabBar?: boolean;
@@ -84,7 +85,7 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
           title: 'Home',
           tabBarIcon: ({ color }) => (
             <Image
-              source={require('../../assets/images/tab/home.png')}
+              source={require(`${Base_URL}/assets/images/tab/home.png`)}
               style={{ width: 30, height: 30 }}
             />
           ),
@@ -96,7 +97,7 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
           title: 'Child\'s Profile',
           tabBarIcon: ({ color }) => (
             <Image
-              source={require('../../assets/images/tab/profile.png')}
+              source={require(`${Base_URL}/assets/images/tab/profile.png`)}
               style={{ width: 30, height: 30 }}
             />
           ),
@@ -108,7 +109,7 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
           title: 'Learning Modules',
           tabBarIcon: ({ color }) => (
             <Image
-              source={require('../../assets/images/tab/learning.png')}
+              source={require(`${Base_URL}/assets/images/tab/learning.png`)}
               style={{ width: 30, height: 30 }}
             />
           ),
@@ -120,7 +121,7 @@ export default function TabLayout({ hideTabBar = false }: TabLayoutProps) {
           title: 'Reporting',
           tabBarIcon: ({ color }) => (
             <Image
-              source={require('../../assets/images/tab/report.png')}
+              source={require(`${Base_URL}/assets/images/tab/report.png`)}
               style={{ width: 30, height: 30 }}
             />
           ),

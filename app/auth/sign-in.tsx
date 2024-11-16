@@ -19,6 +19,7 @@ import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
 import { useAuthStore } from '../../stores/authStore';
 import MessageHandler from '../../utils/messageHandler';
+const Base_URL = process.env.EXPO_PUBLIC_BASE_URL;
 
 interface FormData {
   email: string;
@@ -116,7 +117,7 @@ const SignInScreen = () => {
         style={styles.header}
       >
         <Image 
-          source={require('../../assets/images/logo/platefull-mascot.png')}
+          source={require(`${Base_URL}/assets/images/logo/platefull-mascot.png`)}
           style={styles.mascot}
         />
         <Text style={styles.welcomeText}>Welcome to PLATEFUL</Text>
@@ -184,7 +185,7 @@ const SignInScreen = () => {
               activeOpacity={0.8}
             >
               <Image 
-                source={require('../../assets/images/icons/google.png')}
+                source={require(`${Base_URL}/assets/images/icons/google.png`)}
                 style={styles.googleIcon}
               />
               <Text style={styles.googleButtonText}>Log in with Google</Text>

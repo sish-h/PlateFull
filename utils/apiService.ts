@@ -179,6 +179,8 @@ class ApiService {
     const config: RequestInit = {
       headers: {
         'Content-Type': 'application/json',
+        "ngrok-skip-browser-warning": "true",
+        "Accept": "application/json",
         ...(token && { Authorization: `Bearer ${token}` }),
         ...options.headers,
       },

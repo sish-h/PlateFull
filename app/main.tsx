@@ -22,6 +22,7 @@ import Animated, {
 import { colors } from '../constants/colors';
 import { NavigationService } from '../utils/navigation';
 
+const Base_URL = process.env.EXPO_PUBLIC_BASE_URL;
 const { width } = Dimensions.get('window');
 
 interface UserData {
@@ -134,7 +135,7 @@ const MainScreen: React.FC = () => {
           style={styles.loadingGradient}
         >
           <Image 
-            source={require('../assets/images/logo/platefull-mascot.png')}
+            source={require(`${Base_URL}/assets/images/logo/platefull-mascot.png`)}
             style={styles.loadingLogo}
           />
           <Text style={styles.loadingText}>Loading...</Text>
@@ -152,7 +153,7 @@ const MainScreen: React.FC = () => {
         <Animated.View style={[styles.headerContent, headerAnimatedStyle]}>
           <View style={styles.userInfo}>
             <Image 
-              source={require('../assets/images/avatars/user.jpg')}
+              source={require(`${Base_URL}/assets/images/avatars/user.jpg`)}
               style={styles.avatar}
             />
             <View style={styles.userText}>

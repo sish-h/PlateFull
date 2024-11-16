@@ -29,6 +29,7 @@ import MessageHandler from '../../utils/messageHandler';
 import { shadowPresets } from '../../utils/shadowUtils';
 
 const { width } = Dimensions.get('window');
+const Base_URL = process.env.EXPO_PUBLIC_BASE_URL;
 
 // Types
 interface Food {
@@ -46,6 +47,9 @@ interface ProfileData {
   fruits: string[];
   vegetables: string[];
   proteins: string[];
+  carbohydrates: string[];
+  fats: string[];
+  dairy: string[];
 }
 
 interface AvatarStepProps extends StepProps {
@@ -75,7 +79,7 @@ interface StepProps {
 }
 
 interface FoodSelectionStepProps extends StepProps {
-  type: 'fruits' | 'vegetables' | 'proteins';
+  type: 'fruits' | 'vegetables' | 'proteins' | 'carbohydrates' | 'fats' | 'dairy';
   foods: Food[];
 }
 
@@ -210,52 +214,102 @@ const Dropdown: React.FC<DropdownProps> = ({
 // Food data
 const foodData = {
   fruits: [
-    { id: 'apple', name: 'Apple', image: require('../../assets/images/foods/apple.png') },
-    { id: 'banana', name: 'Banana', image: require('../../assets/images/foods/banana.png') },
-    { id: 'orange', name: 'Orange', image: require('../../assets/images/foods/orange.png') },
-    { id: 'strawberry', name: 'Strawberry', image: require('../../assets/images/foods/strawberry.png') },
-    { id: 'grapes', name: 'Grapes', image: require('../../assets/images/foods/grapes.png') },
-    { id: 'watermelon', name: 'Watermelon', image: require('../../assets/images/foods/watermelon.png') },
-    { id: 'mango', name: 'Mango', image: require('../../assets/images/foods/mango.png') },
-    { id: 'pear', name: 'Pear', image: require('../../assets/images/foods/pear.png') },
-    { id: 'peach', name: 'Peach', image: require('../../assets/images/foods/peach.png') },
+    { id: 'apple', name: 'Apple', image: require(`${Base_URL}/assets/images/Food/Fruit/apple.png`) },
+    { id: 'apricot', name: 'Apricot', image: require(`${Base_URL}/assets/images/Food/Fruit/apricot.png`) },
+    {id : 'banana', name: 'Banana', image: require(`${Base_URL}/assets/images/Food/Fruit/banana.png`) },
+    { id: 'blueberry', name: 'Blueberry', image: require(`${Base_URL}/assets/images/Food/Fruit/blueberry.png`) },
+    { id: 'blackberry', name: 'Blackberry', image: require(`${Base_URL}/assets/images/Food/Fruit/blackberry.png`) },
+    { id: 'cantaloupe', name: 'Cantaloupe', image: require(`${Base_URL}/assets/images/Food/Fruit/cantaloupe.png`) },
+    { id: 'cherry', name: 'Cherry', image: require(`${Base_URL}/assets/images/Food/Fruit/cherry.png`) },
+    { id: 'fig', name: 'Fig', image: require(`${Base_URL}/assets/images/Food/Fruit/fig.png`) },
+    { id: 'grape', name: 'Grape', image: require(`${Base_URL}/assets/images/Food/Fruit/grape.png`) },
+    { id: 'grapefruit', name: 'Grapefruit', image: require(`${Base_URL}/assets/images/Food/Fruit/grapefruit.png`) },
+    { id: 'kiwi', name: 'Kiwi', image: require(`${Base_URL}/assets/images/Food/Fruit/kiwi.png`) },
+    { id: 'lemon', name: 'Lemon', image: require(`${Base_URL}/assets/images/Food/Fruit/lemon.png`) },
+    { id: 'lime', name: 'Lime', image: require(`${Base_URL}/assets/images/Food/Fruit/lime.png`) },
+    { id: 'mango', name: 'Mango', image: require(`${Base_URL}/assets/images/Food/Fruit/mango.png`) },
+    { id: 'nectarine', name: 'Nectarine', image: require(`${Base_URL}/assets/images/Food/Fruit/nectarine.png`) },
+    { id: 'orange', name: 'Orange', image: require(`${Base_URL}/assets/images/Food/Fruit/orange.png`) },
+    { id: 'papaya', name: 'Papaya', image: require(`${Base_URL}/assets/images/Food/Fruit/papaya.png`) },
+    { id: 'peach', name: 'Peach', image: require(`${Base_URL}/assets/images/Food/Fruit/peach.png`) },
+    { id: 'pomegranate', name: 'Pomegranate', image: require(`${Base_URL}/assets/images/Food/Fruit/pomegranate.png`) },
+    { id: 'pear', name: 'Pear', image: require(`${Base_URL}/assets/images/Food/Fruit/pear.png`) },
+    { id: 'plum', name: 'Plum', image: require(`${Base_URL}/assets/images/Food/Fruit/plum.png`) },
+    { id: 'strawberry', name: 'Strawberry', image: require(`${Base_URL}/assets/images/Food/Fruit/strawberry.png`) },
+    { id: 'tangerine', name: 'Tangerine', image: require(`${Base_URL}/assets/images/Food/Fruit/tangerine.png`) },
+    { id: 'watermelon', name: 'Watermelon', image: require(`${Base_URL}/assets/images/Food/Fruit/watermelon.png`) }
   ],
   vegetables: [
-    { id: 'carrot', name: 'Carrots', image: require('../../assets/images/foods/carrot.png') },
-    { id: 'broccoli', name: 'Broccoli', image: require('../../assets/images/foods/broccoli.png') },
-    { id: 'sweetpotato', name: 'Sweet Potatoes', image: require('../../assets/images/foods/sweetpotato.png') },
-    { id: 'peas', name: 'Peas', image: require('../../assets/images/foods/peas.png') },
-    { id: 'corn', name: 'Corn', image: require('../../assets/images/foods/corn.png') },
-    { id: 'cucumber', name: 'Cucumber', image: require('../../assets/images/foods/cucumber.png') },
-    { id: 'bellpepper', name: 'Bell Peppers', image: require('../../assets/images/foods/bellpepper.png') },
-    { id: 'spinach', name: 'Spinach', image: require('../../assets/images/foods/spinach.png') },
-    { id: 'tomato', name: 'Tomatoes', image: require('../../assets/images/foods/tomato.png') },
+    { id: 'asparagus', name: 'Asparagus', image: require(`${Base_URL}/assets/images/Food/Vegetable/asparagus.png`) },
+    { id: 'beet', name: 'Beet', image: require(`${Base_URL}/assets/images/Food/Vegetable/beet.png`) },
+    { id: 'broccoli', name: 'Broccoli', image: require(`${Base_URL}/assets/images/Food/Vegetable/broccoli.png`) },
+    { id: 'bellpepper', name: 'Bell Pepper', image: require(`${Base_URL}/assets/images/Food/Vegetable/bellpepper.png`) },
+    { id: 'cabbage', name: 'Cabbage', image: require(`${Base_URL}/assets/images/Food/Vegetable/cabbage.png`) },
+    { id: 'carrot', name: 'Carrot', image: require(`${Base_URL}/assets/images/Food/Vegetable/carrot.png`) },
+    { id: 'cauliflower', name: 'Cauliflower', image: require(`${Base_URL}/assets/images/Food/Vegetable/cauliflower.png`) },
+    { id: 'cucumber', name: 'Cucumber', image: require(`${Base_URL}/assets/images/Food/Vegetable/cucumber.png`) },
+    { id: 'eggplant', name: 'Eggplant', image: require(`${Base_URL}/assets/images/Food/Vegetable/eggplant.png`) },
+    { id: 'garlic', name: 'Garlic', image: require(`${Base_URL}/assets/images/Food/Vegetable/garlic.png`) },
+    { id: 'mushroom', name: 'Mushroom', image: require(`${Base_URL}/assets/images/Food/Vegetable/mushroom.png`) },
+    { id: 'onion', name: 'Onion', image: require(`${Base_URL}/assets/images/Food/Vegetable/onion.png`) },
+    { id: 'pumpkin', name: 'Pumpkin', image: require(`${Base_URL}/assets/images/Food/Vegetable/pumpkin.png`) },
+    { id: 'pepper', name: 'Pepper', image: require(`${Base_URL}/assets/images/Food/Vegetable/pepper.png`) },
+    { id: 'radish', name: 'Radish', image: require(`${Base_URL}/assets/images/Food/Vegetable/radish.png`) },
+    { id: 'spinach', name: 'Spinach', image: require(`${Base_URL}/assets/images/Food/Vegetable/spinach.png`) },
+    { id: 'tomato', name: 'Tomato', image: require(`${Base_URL}/assets/images/Food/Vegetable/tomato.png`) },
+    { id: 'zucchini', name: 'Zucchini', image: require(`${Base_URL}/assets/images/Food/Vegetable/zucchini.png`) }
   ],
   proteins: [
-    { id: 'chicken', name: 'Chicken', image: require('../../assets/images/foods/chicken.png') },
-    { id: 'fish', name: 'Fish', image: require('../../assets/images/foods/fish.png') },
-    { id: 'eggs', name: 'Eggs', image: require('../../assets/images/foods/eggs.png') },
-    { id: 'beans', name: 'Beans', image: require('../../assets/images/foods/beans.png') },
-    { id: 'lentils', name: 'Lentils', image: require('../../assets/images/foods/lentils.png') },
-    { id: 'tofu', name: 'Tofu', image: require('../../assets/images/foods/tofu.png') },
-    { id: 'beef', name: 'Lean Beef', image: require('../../assets/images/foods/beef.png') },
-    { id: 'turkey', name: 'Turkey', image: require('../../assets/images/foods/turkey.png') },
-    { id: 'nuts', name: 'Nuts', image: require('../../assets/images/foods/nuts.png') },
-  ]
+    { id: 'avocado', name: 'Avocado', image: require(`${Base_URL}/assets/images/Food/Protein/avocado.png`) },
+    { id: 'chicken', name: 'Chicken', image: require(`${Base_URL}/assets/images/Food/Protein/chicken.png`) },
+    { id: 'egg', name: 'Egg', image: require(`${Base_URL}/assets/images/Food/Protein/egg.png`) },
+    { id: 'fish', name: 'Fish', image: require(`${Base_URL}/assets/images/Food/Protein/fish.png`) },
+    { id: 'bean', name: 'Bean', image: require(`${Base_URL}/assets/images/Food/Protein/bean.png`) },
+    { id: 'tofu', name: 'Tofu', image: require(`${Base_URL}/assets/images/Food/Protein/tofu.png`) },
+    { id: 'beef', name: 'Lean Beef', image: require(`${Base_URL}/assets/images/Food/Protein/beef.png`) },
+  ],
+  carbohydrates: [
+    { id: 'rice', name: 'Rice', image: require(`${Base_URL}/assets/images/Food/Carbohydrate/rice.png`) },
+    { id: 'oats', name: 'Oats', image: require(`${Base_URL}/assets/images/Food/Carbohydrate/oats.png`) },
+    { id: 'quinoa', name: 'Quinoa', image: require(`${Base_URL}/assets/images/Food/Carbohydrate/quinoa.png`) },
+    { id: 'corn', name: 'Corn', image: require(`${Base_URL}/assets/images/Food/Carbohydrate/corn.png`) },
+    { id: 'pasta', name: 'Pasta', image: require(`${Base_URL}/assets/images/Food/Carbohydrate/pasta.png`) },
+    { id: 'butternut', name: 'Butternut', image: require(`${Base_URL}/assets/images/Food/Carbohydrate/butternut.png`) },
+    { id: 'sweetpotato', name: 'Sweet Potato', image: require(`${Base_URL}/assets/images/Food/Carbohydrate/sweetpotato.png`) },
+    { id: 'potato', name: 'Potato', image: require(`${Base_URL}/assets/images/Food/Carbohydrate/potato.png`) },
+  ],
+  fats: [
+    { id: 'chocolate', name: 'Chocolate', image: require(`${Base_URL}/assets/images/Food/Fats/chocolate.png`) },
+    { id: 'coconut', name: 'Coconut', image: require(`${Base_URL}/assets/images/Food/Fats/coconut.png`) },
+    { id: 'olive', name: 'Olive', image: require(`${Base_URL}/assets/images/Food/Fats/olive.png`) },
+    { id: 'nut', name: 'Nut', image: require(`${Base_URL}/assets/images/Food/Fats/nut.png`) },
+    { id: 'salmon', name: 'Salmon', image: require(`${Base_URL}/assets/images/Food/Fats/salmon.png`) },
+  ],
+  dairy: [
+    { id: 'milk', name: 'Milk', image: require(`${Base_URL}/assets/images/Food/Dairy/milk.png`) },
+    { id: 'cream', name: 'Cream', image: require(`${Base_URL}/assets/images/Food/Dairy/cream.png`) },
+    { id: 'cottagecheese', name: 'Cottage Cheese', image: require(`${Base_URL}/assets/images/Food/Dairy/cottagecheese.png`) },
+    { id: 'icecream', name: 'Ice Cream', image: require(`${Base_URL}/assets/images/Food/Dairy/icecream.png`) },
+    { id: 'cheese', name: 'Cheese', image: require(`${Base_URL}/assets/images/Food/Dairy/cheese.png`) },
+    { id: 'yogurt', name: 'Yogurt', image: require(`${Base_URL}/assets/images/Food/Dairy/yogurt.png`) },
+  ],
 };
 
 const ProfileSetupScreen = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isAvatarUploading, setIsAvatarUploading] = useState(false);
   const [profileData, setProfileData] = useState<ProfileData>({
-    childName: '',
-    avatar: undefined,
-    age: '',
-    gender: '',
-    restrictions: [],
-    fruits: [],
-    vegetables: [],
-    proteins: []
+    childName: '', 
+    avatar: undefined, 
+    age: '', 
+    gender: '', 
+    restrictions: [], 
+    fruits: [], 
+    vegetables: [], 
+    proteins: [], 
+    carbohydrates: [], 
+    fats: [], 
+    dairy: []
   });
   
   const progress = useSharedValue(0);
@@ -281,7 +335,10 @@ const ProfileSetupScreen = () => {
     'restrictions',
     'fruits',
     'vegetables',
-    'proteins'
+    'proteins',
+    'carbohydrates',
+    'fats',
+    'dairy'
   ];
   
   const handleNext = async () => {
@@ -326,6 +383,9 @@ const ProfileSetupScreen = () => {
         vegetables: profileData.vegetables,
         fruits: profileData.fruits,
         proteins: profileData.proteins,
+        carbohydrates: profileData.carbohydrates,
+        fats: profileData.fats,
+        dairy: profileData.dairy,
       };
 
       console.log('Child data2:', childData);
@@ -390,6 +450,27 @@ const ProfileSetupScreen = () => {
           setProfileData={setProfileData}
           foods={foodData.proteins}
         />;
+      case 'carbohydrates':
+        return <FoodSelectionStep 
+          type="carbohydrates" 
+          profileData={profileData} 
+          setProfileData={setProfileData}
+          foods={foodData.carbohydrates}
+        />;
+      case 'fats':
+        return <FoodSelectionStep 
+          type="fats" 
+          profileData={profileData} 
+          setProfileData={setProfileData}
+          foods={foodData.fats}
+        />;
+      case 'dairy':
+        return <FoodSelectionStep 
+          type="dairy" 
+          profileData={profileData} 
+          setProfileData={setProfileData}
+          foods={foodData.dairy}
+        />;
       default:
         return null;
     }
@@ -403,7 +484,7 @@ const ProfileSetupScreen = () => {
         style={styles.header}
       >
         <Image 
-          source={require('../../assets/images/logo/platefull-mascot.png')}
+          source={require(`${Base_URL}/assets/images/logo/platefull-mascot.png`)}
           style={styles.mascot}
         />
         <Text style={styles.welcomeText}>Welcome to PLATEFUL</Text>
@@ -540,7 +621,7 @@ const AvatarStep: React.FC<AvatarStepProps> = ({ profileData, setProfileData, is
           onPress={() => setProfileData({ ...profileData, avatar: 'boy' })}
         >
           <Image 
-            source={require('../../assets/images/avatars/boy.png')}
+            source={require(`${Base_URL}/assets/images/avatars/boy.png`)}
             style={styles.avatarImage}
           />
           <Text style={styles.avatarText}>Boy</Text>
@@ -559,7 +640,7 @@ const AvatarStep: React.FC<AvatarStepProps> = ({ profileData, setProfileData, is
           onPress={() => setProfileData({ ...profileData, avatar: 'girl' })}
         >
           <Image 
-            source={require('../../assets/images/avatars/girl.png')}
+            source={require(`${Base_URL}/assets/images/avatars/girl.png`)}
             style={styles.avatarImage}
           />
           <Text style={styles.avatarText}>Girl</Text>
@@ -650,7 +731,7 @@ const GenderStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
         onPress={() => setProfileData({ ...profileData, gender: 'girl' })}
       >
         <Image 
-          source={require('../../assets/images/avatars/girl.png')}
+          source={require(`${Base_URL}/assets/images/avatars/girl.png`)}
           style={styles.genderAvatar}
         />
       </TouchableOpacity>
@@ -663,7 +744,7 @@ const GenderStep: React.FC<StepProps> = ({ profileData, setProfileData }) => (
         onPress={() => setProfileData({ ...profileData, gender: 'boy' })}
       >
         <Image 
-          source={require('../../assets/images/avatars/boy.png')}
+          source={require(`${Base_URL}/assets/images/avatars/boy.png`)}
           style={styles.genderAvatar}
         />
       </TouchableOpacity>

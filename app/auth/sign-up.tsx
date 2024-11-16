@@ -22,6 +22,7 @@ import { colors } from '../../constants/colors';
 import { useAuthStore } from '../../stores/authStore';
 
 const { width } = Dimensions.get('window');
+const Base_URL = process.env.EXPO_PUBLIC_BASE_URL;
 
 interface FormData {
   name: string;
@@ -161,7 +162,7 @@ const SignUpScreen: React.FC = () => {
         style={styles.header}
       >
         <Image 
-          source={require('../../assets/images/logo/platefull-mascot.png')}
+          source={require(`${Base_URL}/assets/images/logo/platefull-mascot.png`)}
           style={styles.mascot}
         />
         <Text style={styles.welcomeText}>Join PLATEFUL</Text>
@@ -252,7 +253,7 @@ const SignUpScreen: React.FC = () => {
               activeOpacity={0.8}
             >
               <Image 
-                source={require('../../assets/images/icons/google.png')}
+                source={require(`${Base_URL}/assets/images/icons/google.png`)}
                 style={styles.googleIcon}
               />
               <Text style={styles.googleButtonText}>Sign up with Google</Text>

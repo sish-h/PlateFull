@@ -1,10 +1,11 @@
 import { ImageSourcePropType } from 'react-native';
+const Base_URL = process.env.EXPO_PUBLIC_BASE_URL;
 
 // Avatar mapping for predefined avatars (static require statements)
 export const avatarMap: { [key: string]: any } = {
-  'boy': require('../assets/images/avatars/boy.png'),
-  'girl': require('../assets/images/avatars/girl.png'),
-  'user': require('../assets/images/avatars/user.jpg'),
+  'boy': require(`${Base_URL}/assets/images/avatars/boy.png`),
+  'girl': require(`${Base_URL}/assets/images/avatars/girl.png`),
+  'user': require(`${Base_URL}/assets/images/avatars/user.jpg`),
 };
 
 // Helper function to get avatar source safely
@@ -18,7 +19,7 @@ export const getAvatarSource = (child: any, avatarLoadErrors: Set<string> = new 
     if (child.avatar && typeof child.avatar === 'string') {
       // If avatar is a backend filename (e.g., "86bc4690-5d7b-4d4c-98b0-1401b680908a.jpeg")
       if (child.avatar.includes('.') && !child.avatar.startsWith('http')) {
-        const avatarUri = `http://localhost:5000/uploads/avatars/${child.avatar}`;
+        const avatarUri = `${Base_URL}/uploads/avatars/${child.avatar}`;
         return { uri: avatarUri };
       }
       // If avatar is already a full URL
