@@ -4,7 +4,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useCallback, useEffect, useState } from 'react';
 import {
   Animated,
-  Dimensions,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -13,12 +12,14 @@ import {
   Vibration,
   View
 } from 'react-native';
+import { colors } from '../../../../constants/colors';
+import ActionButton from '../components/ActionButton';
+import ProgressBar from '../components/ProgressBar';
+import StatItem from '../components/StatItem';
 import QUIZ_DATA from '../data/quizData';
 import { RootStackParamList } from '../types/navigation';
 
 type GameScreenProps = NativeStackScreenProps<RootStackParamList, 'Game'>;
-
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 const GameScreen = ({ navigation, route }: GameScreenProps) => {
   const { difficulty, questions: subRoundQuestions } = route.params;
@@ -271,29 +272,11 @@ const GameScreen = ({ navigation, route }: GameScreenProps) => {
       >
         <View style={styles.header}>
           <View style={styles.statsContainer}>
-            <View style={styles.statItem}>
-              <Ionicons name="heart" size={24} color="#FF6B6B" />
-              <Text style={styles.statText}>×{hearts}</Text>
-            </View>
-            <View style={styles.statItem}>
-              <Ionicons name="star" size={24} color="#FFD93D" />
-              <Text style={styles.statText}>{stars}</Text>
-            </View>
+            <StatItem iconName="heart" value={`×${hearts}`} color={colors.secondary} />
+            <StatItem iconName="star" value={stars} color={colors.gamification.gold} />
           </View>
-          
-          <View style={styles.progressContainer}>
-            <Text style={styles.progressText}>
-              {currentQuestion + 1}/{questions.length}
-            </Text>
-            <View style={styles.progressBar}>
-              <View 
-                style={[
-                  styles.progressFill,
-                  { width: `${((currentQuestion + 1) / questions.length) * 100}%` }
-                ]} 
-              />
-            </View>
-          </View>
+
+          <ProgressBar current={currentQuestion + 1} total={questions.length} width={100} />
         </View>
 
         <View style={styles.questionContent}>
@@ -351,41 +334,24 @@ const GameScreen = ({ navigation, route }: GameScreenProps) => {
         </View>
 
         <View style={styles.footer}>
-          <TouchableOpacity
-            style={[styles.actionButton, (hintUsed || stars < 10 || selectedAnswer !== null) && styles.disabledButton]}
+          <ActionButton
+            label="Hint (10⭐)"
+            iconName="help-circle"
             onPress={useHint}
             disabled={hintUsed || stars < 10 || selectedAnswer !== null}
-          >
-            <Ionicons 
-              name="help-circle" 
-              size={20} 
-              color={hintUsed || stars < 10 || selectedAnswer !== null ? '#CCCCCC' : '#FFD93D'} 
-            />
-            <Text style={[
-              styles.actionButtonText,
-              { color: hintUsed || stars < 10 || selectedAnswer !== null ? '#CCCCCC' : '#FFD93D' }
-            ]}>
-              Hint (10⭐)
-            </Text>
-          </TouchableOpacity>
-          
-          <TouchableOpacity
-            style={[styles.actionButton, (stars < 20 || selectedAnswer !== null) && styles.disabledButton]}
+            color={colors.accent}
+            backgroundColor={colors.surface}
+            style={styles.footerButton}
+          />
+          <ActionButton
+            label="See Answer (20⭐)"
+            iconName="eye"
             onPress={seeCorrectAnswer}
             disabled={stars < 20 || selectedAnswer !== null}
-          >
-            <Ionicons 
-              name="eye" 
-              size={20} 
-              color={stars < 20 || selectedAnswer !== null ? '#CCCCCC' : '#FF6B35'} 
-            />
-            <Text style={[
-              styles.actionButtonText,
-              { color: stars < 20 || selectedAnswer !== null ? '#CCCCCC' : '#FF6B35' }
-            ]}>
-              See Answer (20⭐)
-            </Text>
-          </TouchableOpacity>
+            color={colors.food.carrot}
+            backgroundColor={colors.surface}
+            style={styles.footerButton}
+          />
         </View>
       </Animated.View>
     );
@@ -550,6 +516,10 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#EEEEEE',
     backgroundColor: '#FFFFFF',
+  },
+  footerButton: {
+    flex: 1,
+    marginHorizontal: 4,
   },
   actionButton: {
     flexDirection: 'row',
