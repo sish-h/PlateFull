@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { apiService } from '../utils/apiService';
+import MessageHandler from '../utils/messageHandler';
 
 export interface ChildProfile {
   id: string;
@@ -127,10 +128,24 @@ export const useUserStore = create<UserStore>((set, get) => ({
             isLoading: false 
           });
         }
+        
+        // Show success message
+        MessageHandler.showSuccess('Child profile created successfully!');
       } else {
+        // Handle error response
+        MessageHandler.handleApiResponse(response, {
+          title: 'Add Child',
+          errorMessage: 'Failed to create child profile. Please try again.'
+        });
         throw new Error(response.error || 'Failed to add child');
       }
     } catch (error) {
+      // Handle caught errors
+      MessageHandler.handleApiError(error, {
+        title: 'Add Child Error',
+        errorMessage: 'Failed to create child profile. Please check your connection and try again.'
+      });
+      
       set({
         error: error instanceof Error ? error.message : 'Failed to add child',
         isLoading: false,

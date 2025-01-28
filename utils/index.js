@@ -333,3 +333,7 @@ export default {
   gamificationUtils,
   api,
 };
+
+// Message Handling Utilities
+export { default as ApiHandler } from './apiHandler';
+export { default as MessageHandler } from './messageHandler';

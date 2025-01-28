@@ -3,28 +3,28 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
-  Alert,
-  Dimensions,
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    Dimensions,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import Animated, {
-  FadeIn,
-  FadeOut,
-  useAnimatedStyle,
-  useSharedValue,
-  withSpring,
-  withTiming
+    FadeIn,
+    FadeOut,
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring,
+    withTiming
 } from 'react-native-reanimated';
 import Input from '../../components/common/Input';
 import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
 import { config } from '../../constants/config';
 import { useUserStore } from '../../stores/userStore';
+import MessageHandler from '../../utils/messageHandler';
 import { shadowPresets } from '../../utils/shadowUtils';
 
 const { width } = Dimensions.get('window');
@@ -287,17 +287,17 @@ const ProfileSetupScreen = () => {
   const handleCreateChildProfile = async () => {
     try {
       if (!profileData.childName.trim()) {
-        Alert.alert('Error', 'Please enter your child\'s name');
+        MessageHandler.showError('Please enter your child\'s name');
         return;
       }
       
       if (!profileData.age) {
-        Alert.alert('Error', 'Please select your child\'s age');
+        MessageHandler.showError('Please select your child\'s age');
         return;
       }
       
       if (!profileData.gender) {
-        Alert.alert('Error', 'Please select your child\'s gender');
+        MessageHandler.showError('Please select your child\'s gender');
         return;
       }
       
@@ -318,22 +318,14 @@ const ProfileSetupScreen = () => {
       // Create child profile using userStore
       const result = await addChild(childData);
       
-      // Check if there was an error from the store
-      // if (error) {
-      //   Alert.alert('Error', error);
-      //   return;
-      // }
-      
-      // Navigate to success page
-      // router.replace('/profile/setup-success');
-      router.push('/(tabs)' as any);
+      // Navigate to success page after successful creation
+      MessageHandler.showSuccess('Child profile created successfully!', 'Success', () => {
+        router.push('/(tabs)' as any);
+      });
       
     } catch (error) {
       console.error('Error creating child profile:', error);
-      Alert.alert(  
-        'Error', 
-        'Failed to create child profile. Please try again.'
-      );
+      MessageHandler.showError('Failed to create child profile. Please try again.');
     }
   };
   

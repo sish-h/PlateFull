@@ -4,20 +4,21 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import {
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View
+    Image,
+    KeyboardAvoidingView,
+    Platform,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 import Button from '../../components/common/Button';
 import Input from '../../components/common/Input';
 import StatusBar from '../../components/common/StatusBar';
 import { colors } from '../../constants/colors';
 import { useAuthStore } from '../../stores/authStore';
+import MessageHandler from '../../utils/messageHandler';
 
 interface FormData {
   email: string;
@@ -74,7 +75,11 @@ const SignInScreen = () => {
           name: 'User',
           email: formData.email
         }));
-        router.replace('/(tabs)' as any);
+        
+        // Show success message and navigate
+        MessageHandler.showSuccess('Welcome back!', 'Login Successful', () => {
+          router.replace('/(tabs)' as any);
+        });
         return { success: true };
       } else {
         // Login failed - stay on sign-in page and show error
