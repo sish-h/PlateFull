@@ -1,50 +1,28 @@
-# Welcome to your Expo app 👋
+# PlateFull
+A children's nutrition app built with TypeScript to help kids develop healthy eating habits.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## What it does
+PlateFull provides a fun and interactive way for kids to learn about nutrition and track their daily food intake. The app includes a database of healthy foods, a meal planner, and a rewards system to encourage kids to make nutritious choices.
 
-## Get started
+## Getting Started
+To install and run PlateFull, follow these steps:
 
-1. Install dependencies
+1. Clone the repository: `git clone https://github.com/your-username/PlateFull.git`
+2. Install dependencies: `npm install`
+3. Start the app: `npm start`
 
-   ```bash
-   npm install
-   ```
+## Example Use Case
+Create a new user and add a food item to their plate:
+```typescript
+import { User, Food } from './models';
 
-2. Start the app
+const user = new User('John Doe');
+const apple = new Food('Apple', 'Fruit', 95);
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+user.addFood(apple);
+console.log(user.getPlate());
 ```
+This will output the user's plate with the added food item.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Contribution
+Contributions are welcome! If you have any ideas or bug fixes, feel free to open an issue or submit a pull request.
